@@ -1,0 +1,282 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-29 13:04+0100\n"
+"PO-Revision-Date: 2019-03-29 13:11+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:40
+msgid "Net Access"
+msgstr "Acceso Red"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:53
+msgid "Hard Disk"
+msgstr "Disco Duro"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:66
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:167
+msgid "Epoptes"
+msgstr "Epoptes"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:80
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1835
+msgid "Startup Bar"
+msgstr "Barra Arranque"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:94
+msgid "Kernel"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:108
+msgid "/NET"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:206
+msgid "Renew certificate"
+msgstr "Renovar el certificado"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:233
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:354
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:384
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1576
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1613
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1862
+msgid "Execute"
+msgstr "Ejecutar"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:288
+msgid "Hard Disk  Operations"
+msgstr "Operaciones sobre el disco duro"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:330
+msgid "Managing disk partitions."
+msgstr "Operaciones sobre las particiones."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:343
+msgid "Test hard disk on reboot"
+msgstr "Programar un test de integridad en el arranque"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:688
+msgid "Kernels Avaiables"
+msgstr "Kernels Disponibles"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:729
+msgid "Apply Filter"
+msgstr "Aplicar Filtro"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:790
+msgid "Show installed kernels only"
+msgstr "Mostrar solo los kernels instalados"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:871
+msgid "Kernel selected on boot:"
+msgstr "Kernel seleccionado por defecto para el arranque:"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:948
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:967
+msgid "Password"
+msgstr "Contraseña"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:984
+msgid "Server IP    (Default value : server)"
+msgstr "Server IP    (Default value : server)"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:993
+msgid "Login"
+msgstr "Acceder"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1104
+msgid "Access to the Network"
+msgstr "Acceso a la Red"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1144
+msgid "Server connection"
+msgstr "Conexión con el servidor"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1156
+msgid "Internet access"
+msgstr "Acceso a Internet"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1195
+msgid "Speed"
+msgstr "Velocidad"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1245
+msgid "Test Network"
+msgstr "Test de la Red"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1268
+msgid "Link"
+msgstr "Cable Conectado"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1293
+msgid "Ip address:"
+msgstr "Dirección Ip:"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1349
+msgid "Restart Networking Services"
+msgstr "Reiniciar el servicio de Red"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1375
+msgid "Restart"
+msgstr "Reiniciar"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1416
+msgid "Configure Network"
+msgstr "Configurar la Red"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1442
+msgid "Configure"
+msgstr "Configura"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1497
+msgid "/NET Files"
+msgstr "Ficheros de /NET"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1537
+msgid "ACLs Repair"
+msgstr "Reparar las ACL's"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1549
+msgid "Regenerate local folders"
+msgstr "Regenerar los ficheros locales"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1796
+msgid "Startup Bar Operations"
+msgstr "Operaciones con la Barra de Arranque"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2063
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2074
+msgid "label"
+msgstr "Etiqueta"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:311
+#, python-format
+msgid "You have a new kernel boot by defect:"
+msgstr "Has seleccionado un nuevo Kernel por defecto:"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:351
+msgid "Applying filter to show only installed kernels...please wait"
+msgstr ""
+"Aplicando el filtro para solo mostrar los kernels instalados.... por favor "
+"espera."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:380
+msgid "Applying filter to kernels...please wait"
+msgstr "Aplicando el filtro al listado de kernels.... por favor espera."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:424
+msgid "Updating Kernel Cache...please wait"
+msgstr "Actualizando el listado de Kernels disponibles... por favor espera."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:673
+#, python-format
+msgid ""
+"Your new kernel list:"
+msgstr ""
+"Tu nuevo listado de kernels es:"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:704
+msgid "Uninstall"
+msgstr "Desisntalar"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:708
+msgid "Install"
+msgstr "Instalar"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:708
+msgid "Installing"
+msgstr "Instalando"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:708
+msgid "Deleting"
+msgstr "Desinstalando"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:868
+#, python-format
+msgid "You can't delete this kernel because you are using now:"
+msgstr "No puedes borrar este kernel porque esta siendo usado actualmente"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:868
+#, python-format
+msgid "Do you want to DELETE this kernel?"
+msgstr "¿Quieres desinstalar este kernel?"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:784
+#, python-format
+msgid "You cancel to uninstall kernel:"
+msgstr "Has cancelado la desinstalación del kernel:"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:813
+#, python-format
+msgid "You cancel to install kernel:"
+msgstr "Has cancelado la instalación del kernel:"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:813
+#, python-format
+msgid "Do you want to INSTALL this kernel?"
+msgstr "¿Quieres instalar este Kernel?"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:868
+#, python-format
+msgid "Please wait....."
+msgstr "Por favor espera....."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/EpoptesBox.py:161
+msgid "The Epoptes certificate has been renewed"
+msgstr "El certificado del Epoptes ha sido renovado."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:81
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:203
+msgid "Enable"
+msgstr "Activar"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:85
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:196
+msgid "Disable"
+msgstr "Desactivar"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:87
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:199
+msgid "Programmed a fscky in principal HD on the reboot"
+msgstr ""
+"Programado un test de integridad para el disco duro en el próximo arranque."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:80
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:184
+msgid "Delete Startup Bar"
+msgstr "Eliminar Barra de Arranque"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:84
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:165
+msgid "Add Startup Bar"
+msgstr "Añadir Barra de Arranque"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:167
+msgid "The startup bar is removing from your system, applying changes....."
+msgstr ""
+"La barra de arranque esta siendo eliminada de tu sistema, aplicando "
+"cambios......."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:186
+msgid "The startup bar is adding at your system, applying changes....."
+msgstr ""
+"La barrra de arranque se esta añadiendo a tu sistema, aplicando cambios...."
+
+#~ msgid "Sorry you are not a server. You can't access to /net files."
+#~ msgstr "No eres un Server, no posees acceso a los ficheros de /NET."

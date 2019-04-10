@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Name=First Aid Kit
+Name[es]=First Aid Kit
+Name[ca_ES.UTF-8@valencia]=First Aid Kit
+
+Comment=Solve your regular problems in LliureX
+Comment[es]=Resuelve los problemas habituales que encuentras en LliureX.
+Comment[ca_ES.UTF-8@valencia]=Solve your regular problems in LliureX
+Exec=first-aid-kit
+Terminal=false
+Icon=first-aid-kit-icon
+Type=Application
+GenericName=FirstAidKit
+Categories=LliureX-Administration;GTK

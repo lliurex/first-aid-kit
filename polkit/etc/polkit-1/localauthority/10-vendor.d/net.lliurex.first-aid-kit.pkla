@@ -1,0 +1,8 @@
+[net.lliurex.first-aid-kit]
+Identity=unix-group:sudo;unix-group:admins;
+Action=net.lliurex.first-aid-kit.launcher
+ResultAny=no
+ResultInactive=no
+ResultActive=yes
+
+
