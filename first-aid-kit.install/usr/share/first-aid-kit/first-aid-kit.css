@@ -314,12 +314,12 @@
 	
 
 
-.entry
+#ENTRY
 {
                 color: @default-grey;
                 border: none;
                 border-radius: 0px;
-                background-color: @arc-blue;
+                /*background-color: @arc-blue;*/
                 border-bottom: 1px solid #aaaaaa;
                 padding: 4px;
                 /*background: #eeeeee;*/
@@ -328,16 +328,25 @@
 
 }
 
-.entry:focus
+#ENTRY:focus
 {
                 color: @arc-blue;
+				border: none;
+				border-radius: 0px;
                 border-bottom: 1px solid @arc-blue-light;
                 /*border-bottom: 2px solid rgba(0,0,0,0);*/
                 /*background-color: transparent;*/
 
 
 }
-.entry:selected
+#ENTRY:selected
 {
         color: white;
 }
+
+#ENTRY:disabled
+	{
+		background-color: #bbbbbb;
+		border-bottom: 1px solid transparent;
+		color: #999999;
+	}
