@@ -52,6 +52,7 @@ class FirstAidKit:
 		self.apt_button=builder.get_object("apt_button")
 		self.kernel_button=builder.get_object("kernel_button")
 		self.netfiles_button=builder.get_object("netfiles_button")
+		self.pmb_button=builder.get_object("pmb_button")
 		
 		#PANTALLA LOGIN
 		self.login_da_box=builder.get_object("login_da_box")
@@ -134,6 +135,9 @@ class FirstAidKit:
 		self.kernel_box=self.core.kernel_box
 		self.main_stack.add_titled(self.kernel_box,"kernelbox","KernelBox")
 
+		self.pmb_box=self.core.pmb_box
+		self.main_stack.add_titled(self.pmb_box,"pmbbox","PmbBox")
+
 		
 		self.set_css_info()
 		self.connect_signals()
@@ -205,6 +209,7 @@ class FirstAidKit:
 		self.bar_button.connect("clicked",self.bar_button_clicked)
 		self.apt_button.connect("clicked",self.apt_button_clicked)
 		self.kernel_button.connect("clicked",self.kernel_button_clicked)
+		self.pmb_button.connect("clicked",self.pmb_button_clicked)
 		
 	# def connect_signals
 	
@@ -225,6 +230,7 @@ class FirstAidKit:
 		self.bar_button.set_name("OPTION_BUTTON")
 		self.apt_button.set_name("OPTION_BUTTON")
 		self.kernel_button.set_name("OPTION_BUTTON")
+		self.pmb_button.set_name("OPTION_BUTTON")
 		self.login_msg_label.set_name("ERROR_LABEL")
 
 		self.main_button_box.set_name("GREY")
@@ -335,6 +341,8 @@ class FirstAidKit:
 			selected="kernelbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="aptbox"
+		if self.main_stack.get_visible_child_name()=="pmbbox":
+			selected="pmbbox"
 					
 		if change_child:
 
@@ -346,6 +354,7 @@ class FirstAidKit:
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
+			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def net_button_clicked
 	
@@ -375,6 +384,7 @@ class FirstAidKit:
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
+			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def hd_button_clicked
 	
@@ -394,6 +404,8 @@ class FirstAidKit:
 			selected="kernelbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="aptbox"
+		if self.main_stack.get_visible_child_name()=="pmbbox":
+			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("netfilesbox")
@@ -404,6 +416,7 @@ class FirstAidKit:
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("OPTION_BUTTON")
+			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def netfiles_button_clicked
 	
@@ -423,6 +436,8 @@ class FirstAidKit:
 			selected="kernelbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="aptbox"
+		if self.main_stack.get_visible_child_name()=="pmbbox":
+			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("epoptesbox")
@@ -433,6 +448,7 @@ class FirstAidKit:
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("OPTION_BUTTON")
+			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def epoptes_button_clicked
 	
@@ -452,6 +468,8 @@ class FirstAidKit:
 			selected="kernelbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="aptbox"
+		if self.main_stack.get_visible_child_name()=="pmbbox":
+			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("startbarbox")
@@ -462,6 +480,7 @@ class FirstAidKit:
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("SELECTED_OPTION_BUTTON")
+			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def bar_button_clicked
 
@@ -479,8 +498,10 @@ class FirstAidKit:
 			selected="epoptesbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="startbarbox"
-		if self.main_stack.get_visible_child_name()=="startbarbox":
+		if self.main_stack.get_visible_child_name()=="aptbox":
 			selected="aptbox"
+		if self.main_stack.get_visible_child_name()=="pmbbox":
+			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("kernelbox")
@@ -491,6 +512,7 @@ class FirstAidKit:
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("SELECTED_OPTION_BUTTON")
+			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def kernel_button_clicked
 
@@ -509,8 +531,10 @@ class FirstAidKit:
 			selected="epoptesbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="startbarbox"
-		if self.main_stack.get_visible_child_name()=="startbarbox":
+		if self.main_stack.get_visible_child_name()=="kernelbox":
 			selected="kernelbox"
+		if self.main_stack.get_visible_child_name()=="pmbbox":
+			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("aptbox")
@@ -521,8 +545,41 @@ class FirstAidKit:
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("SELECTED_OPTION_BUTTON")
+			self.pmb_button.set_name("OPTION_BUTTON")
 		
-	#def kernel_button_clicked
+	#def apt_button_clicked
+
+
+	def pmb_button_clicked(self,widget):
+		
+		change_child=True
+		if self.main_stack.get_visible_child_name()=="netbox":
+			selected="netbox"
+		if self.main_stack.get_visible_child_name()=="netfilesbox":
+			selected="netfilesbox"
+		if self.main_stack.get_visible_child_name()=="hdbox":
+			selected="hdbox"
+		if self.main_stack.get_visible_child_name()=="epoptesbox":
+			selected="epoptesbox"
+		if self.main_stack.get_visible_child_name()=="startbarbox":
+			selected="startbarbox"
+		if self.main_stack.get_visible_child_name()=="kernelbox":
+			selected="kernelbox"
+		if self.main_stack.get_visible_child_name()=="aptbox":
+			selected="aptbox"
+					
+		if change_child:
+			self.main_stack.set_visible_child_name("pmbbox")
+			self.net_button.set_name("OPTION_BUTTON")
+			self.hd_button.set_name("OPTION_BUTTON")
+			self.netfiles_button.set_name("OPTION_BUTTON")
+			self.epoptes_button.set_name("OPTION_BUTTON")
+			self.bar_button.set_name("OPTION_BUTTON")
+			self.kernel_button.set_name("OPTION_BUTTON")
+			self.apt_button.set_name("OPTION_BUTTON")
+			self.pmb_button.set_name("SELECTED_OPTION_BUTTON")
+		
+	#def pmb_button_clicked
 	
 	
 	

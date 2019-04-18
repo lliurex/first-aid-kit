@@ -249,6 +249,20 @@
                     <property name="position">6</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkButton" id="pmb_button">
+                    <property name="label" translatable="yes">PMB</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="xalign">0.47999998927116394</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">7</property>
+                  </packing>
+                </child>
               </object>
             </child>
           </object>
@@ -786,6 +800,48 @@
         </child>
         <child>
           <object class="GtkSpinner" id="spinner_nettest">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack_type">end</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkBox" id="info_pmb">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkBox" id="box19">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_top">10</property>
+        <property name="margin_bottom">10</property>
+        <child>
+          <object class="GtkLabel" id="txt_check_pmb">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="xpad">10</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinner" id="spinner_info_pmb">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
           </object>
@@ -1816,6 +1872,125 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+  </object>
+  <object class="GtkBox" id="pmb_box">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_bottom">10</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">10</property>
+    <child>
+      <object class="GtkLabel" id="pmb_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">start</property>
+        <property name="valign">center</property>
+        <property name="margin_top">2</property>
+        <property name="ypad">8</property>
+        <property name="label" translatable="yes">PMB</property>
+        <property name="xalign">0</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkSeparator" id="separator_pmb">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">center</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="pmb_box_container">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox" id="box25">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">20</property>
+            <property name="margin_right">20</property>
+            <property name="margin_top">20</property>
+            <property name="margin_bottom">20</property>
+            <child>
+              <object class="GtkLabel" id="pmb_txt">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xpad">10</property>
+                <property name="label" translatable="yes">Reset your PMB admin passwd</property>
+                <property name="xalign">0</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="pmb_box_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="spacing">5</property>
+                <child>
+                  <object class="GtkSpinner" id="pmb_passwd_spinner">
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="pmb_passwd_button">
+                    <property name="label" translatable="yes">Reset</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">3</property>
       </packing>
     </child>
     <child>

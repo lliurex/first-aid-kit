@@ -1,6 +1,7 @@
 import FirstAidKit
 import logging
 import NetBox
+import PmbBox
 import HdBox
 import NetfilesBox
 import EpoptesBox
@@ -155,6 +156,9 @@ class Core:
 
 		self.dprint("Creating AptBox...")
 		self.apt_box=AptBox.AptBox()
+
+		self.dprint("Creating PmbBox...")
+		self.pmb_box=PmbBox.PmbBox()
 		
 		os.system('lliurex-version -f > /tmp/.FK')
 		if self.server:
