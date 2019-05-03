@@ -15,7 +15,7 @@ import urllib2
 import lliurex.net
 import subprocess
 
-gettext.textdomain('first-aid-kit-gui')
+gettext.textdomain('first-aid-kit')
 _=gettext.gettext
 
 
@@ -32,7 +32,7 @@ class NetBox(Gtk.VBox):
 		self.core=Core.Core.get_core()
 		
 		builder=Gtk.Builder()
-		builder.set_translation_domain('first-aid-kit-gui')
+		builder.set_translation_domain('first-aid-kit')
 		ui_path=RSRC + "first-aid-kit.ui"
 		builder.add_from_file(ui_path)
 

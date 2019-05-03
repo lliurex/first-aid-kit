@@ -11,9 +11,10 @@ import time
 import threading
 import sys
 import os
+import subprocess
 import time
 
-gettext.textdomain('first-aid-kit-gui')
+gettext.textdomain('first-aid-kit')
 _=gettext.gettext
 
 
@@ -30,7 +31,7 @@ class AptBox(Gtk.VBox):
 		self.core=Core.Core.get_core()
 		
 		builder=Gtk.Builder()
-		builder.set_translation_domain('first-aid-kit-gui')
+		builder.set_translation_domain('first-aid-kit')
 		ui_path=RSRC + "first-aid-kit.ui"
 		builder.add_from_file(ui_path)
 		
@@ -141,11 +142,21 @@ class AptBox(Gtk.VBox):
 		try:
 			self.core.working=True
 			self.core.dprint("Modifying repositories.........","[AptBox]")
-			os.system('lliurex-apt2')
-			self.thread_ret={"status":True,"msg":"BROKEN"}
-			
-		except Exception as e:
+			proc=subprocess.Popen('lliurex-apt2',shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable="/bin/bash")
+			output,error=proc.communicate()
+
+			if not '/bin/bash' in  error:
+				self.error=False
+			else:
+				self.info_box_stack.set_visible_child_name("infobox")
+				self.txt_check_apt.set_text(_("Sorry but the app to modify the repositories can't be opened"))
+				self.error=True
+				
+		except subprocess.CalledProcessError as e:
 			self.core.dprint("(apt_execute_button_thread)Error: %s"%e,"[AptBox]")
+			self.info_box_stack.set_visible_child_name("infobox")
+			self.txt_check_apt.set_text(_("Sorry but the app to modify the repositories can't be opened"))
+			self.error=True
 			return False
 			
 	#def apt_execute_button_thread
@@ -161,9 +172,10 @@ class AptBox(Gtk.VBox):
 		self.apt_spinner.hide()
 		self.apt_execute_button.show()
 		self.apt_execute_button.set_sensitive(True)
-		self.info_box_stack.set_visible_child_name("empty_box")
-		self.info_box_stack.set_visible_child_name("infobox")
-		self.txt_check_apt.set_text(_("You have mofified the repositories."))
-		self.core.dprint("You have mofified the repositories...FINISHED!!","[AptBox]")
+		if not self.error:
+			self.info_box_stack.set_visible_child_name("empty_box")
+			self.info_box_stack.set_visible_child_name("infobox")
+			self.txt_check_apt.set_text(_("You have mofified the repositories."))
+			self.core.dprint("You have mofified the repositories...FINISHED!!","[AptBox]")
 		
 	#check_apt_execute_button_thread

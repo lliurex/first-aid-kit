@@ -15,7 +15,7 @@ import xmlrpclib
 import datetime
 from dateutil import parser
 
-gettext.textdomain('first-aid-kit-gui')
+gettext.textdomain('first-aid-kit')
 _=gettext.gettext
 
 
@@ -32,7 +32,7 @@ class NetfilesBox(Gtk.VBox):
 		self.core=Core.Core.get_core()
 		
 		builder=Gtk.Builder()
-		builder.set_translation_domain('first-aid-kit-gui')
+		builder.set_translation_domain('first-aid-kit')
 		ui_path=RSRC + "first-aid-kit.ui"
 		builder.add_from_file(ui_path)
 		self.acl_time_path="/tmp/.fak_acl_timepath"

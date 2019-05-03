@@ -14,7 +14,7 @@ import os
 import time
 import apt
 
-gettext.textdomain('first-aid-kit-gui')
+gettext.textdomain('first-aid-kit')
 _=gettext.gettext
 
 
@@ -31,7 +31,7 @@ class PmbBox(Gtk.VBox):
 		self.core=Core.Core.get_core()
 		
 		builder=Gtk.Builder()
-		builder.set_translation_domain('first-aid-kit-gui')
+		builder.set_translation_domain('first-aid-kit')
 		ui_path=RSRC + "first-aid-kit.ui"
 		builder.add_from_file(ui_path)
 		
@@ -169,7 +169,7 @@ class PmbBox(Gtk.VBox):
 		try:
 			self.core.working=True
 			self.core.dprint("Reseting your PMB passwd.........","[PmbBox]")
-			os.system('mysql -s -N -e "update pmb.users set pwd=password(\'admin\') where username like \'admin\';"')
+			os.system('Update users set pwd=password("admin") where username like "admin"')
 			time.sleep(1)
 			self.thread_ret={"status":True,"msg":"BROKEN"}
 			
@@ -193,8 +193,8 @@ class PmbBox(Gtk.VBox):
 			self.pmb_passwd_button.set_sensitive(True)
 			self.info_box_stack.set_visible_child_name("empty_box")
 			self.info_box_stack.set_visible_child_name("infobox")
-			self.txt_check_pmb.set_text(_("Your new passwd to admin user is admin\nPlease logged in your application and change it."))
-			self.core.dprint("Your new passwd to admin user is admin. Please logged in your application and change it.","[PmbBox]")
+			self.txt_check_pmb.set_text(_("New PMB admin passwd is admin."))
+			self.core.dprint("You have modified PMB admin passwd...FINISHED!!","[PmbBox]")
 
 		except Exception as e:
 			self.core.dprint("(check_pmb_execute_button_thread)Error: %s"%e,"[PmbBox]")

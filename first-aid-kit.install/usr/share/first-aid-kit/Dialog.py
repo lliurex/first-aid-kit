@@ -3,7 +3,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Pango, GdkPixbuf, Gdk, Gio, GObject,GLib
 
 import gettext
-gettext.textdomain('first-aid-kit-gui')
+gettext.textdomain('first-aid-kit')
 _=gettext.gettext
 
 class QuestionDialog(Gtk.Dialog):

@@ -279,5 +279,42 @@ msgstr ""
 "S'està afegint la barra d'inici al vostre sistema, s'estan aplicant els "
 "canvis......."
 
-#~ msgid "Sorry you are not a server. You can't access to /net files."
-#~ msgstr "No eres un Server, no posees acceso a los ficheros de /NET."
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "PMB it's NOT installed or not detected"
+msgstr "El PMB no està instal·lat o no s'ha detectat."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "Reset your PMB admin passwd"
+msgstr "Resetear la contraseña de admin en el PMB "
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "PMB it's NOT installed"
+msgstr "El PMB no està instal·lat."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "You're resetting admin passwd to PMB, please wait...."
+msgstr " S'està restablint la contrasenya de l'administrador de PMB, espereu..."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "New PMB admin passwd is admin."
+msgstr "La nova contrasenya de l'administrador de PMB és admin."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/FirstAidKit.py
+msgid "Sorry you are not a server. You can't access to /net files."
+msgstr "No sou un servidor. No podeu accedir als fitxer /net."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py
+msgid "You are modifying the repositories, close the external app when you finished with it."
+msgstr "Esteu modificant els repositoris, tanqueu l'aplicació externa quan acabeu."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py
+msgid "Sorry but the app to modify the repositories can't be opened."
+msgstr "L'aplicació per a modificar els repositoris no es pot obrir."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py
+msgid "You have mofified the repositories."
+msgstr "Heu modificat els repositoris."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py
+msgid "Modify your repositories"
+msgstr "Modifica els repositoris"

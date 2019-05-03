@@ -257,8 +257,44 @@ msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:186
 msgid "The startup bar is adding at your system, applying changes....."
-msgstr ""
-"La barrra de arranque se esta añadiendo a tu sistema, aplicando cambios...."
+msgstr "La barrra de arranque se esta añadiendo a tu sistema, aplicando cambios...."
 
-#~ msgid "Sorry you are not a server. You can't access to /net files."
-#~ msgstr "No eres un Server, no posees acceso a los ficheros de /NET."
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "PMB it's NOT installed or not detected"
+msgstr "El PMB no esta instalado o no esta detectado."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "PMB it's NOT installed"
+msgstr "El PMB no esta instalado."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "Reset your PMB admin passwd"
+msgstr "Resetear la contraseña de admin en el PMB "
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "You're resetting admin passwd to PMB, please wait...."
+msgstr "Se esta reseteando la contraseña del usuario admin en el PMB, por favor espera... "
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "New PMB admin passwd is admin."
+msgstr "La nueva contraseña del usuario admin en el PMB es admin. "
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/FirstAidKit.py
+msgid "Sorry you are not a server. You can't access to /net files."
+msgstr "Lo siento no eres un server. No posees acceso a las operaciones sobre /net"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py
+msgid "You are modifying the repositories, close the external app when you finished with it."
+msgstr "Estas modificando los repositorios, cierra la aplicacion externa cuando termines."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py
+msgid "Sorry but the app to modify the repositories can't be opened."
+msgstr "Lo siento pero la aplicación para modificar los repositorios no puede abrirse."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py
+msgid "You have mofified the repositories."
+msgstr "Has modificado los repositorios."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py
+msgid "Modify your repositories"
+msgstr "Modifica los repositorios"
