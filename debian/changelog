@@ -1,0 +1,59 @@
+first-aid-kit (0.0.18) xenial; urgency=high
+
+  * Adding new translations 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Thu, 02 May 2019 11:49:03 +0200
+
+first-aid-kit (0.0.15) xenial; urgency=high
+
+  * Adding pmb module 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Tue, 23 Apr 2019 14:08:27 +0200
+
+first-aid-kit (0.0.8) xenial; urgency=high
+
+  * Adding Apt module 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Mon, 08 Apr 2019 12:40:32 +0200
+
+first-aid-kit (0.0.7) xenial; urgency=high
+
+  * New grub-menu script to dectect list grub menu 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Wed, 03 Apr 2019 12:07:33 +0200
+
+first-aid-kit (0.0.6) xenial; urgency=high
+
+  * Apply update-grub2 when you change kernel by defect 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Tue, 02 Apr 2019 15:04:03 +0200
+
+first-aid-kit (0.0.5) xenial; urgency=high
+
+  * KernelBox file was modify with old version 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Tue, 02 Apr 2019 14:28:38 +0200
+
+first-aid-kit (0.0.4) xenial; urgency=high
+
+  * Problems with translations in Kernel Module 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Tue, 02 Apr 2019 14:05:58 +0200
+
+first-aid-kit (0.0.3) xenial; urgency=high
+
+  * Adding Valencia translation 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Mon, 01 Apr 2019 11:44:00 +0200
+
+first-aid-kit (0.0.2) xenial; urgency=high
+
+  * change zero name for banner 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Mon, 01 Apr 2019 08:22:51 +0100
+
+first-aid-kit (0.0.1) xenial; urgency=high
+
+  * Initial release.
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Wed, 19 Feb 2019 09:46:16 +0200

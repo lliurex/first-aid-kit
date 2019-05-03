@@ -1,0 +1,4 @@
+first-aid-kit.install/*	/
+polkit/*	/
+zero-center-files/first-aid-kit.app /usr/share/zero-center/applications/
+zero-center-files/first-aid-kit.zmd /usr/share/zero-center/zmds/
