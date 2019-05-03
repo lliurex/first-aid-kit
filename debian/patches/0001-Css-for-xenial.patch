@@ -1,0 +1,381 @@
+From: daduve <daduve@gmail.com>
+Date: Fri, 3 May 2019 12:39:23 +0200
+Subject: Css for xenial
+
+---
+ .../usr/share/first-aid-kit/first-aid-kit.css      | 185 ++++++++++-----------
+ 1 file changed, 91 insertions(+), 94 deletions(-)
+
+diff --git a/first-aid-kit.install/usr/share/first-aid-kit/first-aid-kit.css b/first-aid-kit.install/usr/share/first-aid-kit/first-aid-kit.css
+index cfbc181..a6d92a3 100644
+--- a/first-aid-kit.install/usr/share/first-aid-kit/first-aid-kit.css
++++ b/first-aid-kit.install/usr/share/first-aid-kit/first-aid-kit.css
+@@ -1,4 +1,6 @@
++/*@define-color arc-blue #0062f5;*/
+ @define-color arc-blue #209ddd;
++/*@define-color arc-blue-light #4accf5;*/
+ @define-color arc-blue-light #209ddd;
+ @define-color arc-blue-light-hover #20c5dd;
+ @define-color arc-black #2d323d;
+@@ -6,90 +8,101 @@
+ @define-color arc-blue-hover #629de2;
+ @define-color arc-blue-active #3aa3e2;
+ @define-color default-grey #656565;
+-@define-color install #209ddd;
+-@define-color install-hover #20c5dd;
++@define-color install @arc-blue-light;
++@define-color install-hover @arc-blue-light-hover;
+ @define-color arc-blue-light-light #8ae4ee;
+ @define-color uninstall #cc0000;
+ @define-color uninstall-hover #cc5555;
+ 	
+ 	
+ 	GtkLabel {
+-		font: 12pt Roboto;
++		font: Roboto;
+ 	}
+ 	
+ 	#OPTION_LABEL {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		font-weight: bold;
+ 
+ 	}
+ 
+ 	#INFO_LABEL {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		color: #ff0000;
+ 
+ 	}
+ 	
+ 	#SEPARATOR_MAIN{
+-		background-color: @arc-blue;
++		color: @arc-blue;
+ 	}
+ 
+ 	#SECTION_LABEL{
+-		font: 14pt Roboto;
++		font: Roboto;
+ 		font-weight: bold;
+ 		color: @arc-blue;
+ 	}
+ 
+ 
+-	#KERNEL_OVER
+-	{
++#KERNEL_OVER
++{
+ 
+-		background-color: @arc-blue-light-light;
+-	}
++	background-color: @arc-blue-light-light;
++}
+ 
+-	#KERNEL_REGULAR
+-	{
+-		background-color: white;
++#KERNEL_REGULAR
++{
++	background-color: white;
+ 
+-	}
++}
+ 
+-	#GREY
+-	{
+-		background-color: #f5f5f5;
+-		
+-	}
++#GREY
++{
++	background-color: #f5f5f5;
++	
++}
+ 
+-	#RED
+-	{
+-		background-color: #ff0000;
+-		
+-	}
++#RED
++{
++	background-color: #ff0000;
++	
++}
+ 
+ 
+-	#LIGHTBLUE
+-	{
++#LIGHTBLUE
++{
+ 
+-		background-color: @arc-blue-hover;
+-	}
+-	
++	background-color: @arc-blue-hover;
++}
+ 
+-	#SEPARATOR{
+-		color: @arc-blue;
+-	}
++
++
++/*GtkSeparator{
++	color: @arc-blue;
++}
++*/
++
++#SEPARATOR{
++	color: @arc-blue;
++}
+ 
+ 	#ERROR_LABEL {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		color: rgba(250,10,10,0.8);
+ 	}
+ 	
+ 	#EXECUTE_BUTTON {
+ 		
+ 		border-width: 0px;
++		
++		/*padding: 0px 15px;*/
+ 		box-shadow: none;
++		/*border-color: #208ddd;
++		
++		color: white;
++		background-image:-gtk-gradient (linear,	left top, left bottom, from (#208ddd),  to (#208ddd));
++		text-shadow: none;*/
+ 		border-color: #76819a;
++		font-weight: bold;
+ 		background-image:-gtk-gradient (linear,	left top, left bottom, from (#76819a),  to (#76819a));
+-		font: 11pt Roboto Light;
+-		text-shadow: none;
+-		color: rgba(0,0,0,0.7);
+ 		
+ 	}
+ 	
+@@ -98,97 +111,94 @@
+ 		border-color: #209ddd;
+ 		background-image:-gtk-gradient (linear,	left top, left bottom, from (#209ddd),  to (#209ddd));
+ 		box-shadow: -0.5px 3px 3px #aaaaaa;
+-		font: 11pt Roboto Light;
+-		text-shadow: none;
+-		color: rgba(255,255,255,1);
+ 		
+ 	}
+ 	
+ 	#EXECUTE_BUTTON .label {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		color: rgba(0,0,0,0.8);
+ 	}
+ 	
+ 	#EXECUTE_BUTTON:hover .label {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		color: rgba(255,255,255,1);
+ 	}
+ 
+ 	#INSTALL_BUTTON {
+ 		
+-		background-image:-gtk-gradient (linear, left top, left bottom, from (@install), to (@install));
+ 		border-width: 0px;
++		
++		/*padding: 0px 15px;*/
+ 		box-shadow: none;
+-		border-color: #76819a;
+-		text-shadow: none;
+-		font: 11pt Roboto Light;
+-		color: rgba(0,0,0,0.7);
++		/*border-color: #208ddd;
+ 		
++		color: white;
++		background-image:-gtk-gradient (linear,	left top, left bottom, from (#208ddd),  to (#208ddd));
++		text-shadow: none;*/
++		border-color: #76819a;
++		font-weight: bold;
++		/*background-image:-gtk-gradient (linear,	left top, left bottom, from (#76819a),  to (#76819a));*/
++		background-color: @install;
+ 		
+ 	}
+ 
+ 	#INSTALL_BUTTON:hover {
+ 		
+ 		border-color: #209ddd;
+-		background-image:-gtk-gradient (linear, left top, left bottom, from (@install-hover), to (@install-hover));
++		background-color: @install-hover;
+ 		box-shadow: -0.5px 3px 3px #aaaaaa;
+-		text-shadow: none;
+-		font: 11pt Roboto Light;
+-		color: rgba(255,255,255,1);
+ 		
+ 	}
+ 	
+ 	#INSTALL_BUTTON .label {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		color: rgba(0,0,0,0.8);
+ 	}
+ 	
+ 	#INSTALL_BUTTON:hover .label {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		color: rgba(255,255,255,1);
+ 	}
+ 
+ 	#UNINSTALL_BUTTON {
+ 		
+-		background-image:-gtk-gradient (linear, left top, left bottom, from (@uninstall), to (@uninstall));
+ 		border-width: 0px;
++		
++		/*padding: 0px 15px;*/
+ 		box-shadow: none;
+-		border-color: #76819a;
+-		font: 11pt Roboto Light;
+-		text-shadow: none;
+-		color: rgba(255,255,255,1);
++		/*border-color: #208ddd;
+ 		
++		color: white;
++		background-image:-gtk-gradient (linear,	left top, left bottom, from (#208ddd),  to (#208ddd));
++		text-shadow: none;*/
++		border-color: #76819a;
++		font-weight: bold;
++		background-color: @uninstall;
+ 		
+ 	}
+ 
+ 	#UNINSTALL_BUTTON:hover {
+ 		
+ 		border-color: #209ddd;
+-		background-image:-gtk-gradient (linear, left top, left bottom, from (@uninstall-hover), to (@uninstall-hover));
++		background-color: @uninstall-hover;
+ 		box-shadow: -0.5px 3px 3px #aaaaaa;
+-		font: 11pt Roboto Light;
+-		text-shadow: none;
+-		color: rgba(255,255,255,1);
+ 		
+ 	}
+ 	
+ 	#UNINSTALL_BUTTON .label {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		color: rgba(255,255,255,1);
+ 	}
+ 	
+ 	#UNINSTALL_BUTTON:hover .label {
+-		font: 11pt Roboto Light;
++		font: Roboto Light;
+ 		color: rgba(255,255,255,1);
+ 	}
+ 
+ 	#OPTION_BUTTON {
+ 		
+ 		border: 0px;
+-		box-shadow: none;
+-		background-image:-gtk-gradient (linear, left top, left bottom, from (#ffffff), to (#ffffff));
+-		text-shadow: none;
+-		color: rgba(0,0,0,0.5);
++		background-color: #ffffff;
+ 		/*box-shadow: -0.5px 2px 3px #cdcdcd;*/
+ 		
+ 	}
+@@ -196,10 +206,7 @@
+ 	#OPTION_BUTTON:hover {
+ 		border: 0px;
+ 		border-color: #209ddd;
+-		box-shadow: none;
+-		background-image:-gtk-gradient (linear, left top, left bottom, from (#209ddd), to (#209ddd));
+-		text-shadow: none;
+-		color: rgba(255,255,255,1);
++		background-color: #209ddd;
+ 		/*box-shadow: -0.3px 2px 2px #cecece;*/
+ 	}
+ 
+@@ -222,18 +229,12 @@
+ 	
+ 	#SELECTED_OPTION_BUTTON {
+ 		border: 0px;
+-		box-shadow: none;
+-		background-image:-gtk-gradient (linear, left top, left bottom, from (#76819a), to (#76819a));
+-		text-shadow: none;
+-		color: rgba(255,255,255,0.8);
++		background-color: #76819a;
+ 	}
+ 
+ 	#SELECTED_OPTION_BUTTON:hover {
+ 		border: 0px;
+-		box-shadow: none;
+-		background-image:-gtk-gradient (linear, left top, left bottom, from (#209ddd), to (#209ddd));
+-		text-shadow: none;
+-		color: rgba(255,255,255,0.8);
++		background-color: #209ddd;
+ 		/*box-shadow: -0.5px 2px 4px #9d9d9d;*/
+ 	}
+ 
+@@ -272,13 +273,11 @@
+ 			background-image:-gtk-gradient (linear,	left top, left bottom, from (#ff3b30),  to (#ff3b30));
+ 			text-shadow: none;
+ 			
+-			
+ 		}
+ 		
+ 	#DELETE_ITEM_BUTTON:hover {
+ 		border-color: #ff6c30;
+ 		background-image:-gtk-gradient (linear,	left top, left bottom, from (#ff6c30),  to (#ff6c30));
+-		text-shadow: none;
+ 		box-shadow: -0.5px 3px 3px #aaaaaa;
+ 	}
+ 
+@@ -314,12 +313,12 @@
+ 	
+ 
+ 
+-#ENTRY
++.entry
+ {
+                 color: @default-grey;
+                 border: none;
+                 border-radius: 0px;
+-                /*background-color: @arc-blue;*/
++                background-color: @arc-blue;
+                 border-bottom: 1px solid #aaaaaa;
+                 padding: 4px;
+                 /*background: #eeeeee;*/
+@@ -328,25 +327,23 @@
+ 
+ }
+ 
+-#ENTRY:focus
++.entry:focus
+ {
+                 color: @arc-blue;
+-				border: none;
+-				border-radius: 0px;
+                 border-bottom: 1px solid @arc-blue-light;
+                 /*border-bottom: 2px solid rgba(0,0,0,0);*/
+                 /*background-color: transparent;*/
+ 
+ 
+ }
+-#ENTRY:selected
++.entry:selected
+ {
+         color: white;
+ }
+ 
+-#ENTRY:disabled
+-	{
+-		background-color: #bbbbbb;
+-		border-bottom: 1px solid transparent;
+-		color: #999999;
+-	}
++.entry:insensitive
++{
++        background-color: #bbbbbb;
++        border-bottom: 1px solid transparent;
++        color: #999999;
++}
+\ No newline at end of file
