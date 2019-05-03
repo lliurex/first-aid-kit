@@ -1,5 +1,0 @@
-#!/bin/bash
-
-exec first-aid-kit 
-
-
