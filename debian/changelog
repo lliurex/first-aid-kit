@@ -1,0 +1,35 @@
+first-aid-kit (0.0.16.04) bionic; urgency=high
+
+  * Adding new translations 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Thu, 02 May 2019 14:10:16 +0200
+
+first-aid-kit (0.0.12) bionic; urgency=high
+
+  * Adding debian control buid depends 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Wed, 24 Apr 2019 14:27:08 +0200
+
+first-aid-kit (0.0.9) xenial; urgency=high
+
+  * Adding PMB module 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Tue, 23 Apr 2019 14:44:40 +0200
+
+first-aid-kit (0.0.3) bionic; urgency=high
+
+  * Adding mofifications to bionic 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Wed, 10 Apr 2019 10:10:02 +0200
+
+first-aid-kit (0.0.2) bionic; urgency=high
+
+  * Update project 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Mon, 08 Apr 2019 15:12:52 +0200
+
+first-aid-kit (0.0.1) bionic; urgency=high
+
+  * Initial release.
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Wed, 19 Feb 2019 09:46:16 +0200
