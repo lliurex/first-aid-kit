@@ -382,6 +382,7 @@ class KernelBox(Gtk.VBox):
 
 			self.info_box_stack.set_visible_child_name("info_kernel")
 			a=_("You have a new kernel boot by defect:")
+			self.txt_check_kernel.set_name("INFO_LABEL")
 			self.txt_check_kernel.set_text("%s %s"%(a,self.kernel_selected))
 			self.core.dprint("You have a new kernel boot by defect: %s"%self.kernel_selected,"[KernelBox]")
 
@@ -422,6 +423,7 @@ class KernelBox(Gtk.VBox):
 			self.kernel_installed_spinner.show()
 
 			self.info_box_stack.set_visible_child_name("info_kernel")
+			self.txt_check_kernel.set_name("INFO_LABEL")
 			self.txt_check_kernel.set_text(_("Applying filter to show only installed kernels...please wait"))
 			self.core.dprint("Applying filter to show only installed kernels...please wait","[KernelBox]")
 
@@ -451,6 +453,7 @@ class KernelBox(Gtk.VBox):
 			self.kernel_box_stack.set_visible_child_name("spinner")
 
 			self.info_box_stack.set_visible_child_name("info_kernel")
+			self.txt_check_kernel.set_name("INFO_LABEL")
 			self.txt_check_kernel.set_text(_("Applying filter to kernels...please wait"))
 			self.core.dprint("Applying filter to kernels...","[KernelBox]")
 			self.load_kernels()
@@ -494,6 +497,7 @@ class KernelBox(Gtk.VBox):
 			self.kernel_combobox_spinner_active=True
 
 			self.info_box_stack.set_visible_child_name("info_kernel")
+			self.txt_check_kernel.set_name("INFO_LABEL")
 			self.txt_check_kernel.set_text(_("Updating Kernel Cache...please wait"))
 			self.core.dprint("Updating Kernel Cache...","[KernelBox]")
 			
@@ -746,6 +750,7 @@ class KernelBox(Gtk.VBox):
 			else:
 				self.info_box_stack.set_visible_child_name("info_kernel")
 				a=_("Your new kernel list:")
+				self.txt_check_kernel.set_name("INFO_LABEL")
 				self.txt_check_kernel.set_text("%s\n%s"%(a,self.installed))
 				self.flag_installed=False
 
@@ -884,6 +889,7 @@ class KernelBox(Gtk.VBox):
 			else:
 				self.info_box_stack.set_visible_child_name("info_kernel")
 				a = _("You cancel to uninstall kernel:")
+				self.txt_check_kernel.set_name("INFO_LABEL")
 				self.txt_check_kernel.set_text(_("%s %s")%(a,widget.label))
 				self.core.dprint("You cancel to uninstall kernel: %s"%(widget.label),"[KernelBox]")
 				self.update_kernels_button.set_sensitive(True)
@@ -896,6 +902,7 @@ class KernelBox(Gtk.VBox):
 			self.core.dprint("(uninstall_clicked) Error: %s"%e,"[KernelBox]")
 			self.info_box_stack.set_visible_child_name("info_kernel")
 			a=_("(uninstall_clicked) Error:")
+			self.txt_check_kernel.set_name("INFO_LABEL_ERROR")
 			self.txt_check_kernel.set_text("%s %s"%(a,e))
 
 	#def uninstall_clicked
@@ -918,6 +925,7 @@ class KernelBox(Gtk.VBox):
 			else:
 				self.info_box_stack.set_visible_child_name("info_kernel")
 				a=_("You cancel to install kernel:")
+				self.txt_check_kernel.set_name("INFO_LABEL")
 				self.txt_check_kernel.set_text(_("%s %s")%(a,widget.label))
 				self.core.dprint("%s %s"%(a,widget.label),"[KernelBox]")
 				self.update_kernels_button.set_sensitive(True)
@@ -929,6 +937,7 @@ class KernelBox(Gtk.VBox):
 		except Exception as e:
 			self.core.dprint("(install_clicked) Error: %s"%e,"[KernelBox]")
 			self.info_box_stack.set_visible_child_name("info_kernel")
+			self.txt_check_kernel.set_name("INFO_LABEL_ERROR")
 			self.txt_check_kernel.set_text(_("(install_clicked) Error: %s"%e))
 
 	#def install_clicked
@@ -977,6 +986,7 @@ class KernelBox(Gtk.VBox):
 
 			self.info_box_stack.set_visible_child_name("info_kernel")
 			a=_("Please wait.....")
+			self.txt_check_kernel.set_name("INFO_LABEL")
 			self.txt_check_kernel.set_text(_("%s: %s  %s"%(label_action,kernel_label,a)))
 			#self.core.dprint("%s: %s  %s"%(label_action,kernel_label,a),"KernelBox")
 			self.core.dprint("Action: %s  Kernel: %s  Packages: %s"%(action,kernel_label,str(packages)),"[KernelBox]")

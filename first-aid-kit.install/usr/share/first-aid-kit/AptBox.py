@@ -129,6 +129,7 @@ class AptBox(Gtk.VBox):
 		self.apt_spinner.show()
 
 		self.info_box_stack.set_visible_child_name("infobox")
+		self.txt_check_apt.set_name("INFO_LABEL")
 		self.txt_check_apt.set_text(_("You are modifying the repositories, close the external app when you finished with it."))
 
 		GLib.timeout_add(500,self.check_apt_execute_button_thread)
@@ -149,12 +150,14 @@ class AptBox(Gtk.VBox):
 				self.error=False
 			else:
 				self.info_box_stack.set_visible_child_name("infobox")
+				self.txt_check_apt.set_name("INFO_LABEL_ERROR")
 				self.txt_check_apt.set_text(_("Sorry but the app to modify the repositories can't be opened"))
 				self.error=True
 				
 		except subprocess.CalledProcessError as e:
 			self.core.dprint("(apt_execute_button_thread)Error: %s"%e,"[AptBox]")
 			self.info_box_stack.set_visible_child_name("infobox")
+			self.txt_check_apt.set_name("INFO_LABEL_ERROR")
 			self.txt_check_apt.set_text(_("Sorry but the app to modify the repositories can't be opened"))
 			self.error=True
 			return False
@@ -175,6 +178,7 @@ class AptBox(Gtk.VBox):
 		if not self.error:
 			self.info_box_stack.set_visible_child_name("empty_box")
 			self.info_box_stack.set_visible_child_name("infobox")
+			self.txt_check_apt.set_name("INFO_LABEL")
 			self.txt_check_apt.set_text(_("You have mofified the repositories."))
 			self.core.dprint("You have mofified the repositories...FINISHED!!","[AptBox]")
 		
