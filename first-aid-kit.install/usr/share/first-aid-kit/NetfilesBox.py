@@ -123,6 +123,7 @@ class NetfilesBox(Gtk.VBox):
 				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
 				self.acl_elapsed=datetime.datetime.now() - self.acl_time_start
 				self.acl_elapsed=self.time_formated(self.acl_elapsed)
+				self.info_netfiles_txt.set_name("INFO_LABEL")
 				self.info_netfiles_txt.set_text(_("ACLs are still regenerating, time elapsed: %s "%self.acl_elapsed))
 				self.core.dprint("ACLs are still regenerating, time elapsed: %s "%self.acl_elapsed)
 				GLib.timeout_add(10000,self.check_acl_thread)
@@ -194,7 +195,7 @@ class NetfilesBox(Gtk.VBox):
 		f=open(self.acl_time_path,'w')
 		f.write(self.acl_time_start.ctime())
 		f.close()
-
+		self.info_netfiles_txt.set_name("INFO_LABEL")
 		self.info_netfiles_txt.set_text(_("ACLs are still regenerating...... please, wait."))
 
 		GLib.timeout_add(10000,self.check_acl_thread)
@@ -234,6 +235,7 @@ class NetfilesBox(Gtk.VBox):
 			if self.client.is_acl_thread_alive(self.core.n4d_key,"NetFoldersManager"):
 				self.acl_elapsed=datetime.datetime.now() - self.acl_time_start
 				self.acl_elapsed=self.time_formated(self.acl_elapsed)
+				self.info_netfiles_txt.set_name("INFO_LABEL")
 				self.info_netfiles_txt.set_text(_("ACLs are still regenerating, time elapsed: %s "%self.acl_elapsed))
 				self.core.dprint("ACLs are still regenerating, time elapsed %s "%self.acl_elapsed,"[NetfilesBox]")
 
@@ -289,6 +291,7 @@ class NetfilesBox(Gtk.VBox):
 		self.regenerate_spinner.show()
 		self.info_netfiles_stack.set_visible_child_name("info_netfiles")
 		self.regenerate_time_start=datetime.datetime.now()
+		self.info_netfiles_txt.set_name("INFO_LABEL")
 		self.info_netfiles_txt.set_text(_("User folders are still regenerating...... please, wait."))
 
 		GLib.timeout_add(500,self.check_regenerate_thread)
@@ -341,6 +344,7 @@ class NetfilesBox(Gtk.VBox):
 			if self.thread.is_alive():
 				self.regenerate_elapsed=datetime.datetime.now() - self.regenerate_time_start
 				self.regenerate_elapsed=self.time_formated(self.regenerate_elapsed)
+				self.info_netfiles_txt.set_name("INFO_LABEL")
 				self.info_netfiles_txt.set_text(_("User folders are still regenerating, time elapsed: %s "%self.regenerate_elapsed))
 				self.core.dprint("User folders are still regenerating, time elapsed: %s "%self.regenerate_elapsed,"[NetfilesBox]")
 				return True
@@ -378,26 +382,32 @@ class NetfilesBox(Gtk.VBox):
 
 		if self.acl_error[0]== True:
 			self.info_netfiles_stack.set_visible_child_name("info_netfiles")
+			self.info_netfiles_txt.set_name("INFO_LABEL_ERROR")
 			self.info_netfiles_txt.set_text(_("ACLs error: %s")%self.acl_error[1])
 			if self.regenerate_error[0]==True:
 				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
+				self.info_netfiles_txt.set_name("INFO_LABEL_ERROR")
 				self.info_netfiles_txt.set_text(_("ACLs error: %s\nRegenerate error:%s")%(self.acl_error[1],self.regenerate_error[1]))
 			return True
 		if self.regenerate_error[0]==True:
 			self.info_netfiles_stack.set_visible_child_name("info_netfiles")
+			self.info_netfiles_txt.set_name("INFO_LABEL_ERROR")
 			self.info_netfiles_txt.set_text(_("Regenerate error:%s")%self.regenerate_error[1])
 			return True
 
 		if self.acl_executed == True:
 			if self.regenerate_executed == False:
 				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
+				self.info_netfiles_txt.set_name("INFO_LABEL")
 				self.info_netfiles_txt.set_text(_("Finished!!!\nACLs of the files have been reviewed. Time elapsed to do %s"%self.acl_elapsed))
 			else:
 				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
+				self.info_netfiles_txt.set_name("INFO_LABEL")
 				self.info_netfiles_txt.set_text(_("Finished!!!\nACLs of the files have been reviewed, in %s.\nAll user folders have been regenerated if it's necessary in %s"%(self.acl_elapsed,self.regenerate_elapsed)))
 		else:
 			if self.regenerate_executed == True:
 				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
+				self.info_netfiles_txt.set_name("INFO_LABEL")
 				self.info_netfiles_txt.set_text(_("Finished!!!\nAll user folders have been regenerated if it's necessary. Time elapsed to do %s")%self.regenerate_elapsed)
 
 	#def show_info
