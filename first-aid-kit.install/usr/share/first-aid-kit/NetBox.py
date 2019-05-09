@@ -235,7 +235,7 @@ class NetBox(Gtk.VBox):
 			else:
 				self.core.dprint("Server connection is UNAVAIABLE....","[NetBox]")
 				self.check1_image.set_from_stock("gtk-no",Gtk.IconSize.BUTTON)
-				self.server_connection=Falsee
+				self.server_connection=False
 
 			self.core.dprint("Test Network....","[NetBox]")
 			if self.internet_on():
@@ -440,6 +440,7 @@ class NetBox(Gtk.VBox):
 		self.test_button.set_sensitive(True)
 		self.test_combobox.set_sensitive(True)
 		self.info_box_stack.set_visible_child_name("infobox")
+		self.txt_check_nettest.set_name("INFO_LABEL")
 		self.txt_check_nettest.set_text(_("The network card has been reset"))
 		#self.info_box_network_stack.set_visible_child_name("infobox")
 		#self.txt_check_network.set_text("The network card has been reset")
@@ -507,6 +508,7 @@ class NetBox(Gtk.VBox):
 			if self.link_connection==False:
 
 				self.info_box_stack.set_visible_child_name("infobox")
+				self.txt_check_nettest.set_name("INFO_LABEL_ERROR")
 				self.txt_check_nettest.set_text(_("You have hardware problems, please review your data\n cable and your connections, because your netcard doesn't have link."))
 
 			else:
@@ -514,6 +516,7 @@ class NetBox(Gtk.VBox):
 				if self.server_connection==False:
 
 					self.info_box_stack.set_visible_child_name("infobox")
+					self.txt_check_nettest.set_name("INFO_LABEL_ERROR")
 					self.txt_check_nettest.set_text(_("You can't connect with server, are you sure that\n the server is started? Please review it and reboot your sistem."))
 
 				else:
@@ -521,6 +524,7 @@ class NetBox(Gtk.VBox):
 					if self.internet_connection==False:
 
 						self.info_box_stack.set_visible_child_name("infobox")
+						self.txt_check_nettest.set_name("INFO_LABEL_ERROR")
 						self.txt_check_nettest.set_text(_("Your internet server is down,\n please review the internet server connection, the proxy or the router."))
 
 			return True

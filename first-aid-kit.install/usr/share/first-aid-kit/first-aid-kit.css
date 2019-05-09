@@ -25,9 +25,15 @@
 
 	#INFO_LABEL {
 		font: 11pt Roboto Light;
-		color: #ff0000;
+		color: #00008B;
 
 	}
+
+	#INFO_LABEL_ERROR {
+                font: Roboto Light;
+                color: #ff0000;
+
+        }
 	
 	#SEPARATOR_MAIN{
 		background-color: @arc-blue;

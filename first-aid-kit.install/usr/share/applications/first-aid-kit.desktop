@@ -6,7 +6,11 @@ Name[ca_ES.UTF-8@valencia]=First Aid Kit
 
 Comment=Solve your regular problems in LliureX
 Comment[es]=Resuelve los problemas habituales que encuentras en LliureX.
-Comment[ca_ES.UTF-8@valencia]=Solve your regular problems in LliureX
+Comment[es_ES]=Resuelve los problemas habituales que encuentras en LliureX.
+Comment[ca_ES.UTF-8@valencia]=Resoleu els problemes habituals que trobeu en LliureX
+Comment[ca_ES8@valencia]=Resoleu els problemes habituals que trobeu en LliureX
+Comment[ca_ES]=Resoleu els problemes habituals que trobeu en LliureX
+Comment[ca_ES.UTF-8]=Resoleu els problemes habituals que trobeu en LliureX
 Exec=first-aid-kit
 Terminal=false
 Icon=first-aid-kit
