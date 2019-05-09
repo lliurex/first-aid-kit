@@ -11,9 +11,9 @@ import time
 import threading
 import sys
 import os
-import xmlrpclib
-import datetime
-from dateutil import parser
+import urllib2
+import lliurex.net
+import subprocess
 
 gettext.textdomain('first-aid-kit')
 _=gettext.gettext
@@ -22,7 +22,7 @@ _=gettext.gettext
 RSRC="./rsrc/"
 
 
-class NetfilesBox(Gtk.VBox):
+class NetBox(Gtk.VBox):
 	
 	
 	def __init__(self):
@@ -35,104 +35,78 @@ class NetfilesBox(Gtk.VBox):
 		builder.set_translation_domain('first-aid-kit')
 		ui_path=RSRC + "first-aid-kit.ui"
 		builder.add_from_file(ui_path)
-		self.acl_time_path="/tmp/.fak_acl_timepath"
-		
-		
-		self.netfiles_box=builder.get_object("netfiles_box")
-		self.acl_box=builder.get_object("acl_box")
-		self.acl_button=builder.get_object("acl_button")
-		self.acl_spinner=builder.get_object("acl_spinner")
-		self.regenerate_button=builder.get_object("regenerate_button")
-		self.regenerate_spinner=builder.get_object("regenerate_spinner")
-		self.txt_check_netfiles=builder.get_object("txt_check_netfiles")
-		self.spinner_netfiles=builder.get_object("spinner_netfiles")
-		self.label10=builder.get_object("label10")
-		self.label7=builder.get_object("label7")
-		self.section_label_1=builder.get_object("section_label_1")
-		self.box11=builder.get_object("box11")
-		self.separator2=builder.get_object("separator2")
 
-		self.info_netfiles=builder.get_object("info_netfiles")
-		self.info_netfiles_into=builder.get_object("info_netfiles_into")
-		self.info_netfiles_txt=builder.get_object("info_netfiles_txt")
-		self.info_netfiles_spinner=builder.get_object("info_netfiles_spinner")
+		
+		self.net_box=builder.get_object("net_box")
+		self.test_button=builder.get_object("test_button")
+		self.test_combobox=builder.get_object("test_combobox")
+		self.test_spinner=builder.get_object("test_spinner")
+		self.restart_button=builder.get_object("restart_button")
+		self.restart_spinner=builder.get_object("restart_spinner")
+		self.configure_network_button=builder.get_object("configure_network_button")
+		self.configure_network_spinner=builder.get_object("configure_network_spinner")
+		self.check4_image=builder.get_object("image7")
+		self.check2_image=builder.get_object("image5")
+		self.check1_image=builder.get_object("image4")
 		
 
-		self.add(self.netfiles_box)
+		self.section_label_01=builder.get_object("section_label_01")
+		self.label5=builder.get_object("label5")
+		self.label2=builder.get_object("label2")
+		self.speed_net=builder.get_object("label4")
+		self.link_label=builder.get_object("label9")
+		self.ip_address_label=builder.get_object("label13")
+		self.ip_address=builder.get_object("label14")
+		self.label6=builder.get_object("label6")
+		self.restart_txt=builder.get_object("restart_txt")
+		self.configure_network_txt=builder.get_object("configure_network_txt")
 		
-		self.info_netfiles_stack=Gtk.Stack()
-		self.info_netfiles_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
-		self.info_netfiles_stack.set_transition_duration(500)
-		hbox=Gtk.HBox()
-		hbox.show()
-		self.info_netfiles_stack.add_titled(hbox,"empty_box_netfiles","Empty Box")
-		self.info_netfiles_stack.add_titled(self.info_netfiles,"info_netfiles","InfoNetfiles")
-
-		self.wawabox=Gtk.HBox()
-		self.wawabox.pack_start(self.info_netfiles_stack,True,True,0)
-
-		self.netfiles_box.pack_start(self.wawabox,False,False,5)
-
-
-		self.info_netfiles.set_margin_bottom(20)
-		self.info_netfiles.set_margin_left(5)
-		self.info_netfiles.set_margin_right(5)
-
-		self.info_netfiles_stack.set_visible_child_name("empty_box_netfiles")
-		self.acl_executed=False
-		self.regenerate_executed=False
-
-		proxy="https://localhost:9779"
-		self.client=xmlrpclib.ServerProxy(proxy)
-
-		self.acl_error=[False,"True"]
-		self.regenerate_error=[False,"True"]
 		
+		self.separator5=builder.get_object("separator5")
+		
+		self.box1=builder.get_object("box1")
+		self.box9=builder.get_object("box9")
+
+		self.info_box=builder.get_object("info_nettest")
+		self.info_box_into=builder.get_object("box14")
+		self.txt_check_nettest=builder.get_object("txt_check_nettest")
+		self.spinner_nettest=builder.get_object("spinner_nettest")
+
+
+		self.info_box_stack=Gtk.Stack()
+		self.info_box_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+		self.info_box_stack.set_transition_duration(500)
+		hbox_nettest=Gtk.HBox()
+		hbox_nettest.show()
+		self.info_box_stack.add_titled(hbox_nettest,"empty_box_start_bar","Empty Box Start Bar")
+		self.info_box_stack.add_titled(self.info_box,"infobox","InfoBox")
+
+		self.wawabox3=Gtk.HBox()
+		self.wawabox3.pack_start(self.info_box_stack,True,True,0)
+
+		self.net_box.pack_start(self.wawabox3,False,False,5)
+
+
+		self.info_box.set_margin_bottom(20)
+		self.info_box.set_margin_left(5)
+		self.info_box.set_margin_right(5)
+
+		self.load_eth_cards()
+		self.pack_start(self.net_box,True,True,5)
 		self.connect_signals()
 		self.set_css_info()
 
-
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		#self.info_box_stack.set_visible_child_name("infobox")
+		#self.txt_check_nettest.set_text(_("Your internet server is down, please review the proxy or the router."))
+		
 	#def __init__
 	
 
-	def check_thread_on_startup(self):
-
-		try:
-			#thread is alive, because was started before.....
-			if self.client.is_acl_thread_alive(self.core.n4d_key,"NetFoldersManager"):
-				self.regenerate_button.set_sensitive(False)
-				self.acl_button.set_sensitive(False)
-				
-				if os.path.isfile(self.acl_time_path):
-					f=open(self.acl_time_path)
-					line=f.readline()
-					f.close()
-					self.acl_time_start=parser.parse(line)
-
-				else:
-					self.acl_time_start=datetime.datetime.now()
-
-				allocation=self.acl_button.get_allocation()
-				w=allocation.width
-				h=allocation.height
-
-				self.acl_button.hide()
-				self.acl_spinner.start()
-				self.acl_spinner.set_size_request(w,h)
-				self.acl_spinner.show()
-				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-				self.acl_elapsed=datetime.datetime.now() - self.acl_time_start
-				self.acl_elapsed=self.time_formated(self.acl_elapsed)
-				self.info_netfiles_txt.set_name("INFO_LABEL")
-				self.info_netfiles_txt.set_text(_("ACLs are still regenerating, time elapsed: %s "%self.acl_elapsed))
-				self.core.dprint("ACLs are still regenerating, time elapsed: %s "%self.acl_elapsed)
-				GLib.timeout_add(10000,self.check_acl_thread)
-		except Exception as e:
-			self.core.dprint("(check_thread_on_startup)Error: %s"%e,"[NetfilesBox]")
-
-	#def check_thread
 
 
+
+	
 	def set_css_info(self):
 		
 		self.style_provider=Gtk.CssProvider()
@@ -140,314 +114,425 @@ class NetfilesBox(Gtk.VBox):
 		self.style_provider.load_from_file(f)
 		Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),self.style_provider,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 		
-		self.box11.set_name("PKG_BOX")
-		self.acl_button.set_name("EXECUTE_BUTTON")
-		self.regenerate_button.set_name("EXECUTE_BUTTON")
-		self.label10.set_name("OPTION_LABEL")
-		self.label7.set_name("OPTION_LABEL")
-		self.section_label_1.set_name("SECTION_LABEL")
-		self.separator2.set_name("SEPARATOR_MAIN")
-
-		self.info_netfiles_txt.set_name("INFO_LABEL")
-		self.info_netfiles.set_name("PKG_BOX")
+		self.box1.set_name("PKG_BOX")
+		self.box9.set_name("PKG_BOX")
+		
+		self.test_button.set_name("EXECUTE_BUTTON")
+		self.restart_button.set_name("EXECUTE_BUTTON")
+		self.configure_network_button.set_name("EXECUTE_BUTTON")
+				
+		self.section_label_01.set_name("SECTION_LABEL")
+		self.label5.set_name("OPTION_LABEL")
+		self.label2.set_name("OPTION_LABEL")
+		self.speed_net.set_name("OPTION_LABEL")
+		self.label6.set_name("OPTION_LABEL")
+		self.restart_txt.set_name("OPTION_LABEL")
+		self.configure_network_txt.set_name("OPTION_LABEL")
+		self.ip_address_label.set_name("OPTION_LABEL")
+		self.ip_address.set_name("OPTION_LABEL")
+		self.link_label.set_name("OPTION_LABEL")
+		self.separator5.set_name("SEPARATOR_MAIN")
+		self.txt_check_nettest.set_name("INFO_LABEL")
+		self.info_box.set_name("PKG_BOX")
 			
 	#def set-css_info
 
 
 
-
-
-
 	def connect_signals(self):
 		
-		self.acl_button.connect("clicked",self.acl_button_clicked)
-		self.regenerate_button.connect("clicked",self.regenerate_button_clicked)
+		self.test_combobox.connect("changed",self.eth_changed)
+		self.test_button.connect("clicked",self.test_button_clicked)
+		self.restart_button.connect("clicked",self.restart_button_clicked)
+		self.configure_network_button.connect("clicked",self.configure_network_button_clicked)
 		
 	#def connect_signals
 
 
 
 
+	def load_eth_cards(self):
 
-	def acl_button_clicked(self,widget):
+		self.eth_store=Gtk.ListStore(str)
 
-		self.thread=threading.Thread(target=self.acl_button_thread)
-		self.regenerate_button.set_sensitive(False)
-		self.acl_button.set_sensitive(False)
-		self.info_netfiles_stack.set_visible_child_name("empty_box_netfiles")
-		self.thread.daemon=True
-		self.thread.start()
-		
-		allocation=self.acl_button.get_allocation()
-		w=allocation.width
-		h=allocation.height
+		self.devices=lliurex.net.get_devices_info()
+		self.num_devices=len(self.devices)
+		self.core.dprint("Netcards detected NUMBER: %s"%self.num_devices,"[NetBox]")
+		self.eth_wharehouse={}
 
-		self.acl_button.hide()
-		self.acl_spinner.start()
-		self.acl_spinner.set_size_request(w,h)
-		self.acl_spinner.show()
-		self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-
-		self.acl_time_start=datetime.datetime.now()
-
-		if os.path.isfile(self.acl_time_path):
-			os.remove(self.acl_time_path)
-		f=open(self.acl_time_path,'w')
-		f.write(self.acl_time_start.ctime())
-		f.close()
-		self.info_netfiles_txt.set_name("INFO_LABEL")
-		self.info_netfiles_txt.set_text(_("ACLs are still regenerating...... please, wait."))
-
-		GLib.timeout_add(10000,self.check_acl_thread)
-	
-	#def acl_button_clicked
-
-
-
-
-
-
-	def acl_button_thread(self):
-	
-		try:
-			self.core.working=True
-			self.core.dprint("ACL regenerating in /net....","[NetfilesBox]")
-
-			self.client.restore_acls_via_thread(self.core.n4d_key,"NetFoldersManager")
-
-			self.thread_ret={"status":True,"msg":"BROKEN"}
-			
-		except Exception as e:
-			self.core.dprint("(acl_button_thread)Error: %s"%e,"[NetfilesBox]")
-			return False
-			
-	#def acl_button_thread
-
-
-
-
-
-
-	def check_acl_thread(self):
-		
-		try:
-			
-			if self.client.is_acl_thread_alive(self.core.n4d_key,"NetFoldersManager"):
-				self.acl_elapsed=datetime.datetime.now() - self.acl_time_start
-				self.acl_elapsed=self.time_formated(self.acl_elapsed)
-				self.info_netfiles_txt.set_name("INFO_LABEL")
-				self.info_netfiles_txt.set_text(_("ACLs are still regenerating, time elapsed: %s "%self.acl_elapsed))
-				self.core.dprint("ACLs are still regenerating, time elapsed %s "%self.acl_elapsed,"[NetfilesBox]")
-
-				return True
-
-			self.core.dprint("ACLs have been regenerated.","[NetfilesBox]")
-			self.core.working=False
-
-			self.acl_elapsed=datetime.datetime.now() - self.acl_time_start
-			self.acl_elapsed=self.time_formated(self.acl_elapsed)
-			self.acl_spinner.hide()
-			self.acl_button.show()
-			self.regenerate_button.set_sensitive(True)
-			self.acl_button.set_sensitive(True)
-			self.acl_error=[False,"Perfect"]
-
-			self.acl_executed=True
-			self.show_info()
-
-		except Exception as e:
-			self.core.dprint("ACL check thread execution Exception: %s"%e,"[NetfilesBox]")
-			self.acl_spinner.hide()
-			self.acl_button.show()
-			self.regenerate_button.set_sensitive(True)
-			self.acl_button.set_sensitive(True)
-			self.acl_error=[True,e]
-			return False
-		
-	#check_acl_thread
-
-
-
-
-
-
-
-	def regenerate_button_clicked(self,widget):
-		
-		self.thread=threading.Thread(target=self.regenerate_button_thread)
-		self.regenerate_button.set_sensitive(False)
-		self.acl_button.set_sensitive(False)
-		self.info_netfiles_stack.set_visible_child_name("empty_box_netfiles")
-		self.thread.daemon=True
-		self.thread.start()
-		
-		allocation=self.regenerate_button.get_allocation()
-		w=allocation.width
-		h=allocation.height
-
-		self.regenerate_button.hide()
-		self.regenerate_spinner.start()
-		self.regenerate_spinner.set_size_request(w,h)
-		self.regenerate_spinner.show()
-		self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-		self.regenerate_time_start=datetime.datetime.now()
-		self.info_netfiles_txt.set_name("INFO_LABEL")
-		self.info_netfiles_txt.set_text(_("User folders are still regenerating...... please, wait."))
-
-		GLib.timeout_add(500,self.check_regenerate_thread)
-	
-	#def_regenerate_button_clicked
-
-
-
-
-
-
-	def regenerate_button_thread(self):
-	
-		try:
-			self.core.dprint("Regenerating folders /net....","[NetfilesBox]")
-			self.core.working=True
-
-			users=self.client.light_get_user_list(self.core.n4d_key,"Golem")
-			for user in users:
-				user_properties={}
-				user_properties["profile"]=user[5]
-				user_properties["uid"]=user[1]
-				user_properties["uidNumber"]=user[2]
-				self.core.dprint("User: %s"%user,"[NetfilesBox]")
-				self.core.dprint("user_properties: %s"%user_properties,"[NetfilesBox]")
-				self.core.dprint("Testing folders in /net, N4D service.....","[NetfilesBox]")
-				self.client.exist_home_or_create(self.core.n4d_key,"Golem",user_properties)
-
-			self.core.dprint("Restore GROUP folders /net, N4D service.....","[NetfilesBox]")
-			self.client.restore_groups_folders(self.core.n4d_key,"Golem")
-			self.core.dprint("End of all process","[NetfilesBox]")
-
-			self.thread_ret={"status":True,"msg":"BROKEN"}
-			
-		except Exception as e:
-			self.core.dprint("(regenerate_button_thread)Error: %s"%e,"[NetfilesBox]")
-			return False
-			
-	#def regenerate_button_thread
-
-
-
-
-
-
-
-	def check_regenerate_thread(self):
-		
-		try:
-			if self.thread.is_alive():
-				self.regenerate_elapsed=datetime.datetime.now() - self.regenerate_time_start
-				self.regenerate_elapsed=self.time_formated(self.regenerate_elapsed)
-				self.info_netfiles_txt.set_name("INFO_LABEL")
-				self.info_netfiles_txt.set_text(_("User folders are still regenerating, time elapsed: %s "%self.regenerate_elapsed))
-				self.core.dprint("User folders are still regenerating, time elapsed: %s "%self.regenerate_elapsed,"[NetfilesBox]")
-				return True
-
-			self.core.working=False
-			
-			self.regenerate_elapsed=datetime.datetime.now() - self.regenerate_time_start
-			self.regenerate_elapsed=self.time_formated(self.regenerate_elapsed)
-			self.regenerate_spinner.hide()
-			self.regenerate_button.show()
-			self.regenerate_button.set_sensitive(True)
-			self.acl_button.set_sensitive(True)
-
-			self.regenerate_executed=True
-			self.show_info()
-
-		except Exception as e:
-			self.core.dprint("(check_regenerate_thread)Error: %s"%e,"[NetfilesBox]")
-			self.regenerate_spinner.hide()
-			self.regenerate_button.show()
-			self.regenerate_button.set_sensitive(True)
-			self.acl_button.set_sensitive(True)
-			self.regenerate_error=[True,e]
-			return False
-		
-	#check_regenerate_thread
-
-
-
-
-
-
-
-	def show_info(self):
-
-		if self.acl_error[0]== True:
-			self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-			self.info_netfiles_txt.set_name("INFO_LABEL_ERROR")
-			self.info_netfiles_txt.set_text(_("ACLs error: %s")%self.acl_error[1])
-			if self.regenerate_error[0]==True:
-				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-				self.info_netfiles_txt.set_name("INFO_LABEL_ERROR")
-				self.info_netfiles_txt.set_text(_("ACLs error: %s\nRegenerate error:%s")%(self.acl_error[1],self.regenerate_error[1]))
-			return True
-		if self.regenerate_error[0]==True:
-			self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-			self.info_netfiles_txt.set_name("INFO_LABEL_ERROR")
-			self.info_netfiles_txt.set_text(_("Regenerate error:%s")%self.regenerate_error[1])
-			return True
-
-		if self.acl_executed == True:
-			if self.regenerate_executed == False:
-				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-				self.info_netfiles_txt.set_name("INFO_LABEL")
-				self.info_netfiles_txt.set_text(_("Finished!!!\nACLs of the files have been reviewed. Time elapsed to do %s"%self.acl_elapsed))
-			else:
-				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-				self.info_netfiles_txt.set_name("INFO_LABEL")
-				self.info_netfiles_txt.set_text(_("Finished!!!\nACLs of the files have been reviewed, in %s.\nAll user folders have been regenerated if it's necessary in %s"%(self.acl_elapsed,self.regenerate_elapsed)))
+		if self.num_devices > 1:
+			for i in range(0,self.num_devices):
+				eth_name=self.devices[i]['name']
+				self.eth_store.append([eth_name])
+				self.eth_wharehouse[eth_name]=""
+				self.eth_wharehouse[eth_name]=i
 		else:
-			if self.regenerate_executed == True:
-				self.info_netfiles_stack.set_visible_child_name("info_netfiles")
-				self.info_netfiles_txt.set_name("INFO_LABEL")
-				self.info_netfiles_txt.set_text(_("Finished!!!\nAll user folders have been regenerated if it's necessary. Time elapsed to do %s")%self.regenerate_elapsed)
+			self.test_combobox.hide()
 
-	#def show_info
+		self.core.dprint("Netcards detected NAME: %s"%self.eth_wharehouse,"[NetBox]")
+		renderer=Gtk.CellRendererText()
+		self.test_combobox.pack_start(renderer,True)
+		self.test_combobox.add_attribute(renderer,"text",0)
+		self.test_combobox.set_model(self.eth_store)
+		self.test_combobox.set_active(0)
+		self.eth_po=0
+
+
+	#def load_eth
 
 
 
+	def eth_changed(self,widget):
+
+		it=self.test_combobox.get_active_iter()
+		eth_selected=self.eth_store.get(it,0)[0]
+		self.eth_po=self.eth_wharehouse[eth_selected]
+		self.core.dprint("Network selected to test: %s  in position: %s"%(eth_selected,self.eth_po),"[NetBox]")
+		#RESET ALL VARIABLES IN GUI
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		self.check1_image.set_from_stock("gtk-dialog-question",Gtk.IconSize.BUTTON)
+		self.check2_image.set_from_stock("gtk-dialog-question",Gtk.IconSize.BUTTON)
+		self.check4_image.set_from_stock("gtk-dialog-question",Gtk.IconSize.BUTTON)
+		self.speed_net.set_text(_("Unknow"))
+		self.ip_address.set_text(_("Unknow"))
+
+
+	#def eth_changed
+
+
+	def test_button_clicked(self,widget):
+		
+		self.thread=threading.Thread(target=self.test_button_thread)
+		self.test_button.set_sensitive(False)
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		self.thread.daemon=True
+		self.thread.start()
+		
+		allocation=self.test_button.get_allocation()
+		w=allocation.width
+		h=allocation.height
+
+		self.test_combobox.hide()
+		self.test_button.hide()
+		self.test_spinner.start()
+		self.test_spinner.set_size_request(w,h)
+		self.test_spinner.show()
+
+		GLib.timeout_add(500,self.check_test_thread)
+	
+	#def_test_button_clicked
 
 
 
-	def time_formated(self,time_timedelta):
+	def test_button_thread(self):
+	
+		try:
+			self.device_info()
+			if self.server_on():
+				self.core.dprint("Server connection is avaiable.","[NetBox]")
+				self.check1_image.set_from_stock("gtk-yes",Gtk.IconSize.BUTTON)
+				self.server_connection=True
+			else:
+				self.core.dprint("Server connection is UNAVAIABLE....","[NetBox]")
+				self.check1_image.set_from_stock("gtk-no",Gtk.IconSize.BUTTON)
+				self.server_connection=False
+
+			self.core.dprint("Test Network....","[NetBox]")
+			if self.internet_on():
+				self.core.dprint("Ping to google is ok....","[NetBox]")
+				self.check2_image.set_from_stock("gtk-yes",Gtk.IconSize.BUTTON)
+				self.internet_connection=True
+			else:
+				self.core.dprint("Internet is unavaiable","[NetBox]")
+				self.check2_image.set_from_stock("gtk-no",Gtk.IconSize.BUTTON)
+				self.internet_connection=False
+
+
+			self.thread_ret={"status":True,"msg":"BROKEN"}
+			
+		except Exception as e:
+			self.core.dprint("(test_button_thread)Error: %s"%e,"[NetBox]")
+			return False
+			
+	#def Test_button_thread
+
+
+	def check_test_thread(self):
+		
+		if self.thread.is_alive():
+			return True
+		
+		
+		self.test_spinner.hide()
+		self.test_button.show()
+		self.test_combobox.show()
+		self.test_button.set_sensitive(True)
+		self.info_user_test()
+		
+		
+	#check_test_thread
+
+
+
+	def server_on(self):
+		try:
+			import xmlrpclib as x
+			proxy="https://server:9779"
+			client=x.ServerProxy(proxy)
+			client.get_methods()
+			return True
+		except Exception as e:
+			self.core.dprint("(server_on)Error: %s"%e,"[NetBox]")
+			return False
+
+
+	#def_internet_on
+
+
+	def internet_on(self):
+		try:
+			urllib2.urlopen('https://www.google.com/', timeout=10)
+			return True
+		except Exception as e:
+			self.core.dprint("(internet_on)Error: %s"%e,"[NetBox]")
+			return False
+
+
+	#def_internet_on
+
+	def device_info(self):
 		try:
 
-			hours=time_timedelta.seconds//3600
-			minutes=time_timedelta.seconds//60
-			seconds=time_timedelta.seconds-(minutes*60)
+			self.name_device=self.devices[self.eth_po]['name']
+			self.core.dprint ("Device info: %s"%self.name_device,"[NetBox]")
+			self.speed_device=self.devices[self.eth_po]['Speed']
+			self.link_device=self.devices[self.eth_po]['Link detected']
+			self.ip_device=self.devices[self.eth_po]['ip']
+			self.core.dprint("Name:%s - Speed:%s - Link:%s - Ip:%s"%(self.name_device,self.speed_device,self.link_device,self.ip_device),"[NetBox]")
+			
 
-			if hours == 0:
-				if minutes == 0:
-					return("%s seconds"%seconds)
-				else:
-					if seconds == 0:
-						return("%s min"%minutes)
-					else:
-						if seconds<10:
-							return("%s:%02d min"%(minutes,seconds))
-						else:
-							return("%s:%s min"%(minutes,seconds))
+			if self.speed_device[0] == "":
+				self.speed_net.set_text(_("Unknow"))
 			else:
-				if minutes<10:
-					if seconds<10:
-						return("%s hours and %02d:%02d minutes"%(hours,minutes,seconds))
-					else:
-						return("%s hours and %02d:%s minutes"%(hours,minutes,seconds))
-				else:
-					if seconds<10:
-						return("%s hours and %0s:%02d minutes"%(hours,minutes,seconds))
-					else:
-						return("%s hours and %0s:%s minutes"%(hours,minutes,seconds))
+				self.speed_net.set_text(self.speed_device[0])
+
+
+			if self.ip_device == "":
+				self.ip_address.set_text(_("Unknow"))
+			else:
+				self.ip_address.set_text(self.ip_device)
+
+
+			if self.link_device[0] == 'yes':
+				self.check4_image.set_from_stock("gtk-yes",Gtk.IconSize.BUTTON)
+				self.link_connection=True
+			else:
+				self.check4_image.set_from_stock("gtk-no",Gtk.IconSize.BUTTON)
+				self.link_connection=False
+
+			self.core.dprint("link_connection: %s"%self.link_connection,"[NetBox]")
 
 		except Exception as e:
-			self.core.dprint("(time_formated)Error: %s"%e,"[NetfilesBox]")
+			#print(e)
+			self.core.dprint("(device_info)Error: %s"%e,"[NetBox]")
+			self.link_connection=False
+			self.check4_image.set_from_stock("gtk-no",Gtk.IconSize.BUTTON)
+			self.speed_net.set_text(_("Unknow"))
+			self.ip_address.set_text(_("Unknow"))
+			return False
 
-	#def time_formated
+
+	#def_internet_on
+
+
+
+
+
+
+
+
+
+	def configure_network_button_clicked(self,widget):
+		
+		self.thread=threading.Thread(target=self.configure_network_button_thread)
+		self.configure_network_button.set_sensitive(False)
+		self.thread.daemon=True
+		self.thread.start()
+		
+		allocation=self.configure_network_button.get_allocation()
+		w=allocation.width
+		h=allocation.height
+
+		self.configure_network_button.hide()
+		self.configure_network_spinner.start()
+		self.configure_network_spinner.set_size_request(w,h)
+		self.configure_network_spinner.show()
+
+		GLib.timeout_add(500,self.check_configure_network_thread)
+	
+	#def_configure_network_button_clicked
+
+
+
+
+	def restart_button_clicked(self,widget):
+		
+		self.thread=threading.Thread(target=self.restart_button_thread)
+		self.restart_button.set_sensitive(False)
+		self.thread.daemon=True
+		self.thread.start()
+
+		self.test_button.set_sensitive(False)
+		self.test_combobox.set_sensitive(False)
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		
+		allocation=self.restart_button.get_allocation()
+		w=allocation.width
+		h=allocation.height
+
+		self.restart_button.hide()
+		self.restart_spinner.start()
+		self.restart_spinner.set_size_request(w,h)
+		self.restart_spinner.show()
+
+		GLib.timeout_add(500,self.check_restart_thread)
+	
+	#def_restart_button_clicked
+
+
+
+	def restart_button_thread(self):
+	
+		try:
+			self.core.working=True
+			self.core.dprint("Restart networking....","[NetBox]")
+			#os.system(self.core.restart_net)
+			#time.sleep(1)
+
+			proc=subprocess.Popen(self.core.restart_net,shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable="/bin/bash")
+
+			for line in iter(proc.stderr.readline,""):
+				line=line.strip("\n")
+				self.core.dprint("(restart_button_thread) Subprocess stdout: %s"%line,"[NetBox]")
+				
+				#self.core.lprint("(kernel_install_thread) Subprocess stderr: %s"%stderr,"[KernelBox]")
+			proc.wait()
+			self.core.dprint("Restart networking....FINISHED!!!","[NetBox]")
+
+			self.thread_ret={"status":True,"msg":"BROKEN"}
+			
+		except Exception as e:
+			self.core.dprint("(restart_button_thread)Error: %s"%e,"[NetBox]")
+			return False
+			
+	#def restart_button_thread
+
+
+	def check_restart_thread(self):
+		
+		if self.thread.is_alive():
+			return True
+		
+		self.core.working=False
+		self.restart_spinner.hide()
+		self.restart_button.show()
+		self.restart_button.set_sensitive(True)
+		self.test_button.set_sensitive(True)
+		self.test_combobox.set_sensitive(True)
+		self.info_box_stack.set_visible_child_name("infobox")
+		self.txt_check_nettest.set_name("INFO_LABEL")
+		self.txt_check_nettest.set_text(_("The network card has been reset"))
+		#self.info_box_network_stack.set_visible_child_name("infobox")
+		#self.txt_check_network.set_text("The network card has been reset")
+		
+	#check_restart_thread
+
+
+
+	def configure_network_button_clicked(self,widget):
+		
+		self.thread=threading.Thread(target=self.configure_network_button_thread)
+		self.configure_network_button.set_sensitive(False)
+		self.thread.daemon=True
+		self.thread.start()
+		
+		allocation=self.configure_network_button.get_allocation()
+		w=allocation.width
+		h=allocation.height
+
+		self.configure_network_button.hide()
+		self.configure_network_spinner.start()
+		self.configure_network_spinner.set_size_request(w,h)
+		self.configure_network_spinner.show()
+
+		GLib.timeout_add(500,self.check_configure_network_thread)
+	
+	#def_configure_network_button_clicked
+
+
+
+	def configure_network_button_thread(self):
+	
+		try:
+			self.core.working=True
+			self.core.dprint("Configure network....","[NetBox]")
+			#os.system('epoptes-client -c')
+			time.sleep(1)
+			self.thread_ret={"status":True,"msg":"BROKEN"}
+			
+		except Exception as e:
+			self.core.dprint("(configure_network_button_thread)Error: %s"%e,"[NetBox]")
+			return False
+			
+	#def configure_network_button_thread
+
+
+	def check_configure_network_thread(self):
+		
+		if self.thread.is_alive():
+			return True
+		
+		self.core.working=False
+		self.configure_network_spinner.hide()
+		self.configure_network_button.show()
+		self.configure_network_button.set_sensitive(True)
+		#self.info_box_network_stack.set_visible_child_name("infobox")
+		#self.txt_check_network.set_text("The network card has been reset")
+		
+	#check_configure_network_thread
+
+
+	def info_user_test(self):
+
+		try:
+			if self.link_connection==False:
+
+				self.info_box_stack.set_visible_child_name("infobox")
+				self.txt_check_nettest.set_name("INFO_LABEL_ERROR")
+				self.txt_check_nettest.set_text(_("You have hardware problems, please review your data\n cable and your connections, because your netcard doesn't have link."))
+
+			else:
+
+				if self.server_connection==False:
+
+					self.info_box_stack.set_visible_child_name("infobox")
+					self.txt_check_nettest.set_name("INFO_LABEL_ERROR")
+					self.txt_check_nettest.set_text(_("You can't connect with server, are you sure that\n the server is started? Please review it and reboot your sistem."))
+
+				else:
+
+					if self.internet_connection==False:
+
+						self.info_box_stack.set_visible_child_name("infobox")
+						self.txt_check_nettest.set_name("INFO_LABEL_ERROR")
+						self.txt_check_nettest.set_text(_("Your internet server is down,\n please review the internet server connection, the proxy or the router."))
+
+			return True
+		
+		except Exception as e:
+
+			self.core.dprint("(info_user_test)Error: %s"%e,"[NetBox]")
+			return False
+
+	#def info_user_test
+	
