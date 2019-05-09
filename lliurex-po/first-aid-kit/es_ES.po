@@ -165,6 +165,26 @@ msgstr "Operaciones con la Barra de Arranque"
 msgid "label"
 msgstr "Etiqueta"
 
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py
+#, python-format
+msgid "You have hardware problems, please review your data\n cable and your connections, because your netcard doesn't have link."
+msgstr "Posees problemas con el harware, por favor revisa el cable\n de red y sus conexiones, porque la tarjeta no posee link."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py
+#, python-format
+msgid "You can't connect with server, are you sure that\n the server is started? Please review it and reboot your sistem."
+msgstr "No puedes conectar con el servidor.\n¿Estas seguro que el servidor esta arrancado?\nPor favor revisalo y reinicia este equipo."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py
+#, python-format
+msgid "Your internet server is down,\n please review the internet server connection, the proxy or the router."
+msgstr "Tu servidor de Internet no funciona.\nPor favor revisa el servidor, el proxy o el router."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py
+#, python-format
+msgid "The network card has been reset"
+msgstr "La tarjeta de red ha sido reiniciada"
+
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:311
 #, python-format
 msgid "You have a new kernel boot by defect:"
@@ -198,24 +218,6 @@ msgstr "Desisntalar"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:708
 msgid "Install"
 msgstr "Instalar"
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:708
-msgid "Installing"
-msgstr "Instalando"
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:708
-msgid "Deleting"
-msgstr "Desinstalando"
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:868
-#, python-format
-msgid "You can't delete this kernel because you are using now:"
-msgstr "No puedes borrar este kernel porque esta siendo usado actualmente"
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:868
-#, python-format
-msgid "Do you want to DELETE this kernel?"
-msgstr "¿Quieres desinstalar este kernel?"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:784
 #, python-format
@@ -275,20 +277,19 @@ msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:186
 msgid "The startup bar is adding at your system, applying changes....."
-msgstr ""
-"La barrra de arranque se esta añadiendo a tu sistema, aplicando cambios...."
+msgstr "La barrra de arranque se esta añadiendo a tu sistema, aplicando cambios...."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
 msgid "PMB it's NOT installed or not detected"
 msgstr "El PMB no esta instalado o no esta detectado."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
-msgid "Reset your PMB admin passwd"
-msgstr "Resetear la contraseña de admin en el PMB "
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
 msgid "PMB it's NOT installed"
 msgstr "El PMB no esta instalado."
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
+msgid "Reset your PMB admin passwd"
+msgstr "Resetear la contraseña de admin en el PMB "
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
 msgid "You're resetting admin passwd to PMB, please wait...."

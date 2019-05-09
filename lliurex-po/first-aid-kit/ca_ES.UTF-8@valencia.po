@@ -166,6 +166,26 @@ msgstr "Operacions de la barra d'inici"
 msgid "label"
 msgstr "Etiqueta"
 
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py
+#, python-format
+msgid "You have hardware problems, please review your data\n cable and your connections, because your netcard doesn't have link."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py
+#, python-format
+msgid "You can't connect with server, are you sure that\n the server is started? Please review it and reboot your sistem."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py
+#, python-format
+msgid "Your internet server is down,\n please review the internet server connection, the proxy or the router."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py
+#, python-format
+msgid "The network card has been reset"
+msgstr ""
+
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:311
 #, python-format
 msgid "You have a new kernel boot by defect:"
