@@ -189,52 +189,52 @@ msgstr "S'ha reinicialitzat la targeta de xarxa."
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "ACLs are still regenerating, time elapsed: %s "
-msgstr ""
+msgstr "S'estan regenerant les ACLs, temps esmerçat: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "ACLs are still regenerating...... please, wait."
-msgstr ""
+msgstr "S'estan regenerant les ACLs... Espereu"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "User folders are still regenerating, time elapsed: %s "
-msgstr ""
+msgstr "S'estan regenerant les carpetes dels usuaris, temps esmerçat: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "User folders are still regenerating...... please, wait."
-msgstr ""
+msgstr "S'estan regenerant les carpetes dels usuaris...Espereu"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "ACLs error: %s"
-msgstr ""
+msgstr "Error de ACLs: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "ACLs error: %s\nRegenerate error:%s"
-msgstr ""
+msgstr "Error de ACLs: %s\nError de regeneració: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "Regenerate error:%s"
-msgstr ""
+msgstr "Error de regeneració: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "Finished!!!\nACLs of the files have been reviewed. Time elapsed to do %s"
-msgstr ""
+msgstr "S'ha finalitzat.\nS'han revisat les ACL dels fitxers. Temps esmerçat %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "Finished!!!\nACLs of the files have been reviewed, in %s.\nAll user folders have been regenerated if it's necessary in %s"
-msgstr ""
+msgstr "S'ha finalitzat.\nS'han revisat les ACL dels fitxers. Temps esmerçat %s\nLes carpetes necessàries s'han regenerat en %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
 #, python-format
 msgid "Finished!!!\nAll user folders have been regenerated if it's necessary. Time elapsed to do %s"
-msgstr ""
+msgstr "S'ha finalitzat.\nLes carpetes necessàries s'han regenerat en %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:311
 #, python-format
@@ -367,7 +367,7 @@ msgstr " S'està restablint la contrasenya de l'administrador de PMB, espereu...
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
 msgid "New PMB admin passwd is admin.\nPlease logged in your application and change it."
-msgstr "La nova contrasenya de l'administrador de PMB és admin."
+msgstr "La nova contrasenya de l'administrador de PMB és admin.\nRegistreu-vos en l'aplicació i canvieu-la."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/FirstAidKit.py
 msgid "Sorry you are not a server. You can't access to /net files."
