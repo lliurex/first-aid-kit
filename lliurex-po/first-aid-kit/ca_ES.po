@@ -316,7 +316,7 @@ msgid "You're resetting admin passwd to PMB, please wait...."
 msgstr " S'està restablint la contrasenya de l'administrador de PMB, espereu..."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
-msgid "New PMB admin passwd is admin."
+msgid "New PMB admin passwd is admin.\nPlease logged in your application and change it."
 msgstr "La nova contrasenya de l'administrador de PMB és admin."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/FirstAidKit.py
