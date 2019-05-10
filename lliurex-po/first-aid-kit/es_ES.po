@@ -185,6 +185,56 @@ msgstr "Tu servidor de Internet no funciona.\nPor favor revisa el servidor, el p
 msgid "The network card has been reset"
 msgstr "La tarjeta de red ha sido reiniciada"
 
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "ACLs are still regenerating, time elapsed: %s "
+msgstr "Las ACLs se estan regenerando, tiempo consumido: %s"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "ACLs are still regenerating...... please, wait."
+msgstr "Las ACLs se estan regenerando.... por favor espera"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "User folders are still regenerating, time elapsed: %s "
+msgstr "Las carpetas de los usuarios se estan regenerando, tiempo consumido: %s"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "User folders are still regenerating...... please, wait."
+msgstr "Las carpetas de los usuarios se estan regenerando..... por favor espera"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "ACLs error: %s"
+msgstr "Error ACLs: %s"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "ACLs error: %s\nRegenerate error:%s"
+msgstr "Error ACLs: %s\nError Regeneracion: %s"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "Regenerate error:%s"
+msgstr "Error Regeneracion: %s"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "Finished!!!\nACLs of the files have been reviewed. Time elapsed to do %s"
+msgstr "Terminado!!\nLas ACLs de los ficheros has sido revisadas. Tiempo usado: %s"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "Finished!!!\nACLs of the files have been reviewed, in %s.\nAll user folders have been regenerated if it's necessary in %s"
+msgstr "Terminado!!!\nLas ACLs de los ficheros has sido revisadas, en %s.\nLas carpetas necesarias has sido regeneradas en %s"
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "Finished!!!\nAll user folders have been regenerated if it's necessary. Time elapsed to do %s"
+msgstr "Terminado!!!\nLas carpetas necesarias han sido regeneradas. Tiempo consumido %s"
+
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:311
 #, python-format
 msgid "You have a new kernel boot by defect:"
