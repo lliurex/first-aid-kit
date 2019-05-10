@@ -1,3 +1,29 @@
+first-aid-kit (0.0.21) bionic; urgency=high
+
+  * Adding translations 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Fri, 10 May 2019 11:57:54 +0200
+
+first-aid-kit (0.0.20) bionic; urgency=high
+
+  * Adding Translations
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Thu, 09 May 2019 13:27:25 +0200
+
+first-aid-kit (0.0.19) bionic; urgency=high
+
+  * Pmb module bug solved 
+  * Add translations
+  * Colour in text solved is blue 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Wed, 08 May 2019 12:23:18 +0200
+
+first-aid-kit (0.0.16.05) bionic; urgency=high
+
+  * Changing icon name 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Mon, 06 May 2019 08:54:15 +0200
+
 first-aid-kit (0.0.16.04) bionic; urgency=high
 
   * Adding new translations 
