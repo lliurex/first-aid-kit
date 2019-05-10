@@ -296,8 +296,8 @@ msgid "You're resetting admin passwd to PMB, please wait...."
 msgstr "Se esta reseteando la contraseña del usuario admin en el PMB, por favor espera... "
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
-msgid "New PMB admin passwd is admin."
-msgstr "La nueva contraseña del usuario admin en el PMB es admin. "
+msgid "New PMB admin passwd is admin.\nPlease logged in your application and change it."
+msgstr "La nueva contraseña del usuario admin en el PMB es admin.\nPor favor entra en la aplicación y cambiala."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/FirstAidKit.py
 msgid "Sorry you are not a server. You can't access to /net files."
