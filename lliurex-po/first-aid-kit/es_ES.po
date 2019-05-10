@@ -185,6 +185,56 @@ msgstr "Tu servidor de Internet no funciona.\nPor favor revisa el servidor, el p
 msgid "The network card has been reset"
 msgstr "La tarjeta de red ha sido reiniciada"
 
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "ACLs are still regenerating, time elapsed: %s "
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "ACLs are still regenerating...... please, wait."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "User folders are still regenerating, time elapsed: %s "
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "User folders are still regenerating...... please, wait."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "ACLs error: %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "ACLs error: %s\nRegenerate error:%s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "Regenerate error:%s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "Finished!!!\nACLs of the files have been reviewed. Time elapsed to do %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "Finished!!!\nACLs of the files have been reviewed, in %s.\nAll user folders have been regenerated if it's necessary in %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py
+#, python-format
+msgid "Finished!!!\nAll user folders have been regenerated if it's necessary. Time elapsed to do %s"
+msgstr ""
+
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:311
 #, python-format
 msgid "You have a new kernel boot by defect:"
