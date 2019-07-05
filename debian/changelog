@@ -1,3 +1,9 @@
+first-aid-kit (0.0.22) bionic; urgency=high
+
+  * Adding repoman to APT resource 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Fri, 05 Jul 2019 09:02:38 +0200
+
 first-aid-kit (0.0.21) bionic; urgency=high
 
   * Adding translations 
