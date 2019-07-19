@@ -34,7 +34,7 @@ msgstr "Epoptes"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:80
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1835
 msgid "Startup Bar"
-msgstr "Barra d'inici"
+msgstr "Animació d'arrancada"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:94
 msgid "Kernel"

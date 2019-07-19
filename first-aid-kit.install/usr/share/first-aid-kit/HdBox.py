@@ -162,7 +162,8 @@ class HdBox(Gtk.VBox):
 			if self.core.current_session=='lliurex-mate':
 				os.system('gparted')
 			else:
-				os.system('partitionmanager')
+				#os.system('partitionmanager')
+				os.system('gparted')
 
 			self.thread_ret={"status":True,"msg":"BROKEN"}
 			
