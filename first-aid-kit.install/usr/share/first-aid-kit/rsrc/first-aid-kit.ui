@@ -1308,7 +1308,7 @@
           <object class="GtkImage" id="image1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">firstaidkit_banner.png</property>
+            <property name="pixbuf">firstaidkit_banner_val.png</property>
           </object>
           <packing>
             <property name="expand">False</property>

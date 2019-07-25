@@ -143,7 +143,7 @@ class AptBox(Gtk.VBox):
 		try:
 			self.core.working=True
 			self.core.dprint("Modifying repositories.........","[AptBox]")
-			proc=subprocess.Popen('lliurex-apt2',shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable="/bin/bash")
+			proc=subprocess.Popen('repoman',shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable="/bin/bash")
 			output,error=proc.communicate()
 
 			if not '/bin/bash' in  error:

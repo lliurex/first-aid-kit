@@ -33,7 +33,7 @@ msgstr "Epoptes"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:80
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1835
 msgid "Startup Bar"
-msgstr "Animación de Arranque"
+msgstr "Animación\nde Arranque"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:94
 msgid "Kernel"
@@ -158,7 +158,7 @@ msgstr "Regenerar los ficheros locales"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1796
 msgid "Startup Bar Operations"
-msgstr "Operaciones con la Barra de Arranque"
+msgstr "Operaciones con la Animación de Arranque"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2063
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2074
@@ -312,22 +312,22 @@ msgstr ""
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:80
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:184
 msgid "Delete Startup Bar"
-msgstr "Eliminar Barra de Arranque"
+msgstr "Eliminar animación de Arranque"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:84
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:165
 msgid "Add Startup Bar"
-msgstr "Añadir Barra de Arranque"
+msgstr "Añadir Animación de Arranque"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:167
 msgid "The startup bar is removing from your system, applying changes....."
 msgstr ""
-"La barra de arranque esta siendo eliminada de tu sistema, aplicando "
+"La animación de arranque esta siendo eliminada de tu sistema, aplicando "
 "cambios......."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:186
 msgid "The startup bar is adding at your system, applying changes....."
-msgstr "La barrra de arranque se esta añadiendo a tu sistema, aplicando cambios...."
+msgstr "La animación de arranque se esta añadiendo a tu sistema, aplicando cambios...."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
 msgid "PMB it's NOT installed or not detected"
