@@ -193,7 +193,7 @@ class PmbBox(Gtk.VBox):
 			self.pmb_passwd_button.set_sensitive(True)
 			self.info_box_stack.set_visible_child_name("empty_box")
 			self.info_box_stack.set_visible_child_name("infobox")
-			self.txt_check_pmb.set_text(_("Your new passwd to admin user is admin\nPlease logged in your application and change it."))
+			self.txt_check_pmb.set_text(_("New PMB admin passwd is admin.\nPlease logged in your application and change it."))
 			self.core.dprint("Your new passwd to admin user is admin. Please logged in your application and change it.","[PmbBox]")
 
 		except Exception as e:

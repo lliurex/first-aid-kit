@@ -79,7 +79,9 @@ class Core:
 		lines=f.readlines()
 		f.close()
 		os.remove(env_file)
-		self.xwindows_access=False
+		self.xwindows_access=True
+		self.current_session="plasma"
+
 		for line in lines:
 			if "DESKTOP_SESSION=" in line:
 				self.current_session=line.split("=")[1].strip("\n")

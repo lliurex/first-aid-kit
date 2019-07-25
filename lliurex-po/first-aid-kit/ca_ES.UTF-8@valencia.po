@@ -24,7 +24,7 @@ msgstr "Accés a la xarxa"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:53
 msgid "Hard Disk"
-msgstr "Disco Dur"
+msgstr "Disc Dur"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:66
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:167
@@ -34,7 +34,7 @@ msgstr "Epoptes"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:80
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1835
 msgid "Startup Bar"
-msgstr "Animació d'arrancada"
+msgstr "Animació\nd'arrancada"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:94
 msgid "Kernel"
@@ -159,7 +159,7 @@ msgstr "Regenera les carpetes locals"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1796
 msgid "Startup Bar Operations"
-msgstr "Operacions de la barra d'inici"
+msgstr "Operacions de la animació d'arrancada"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2063
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2074
@@ -330,23 +330,23 @@ msgstr "S'ha programat un test d'integritat per al disc dur quan es reinicie"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:80
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:184
 msgid "Delete Startup Bar"
-msgstr "Suprimeix la barra d'inici"
+msgstr "Suprimeix l'animació d'arrancada"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:84
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:165
 msgid "Add Startup Bar"
-msgstr "Afig una barra d'inici"
+msgstr "Afig  l'animació d'arrancada"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:167
 msgid "The startup bar is removing from your system, applying changes....."
 msgstr ""
-"S'està suprimint la barra d'inici del vostre sistema, s'estan aplicant els "
+"S'està suprimint l'animació d'arrancada del vostre sistema, s'estan aplicant els "
 "canvis......."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:186
 msgid "The startup bar is adding at your system, applying changes....."
 msgstr ""
-"S'està afegint la barra d'inici al vostre sistema, s'estan aplicant els "
+"S'està afegint l'animació d'arrancada al vostre sistema, s'estan aplicant els "
 "canvis......."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
@@ -355,7 +355,7 @@ msgstr "El PMB no està instal·lat o no s'ha detectat."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
 msgid "Reset your PMB admin passwd"
-msgstr "Resetear la contraseña de admin en el PMB "
+msgstr "Resetear la contrasenya d'admin en el PMB "
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py
 msgid "PMB it's NOT installed"
