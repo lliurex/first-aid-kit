@@ -1,3 +1,9 @@
+first-aid-kit (1.0.5) bionic; urgency=high
+
+   * Adding new translations to valencian and spanish 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Thu, 25 Jul 2019 12:03:15 +0200
+
 first-aid-kit (0.0.23) bionic; urgency=high
 
   * New translation for startup bar
