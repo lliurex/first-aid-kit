@@ -212,7 +212,11 @@ class KernelBox(Gtk.VBox):
 					kernel_default_pos=kernel_default_pos.split()[0]
 					#WE NEED DELETE ""
 					kernel_default_pos=kernel_default_pos.replace('"','')
-					break
+					token=">"
+                    if token in kernel_default_pos:
+					    break
+					else:
+                        kernel_default_pos="1>0"
 				else:
 					kernel_default_pos="1>0"
 
@@ -232,8 +236,8 @@ class KernelBox(Gtk.VBox):
 					line=line.replace(kernel_default_pos,'')
 					if "-generic" in line:
 						line=line.replace('-generic','')
-					if "LliureX 16" in line:
-						line=line.replace('LliureX 16','')
+					if "LliureX 19" in line:
+						line=line.replace('LliureX 19','')
 					newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in line)
 					kernel_active = [str(i) for i in newstr.split()]
 					finded=True
