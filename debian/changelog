@@ -1,3 +1,9 @@
+first-aid-kit (1.0.7) bionic; urgency=high
+
+  * Add changes to detect kernel by defect in LliureX 19
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Wed, 31 Jul 2019 12:52:51 +0200
+
 first-aid-kit (1.0.6) bionic; urgency=medium
 
   * Add translations
