@@ -1,3 +1,9 @@
+first-aid-kit (1.0.6) bionic; urgency=medium
+
+  * Add translations
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 26 Jul 2019 14:07:24 +0200
+
 first-aid-kit (1.0.5) bionic; urgency=high
 
    * Adding new translations to valencian and spanish 
