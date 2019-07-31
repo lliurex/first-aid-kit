@@ -213,10 +213,10 @@ class KernelBox(Gtk.VBox):
 					#WE NEED DELETE ""
 					kernel_default_pos=kernel_default_pos.replace('"','')
 					token=">"
-                    if token in kernel_default_pos:
+                                        if token in kernel_default_pos:
 					    break
 					else:
-                        kernel_default_pos="1>0"
+                                            kernel_default_pos="1>0"
 				else:
 					kernel_default_pos="1>0"
 
