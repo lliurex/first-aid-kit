@@ -11,9 +11,11 @@ import time
 import threading
 import sys
 import os
-import urllib2
-import lliurex.net
+import urllib.request, urllib.error, urllib.parse
+#import lliurex.net
+import netifaces
 import subprocess
+import ssl
 
 gettext.textdomain('first-aid-kit')
 _=gettext.gettext
@@ -147,35 +149,139 @@ class NetBox(Gtk.VBox):
 		self.configure_network_button.connect("clicked",self.configure_network_button_clicked)
 		
 	#def connect_signals
+	
+	
+	
+	def get_net_size(self,netmask):
+		'''
+		Calculates bitmask from netmask
+		ex:
+			get_broadcast("eth0")
+		'''
+		try:
+			netmask=netmask.split(".")
+			binary_str = ''
+			for octet in netmask:
+				binary_str += bin(int(octet))[2:].zfill(8)
+			return str(len(binary_str.rstrip('0')))
+			
+		except Exception as e:
+			self.core.dprint("(get_net_size)Error: %s"%e,"[NetBox]")
+			return False
+
+	#def get_net_size
+	
+	
+
+	def get_device_info(self,dev):
+		'''
+		Returns a dictionary with the information of a certain network interface.
+		ex:
+			get_device_info("eth0")
+		'''	
+		try:
+			dic={}
+			for item in netifaces.interfaces():
+				if item==dev:
+					p = subprocess.Popen(['/sbin/ethtool',item],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+					status = p.wait()
+					if type(status) is bytes:
+						status=status.decode()
+					aux_lines = [ y.strip() for y in p.stdout.readlines()]
+					dic = {}
+					if (status == 0):
+						aux_lines.pop(0)
+						for line in aux_lines:
+							if type(line)!=type(''):
+								line=line.decode()
+							try:
+								key,value = [x.strip() for x in line.split(':')]
+								dic[key]=[]
+								dic[key].append(value)
+							except Exception as e:
+								dic[key].append(line)
+
+					info=netifaces.ifaddresses(item)
+					dic["name"]=item
+
+					if netifaces.AF_LINK in list(info.keys()):
+					
+						if "addr" in list(info[netifaces.AF_LINK][0].keys()):
+							dic["mac"]=info[netifaces.AF_LINK][0]["addr"]
+						else:
+							dic["mac"]=""
+					if netifaces.AF_INET in list(info.keys()):
+						if "broadcast" in list(info[netifaces.AF_INET][0].keys()):
+							dic["broadcast"]=info[netifaces.AF_INET][0]["broadcast"]
+						else:
+							dic["broadcast"]=""
+						if "netmask" in list(info[netifaces.AF_INET][0].keys()):
+							dic["netmask"]=info[netifaces.AF_INET][0]["netmask"]
+							dic["bitmask"]=self.get_net_size(dic["netmask"])
+						else:
+							dic["bitmask"]=""
+							dic["netmask"]=""
+						if "addr" in list(info[netifaces.AF_INET][0].keys()):
+							dic["ip"]=info[netifaces.AF_INET][0]["addr"]
+						else:
+							dic["ip"]=""
+					
+			return dic
+		except Exception as e:
+			self.core.dprint("(get_device_info)Error: %s"%e,"[NetBox]")
+			return False
+	
+	#def get_device_info
 
 
+	def get_devices_info(self):
+		'''
+		Returns a list of dictionaries with the information of every network interface found in the system.
+		'''	
+		try:
+			ret=[]
+			for item in netifaces.interfaces():
+				if item!="lo":
+					ret.append(self.get_device_info(item))
+			return ret
+		except Exception as e:
+			self.core.dprint("(get_devices_info)Error: %s"%e,"[NetBox]")
+			return False
+		
+	#def get_device_info
 
 
 	def load_eth_cards(self):
+		
+		try:
+			self.eth_store=Gtk.ListStore(str)
+			
+			#self.devices=lliurex.net.get_devices_info()
+			self.devices=self.get_devices_info()
+			self.num_devices=len(self.devices)
+			self.core.dprint("Netcards detected NUMBER: %s"%self.num_devices,"[NetBox]")
+			self.eth_wharehouse={}
 
-		self.eth_store=Gtk.ListStore(str)
+			if self.num_devices > 1:
+				for i in range(0,self.num_devices):
+					eth_name=self.devices[i]['name']
+					self.eth_store.append([eth_name])
+					self.eth_wharehouse[eth_name]=""
+					self.eth_wharehouse[eth_name]=i
+			else:
+				self.test_combobox.hide()
 
-		self.devices=lliurex.net.get_devices_info()
-		self.num_devices=len(self.devices)
-		self.core.dprint("Netcards detected NUMBER: %s"%self.num_devices,"[NetBox]")
-		self.eth_wharehouse={}
-
-		if self.num_devices > 1:
-			for i in range(0,self.num_devices):
-				eth_name=self.devices[i]['name']
-				self.eth_store.append([eth_name])
-				self.eth_wharehouse[eth_name]=""
-				self.eth_wharehouse[eth_name]=i
-		else:
-			self.test_combobox.hide()
-
-		self.core.dprint("Netcards detected NAME: %s"%self.eth_wharehouse,"[NetBox]")
-		renderer=Gtk.CellRendererText()
-		self.test_combobox.pack_start(renderer,True)
-		self.test_combobox.add_attribute(renderer,"text",0)
-		self.test_combobox.set_model(self.eth_store)
-		self.test_combobox.set_active(0)
-		self.eth_po=0
+			self.core.dprint("Netcards detected NAME: %s"%self.eth_wharehouse,"[NetBox]")
+			renderer=Gtk.CellRendererText()
+			self.test_combobox.pack_start(renderer,True)
+			self.test_combobox.add_attribute(renderer,"text",0)
+			self.test_combobox.set_model(self.eth_store)
+			self.test_combobox.set_active(0)
+			self.eth_po=0
+		
+		except Exception as e:
+			self.core.dprint("(load_eth)Error: %s"%e,"[NetBox]")
+			return False
 
 
 	#def load_eth
@@ -276,9 +382,10 @@ class NetBox(Gtk.VBox):
 
 	def server_on(self):
 		try:
-			import xmlrpclib as x
+			import xmlrpc.client as x
+			context=ssl._create_unverified_context()
 			proxy="https://server:9779"
-			client=x.ServerProxy(proxy)
+			client=x.ServerProxy(proxy,allow_none=True,context=context)
 			client.get_methods()
 			return True
 		except Exception as e:
@@ -291,7 +398,7 @@ class NetBox(Gtk.VBox):
 
 	def internet_on(self):
 		try:
-			urllib2.urlopen('https://www.google.com/', timeout=10)
+			urllib.request.urlopen('https://www.google.com/', timeout=10)
 			return True
 		except Exception as e:
 			self.core.dprint("(internet_on)Error: %s"%e,"[NetBox]")
