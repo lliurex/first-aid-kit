@@ -11,9 +11,11 @@ import time
 import threading
 import sys
 import os
-import xmlrpclib
+import xmlrpc.client
 import datetime
-from dateutil import parser
+#from dateutil import parser
+import dateutil.parser
+import ssl
 
 gettext.textdomain('first-aid-kit')
 _=gettext.gettext
@@ -83,7 +85,8 @@ class NetfilesBox(Gtk.VBox):
 		self.regenerate_executed=False
 
 		proxy="https://localhost:9779"
-		self.client=xmlrpclib.ServerProxy(proxy)
+		context=ssl._create_unverified_context()
+		self.client=xmlrpc.client.ServerProxy(proxy,allow_none=True,context=context)
 
 		self.acl_error=[False,"True"]
 		self.regenerate_error=[False,"True"]

@@ -294,7 +294,7 @@ class FirstAidKit:
 		self.login_ret=self.core.n4d.validate_user(user,password,server_ip)
 		
 		print ("User: %s - Passwd: %s - Server: %s"%(user,password,server_ip))
-		print self.login_ret
+		print ("%s"%(self.login_ret))
 		
 	#def validate_user_thread
 	

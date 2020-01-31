@@ -1,4 +1,4 @@
-import xmlrpclib
+import xmlrpc.client
 
 class N4dManager:
 	
@@ -20,11 +20,11 @@ class N4dManager:
 			if server_ip in {'localhost'}:
 				proxy="https://localhost:9779"
 				#print proxy
-				self.client=xmlrpclib.ServerProxy(proxy)
+				self.client=xmlrpc.client.ServerProxy(proxy)
 			else:
 				proxy="https://%s:9779"%server_ip
 				#print proxy
-				self.client=xmlrpclib.ServerProxy(proxy)
+				self.client=xmlrpc.client.ServerProxy(proxy)
 			
 			self.server=server_ip
 				
@@ -39,7 +39,7 @@ class N4dManager:
 			return [False,"Wrong user and/or password"]
 			
 		except Exception as e:
-			print e
+			print (e)
 			return [False,str(e)]
 		
 		
