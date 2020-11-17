@@ -134,7 +134,7 @@ class KernelBox(Gtk.VBox):
 		Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),self.style_provider,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 		
 		self.info_box_kernel.set_name("PKG_BOX")
-		self.separator_kernel.set_name("SEPARATOR")
+		self.separator_kernel.set_name("SEPARATOR_MAIN")
 		
 		self.kernel_list_box.set_name("PKG_BOX")
 
