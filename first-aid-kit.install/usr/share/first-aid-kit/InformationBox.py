@@ -17,6 +17,7 @@ import subprocess
 import time
 import apt
 import cpuinfo
+import textwrap
 
 gettext.textdomain('first-aid-kit')
 _=gettext.gettext
@@ -378,7 +379,12 @@ class InformationBox(Gtk.VBox):
 		try:
 			hbox=Gtk.Box(homogeneous=True)
 
-			label_name=Gtk.Label(element_hd[0])
+			if len(element_hd[0]) > 14:
+				label_name=textwrap.wrap(element_hd[0], width=14)[0]+'...'
+				label_name=Gtk.Label(label_name)
+			else:
+				label_name=Gtk.Label(element_hd[0])
+			label_name.set_property("tooltip-text", element_hd[0]+' mounted on '+element_hd[6])
 			hbox.pack_start(label_name,True,True,0)
 
 			label_type=Gtk.Label(element_hd[1])
