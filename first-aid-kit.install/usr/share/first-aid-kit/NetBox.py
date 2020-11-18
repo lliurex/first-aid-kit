@@ -93,6 +93,9 @@ class NetBox(Gtk.VBox):
 		self.info_box.set_margin_left(5)
 		self.info_box.set_margin_right(5)
 
+		self.speed_net.set_text(_("Unknow"))
+		self.ip_address.set_text(_("Unknow"))
+
 		self.load_eth_cards()
 		self.pack_start(self.net_box,True,True,5)
 		self.connect_signals()
@@ -173,7 +176,7 @@ class NetBox(Gtk.VBox):
 	
 	
 
-	def get_device_info(self,dev):
+	def get_device_info(self,dev,count):
 		'''
 		Returns a dictionary with the information of a certain network interface.
 		ex:
@@ -211,18 +214,18 @@ class NetBox(Gtk.VBox):
 						else:
 							dic["mac"]=""
 					if netifaces.AF_INET in list(info.keys()):
-						if "broadcast" in list(info[netifaces.AF_INET][0].keys()):
-							dic["broadcast"]=info[netifaces.AF_INET][0]["broadcast"]
+						if "broadcast" in list(info[netifaces.AF_INET][count].keys()):
+							dic["broadcast"]=info[netifaces.AF_INET][count]["broadcast"]
 						else:
 							dic["broadcast"]=""
-						if "netmask" in list(info[netifaces.AF_INET][0].keys()):
-							dic["netmask"]=info[netifaces.AF_INET][0]["netmask"]
+						if "netmask" in list(info[netifaces.AF_INET][count].keys()):
+							dic["netmask"]=info[netifaces.AF_INET][count]["netmask"]
 							dic["bitmask"]=self.get_net_size(dic["netmask"])
 						else:
 							dic["bitmask"]=""
 							dic["netmask"]=""
-						if "addr" in list(info[netifaces.AF_INET][0].keys()):
-							dic["ip"]=info[netifaces.AF_INET][0]["addr"]
+						if "addr" in list(info[netifaces.AF_INET][count].keys()):
+							dic["ip"]=info[netifaces.AF_INET][count]["addr"]
 						else:
 							dic["ip"]=""
 					
@@ -242,7 +245,26 @@ class NetBox(Gtk.VBox):
 			ret=[]
 			for item in netifaces.interfaces():
 				if item!="lo":
-					ret.append(self.get_device_info(item))
+					NET=netifaces.AF_INET
+					num_ifaces=len(netifaces.ifaddresses(item)[NET])
+					#self.core.dprint("(get_devices_info)num_ifaces detected: %s"%num_ifaces,"[NetBox]")
+					count=0
+					if num_ifaces > 1:
+						stop=count+1
+						while stop <= num_ifaces:
+							#self.core.dprint("(get_devices_info)get_device_info run for: (%s,%s)"%(item,count),"[NetBox]")
+							device_info=(self.get_device_info(item,count))
+							device_info['name'] = device_info['name']+"_%s"%count
+
+							ret.append(device_info)
+							count=count+1
+							stop=stop+1
+					else:
+						#self.core.dprint("(get_devices_info)get_device_info run for: (%s,%s)"%(item,count),"[NetBox]")
+						device_info=(self.get_device_info(item,count))
+						ret.append(device_info)
+
+			#self.core.dprint("(get_devices_info)Netcards detected: %s"%ret,"[NetBox]")		
 			return ret
 		except Exception as e:
 			self.core.dprint("(get_devices_info)Error: %s"%e,"[NetBox]")

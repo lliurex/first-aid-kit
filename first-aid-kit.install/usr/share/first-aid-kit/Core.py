@@ -1,5 +1,6 @@
 import FirstAidKit
 import logging
+import InformationBox
 import NetBox
 import PmbBox
 import HdBox
@@ -140,6 +141,9 @@ class Core:
 		
 		self.dprint("Creating N4D client...")
 		self.n4d=N4dManager.N4dManager()
+
+		self.dprint("Creating InformationBox...")
+		self.information_box=InformationBox.InformationBox()
 		
 		self.dprint("Creating NetBox...")
 		self.net_box=NetBox.NetBox()
