@@ -1,3 +1,11 @@
+first-aid-kit (1.1.0) bionic; urgency=medium
+
+  * Adding new panel information
+  * Minimize size to HD resolution
+  * Adding new feature to discover netcards with alias 
+
+ -- Daniel Duran <daduve@gmail.com>  Wed, 18 Nov 2020 09:47:57 +0100
+
 first-aid-kit (1.0.9) bionic; urgency=medium
 
   * Fixed depends in control
