@@ -55,7 +55,7 @@ class InformationBox(Gtk.VBox):
 		self.information_label_kernel=builder.get_object("information_label_kernel")
 		self.information_label_ram=builder.get_object("information_label_ram")
 		self.informationv_label_cpu_model=builder.get_object("information_label_cpu_model")
-		self.information_label_cpu_cores=builder.get_object("information_label_cpu_cores")
+		self.information_label_meta=builder.get_object("information_label_meta")
 		self.information_label_flavour=builder.get_object("information_label_flavour")
 		self.information_label_cpu_speed=builder.get_object("information_label_cpu_speed")
 		
@@ -71,7 +71,7 @@ class InformationBox(Gtk.VBox):
 		self.information_label_kernel_solved=builder.get_object("information_label_kernel_solved")
 		self.information_label_ram_solved=builder.get_object("information_label_ram_solved")
 		self.informationv_label_cpu_model_solved=builder.get_object("information_label_cpu_model_solved")
-		self.information_label_cpu_cores_solved=builder.get_object("information_label_cpu_cores_solved")
+		self.information_label_meta_solved=builder.get_object("information_label_meta_solved")
 		self.information_label_flavour_solved=builder.get_object("information_label_flavour_solved")
 		self.information_label_cpu_speed_solved=builder.get_object("information_label_cpu_speed_solved")
 
@@ -80,7 +80,7 @@ class InformationBox(Gtk.VBox):
 		self.information_label_kernel_solved.set_text(_("Unknow"))
 		self.information_label_ram_solved.set_text(_("Unknow"))
 		self.informationv_label_cpu_model_solved.set_text(_("Unknow"))
-		self.information_label_cpu_cores_solved.set_text(_("Unknow"))
+		self.information_label_meta_solved.set_text(_("Unknow"))
 		self.information_label_flavour_solved.set_text(_("Unknow"))
 		self.information_label_cpu_speed_solved.set_text(_("Unknow"))
 
@@ -156,7 +156,7 @@ class InformationBox(Gtk.VBox):
 		self.information_label_kernel.set_name("OPTION_LABEL")
 		self.information_label_ram.set_name("OPTION_LABEL")
 		self.informationv_label_cpu_model.set_name("OPTION_LABEL")
-		self.information_label_cpu_cores.set_name("OPTION_LABEL")
+		self.information_label_meta.set_name("OPTION_LABEL")
 		self.information_label_flavour.set_name("OPTION_LABEL")
 		self.information_label_cpu_speed.set_name("OPTION_LABEL")
 
@@ -211,6 +211,7 @@ class InformationBox(Gtk.VBox):
 			self.information_label_ram_function()
 
 			self.information_label_flavour_function()	
+			self.information_label_meta_function()
 
 			self.cpu=self.cpu_info_function()
 
@@ -231,8 +232,6 @@ class InformationBox(Gtk.VBox):
 			self.informationv_label_cpu_model_function(self.cpu)
 
 			self.information_label_cpu_speed_function(self.cpu)
-
-			self.information_label_cpu_cores_function(self.cpu)
 
 		except Exception as e:
 			self.core.dprint("(check_information_system_thread) Error: %s"%e,"[InformationBox]")
@@ -265,6 +264,39 @@ class InformationBox(Gtk.VBox):
 			self.core.dprint("[InformationBox](information_label_timestamp_function)Error: %s"%e)
 		
 	#def information_label_timestamp_function
+
+	def information_label_meta_function(self):
+		
+		try:
+			list_meta_solved = os.popen("lliurex-version --history").readlines()
+			history={}
+			count=0
+			for item in list_meta_solved:
+				words=item.split()
+				history[count]={}
+				history[count]['operation']=words[0]
+				history[count]['meta']=words[1]
+				history[count]['date']=words[2]
+				history[count]['time']=words[3]
+				count=count+1
+
+			try:
+				if history[0]['operation'] == '+':
+					label_meta_solved=history[0]['meta']
+				else:
+					label_meta_solved='Uninstalled'
+
+			except Exception as e:
+				label_meta_solved='Unknow'
+
+			self.information_label_meta_solved.set_text(label_meta_solved)
+			list_meta_solved_tooltip=subprocess.check_output(['lliurex-version','--history']).decode('utf-8')
+			self.information_label_meta_solved.set_property("tooltip-text", list_meta_solved_tooltip)
+
+		except Exception as e:
+			self.core.dprint("[InformationBox](information_label_meta_function)Error: %s"%e)
+		
+	#def information_label_cpu_cores_function
 
 
 	def information_label_kernel_function(self):
@@ -323,25 +355,13 @@ class InformationBox(Gtk.VBox):
 		try:
 			cpu_model=cpu['brand']
 			cpu_speed_solved=cpu_model.rsplit('@', 1)[1]
-			self.information_label_cpu_speed_solved.set_text(cpu_speed_solved)
+			cpu_cores_solved=str(cpu['count'])
+			self.information_label_cpu_speed_solved.set_text(cpu_cores_solved+' / '+cpu_speed_solved)
 
 		except Exception as e:
 			self.core.dprint("[InformationBox](information_label_cpu_speed_function)Error: %s"%e)
 		
 	#def information_label_cpu_speed_function
-
-
-	def information_label_cpu_cores_function(self,cpu):
-		
-		try:
-			cpu_cores_solved=str(cpu['count'])
-			self.information_label_cpu_cores_solved.set_text(cpu_cores_solved)
-
-		except Exception as e:
-			self.core.dprint("[InformationBox](information_label_cpu_cores_function)Error: %s"%e)
-		
-	#def information_label_cpu_cores_function
-
 	
 
 
@@ -384,7 +404,7 @@ class InformationBox(Gtk.VBox):
 				label_name=Gtk.Label(label_name)
 			else:
 				label_name=Gtk.Label(element_hd[0])
-			label_name.set_property("tooltip-text", element_hd[0]+' mounted on '+element_hd[6])
+			label_name.set_property("tooltip-text", element_hd[0]+'  mounted on  '+element_hd[6])
 			hbox.pack_start(label_name,True,True,0)
 
 			label_type=Gtk.Label(element_hd[1])
