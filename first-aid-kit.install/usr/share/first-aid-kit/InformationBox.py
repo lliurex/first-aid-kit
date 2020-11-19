@@ -315,7 +315,7 @@ class InformationBox(Gtk.VBox):
 				for lineimport in list_importfs:
 					if '/net/server-sync' in lineimport:
 						lineimport= list(lineimport.split())
-						ip_import=lineimport[2].rsplit('-', 1)[0]
+						ip_import=lineimport[2].rsplit(':', 1)[0]
 						net_export=_('Imported from ')
 						net_export=net_export+ip_import
 						break
