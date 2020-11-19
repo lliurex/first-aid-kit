@@ -337,7 +337,7 @@ class InformationBox(Gtk.VBox):
 						center_model=_("Center")
 						break
 				
-			self.txt_check_information.set_text('Server: '+server_master+' - Center model: '+center_model+' - /net: '+net_export)
+			self.txt_check_information.set_text('Server: '+server_master+'    ---    Model: '+center_model+'    ---    /net: '+net_export)
 			self.info_box_stack.set_visible_child_name("infobox")
 
 		except Exception as e:
