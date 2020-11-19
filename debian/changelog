@@ -1,3 +1,9 @@
+first-aid-kit (1.1.1) bionic; urgency=medium
+
+  * Adding Center model for servers information 
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 19 Nov 2020 18:41:55 +0100
+
 first-aid-kit (1.1.0) bionic; urgency=medium
 
   * Adding new panel information
