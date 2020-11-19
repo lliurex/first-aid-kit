@@ -423,7 +423,7 @@ class InformationBox(Gtk.VBox):
 		try:
 			flavour_solved=subprocess.check_output(['lliurex-version','-f']).decode('utf-8').split()[0]
 			self.information_label_flavour_solved.set_text(flavour_solved)
-			if [ 'Server' in flavour_solved ] or [ 'server' in flavour_solved ]:
+			if ( 'Server' in flavour_solved ) or ( 'server' in flavour_solved ):
 				return True
 			else:
 				return False
