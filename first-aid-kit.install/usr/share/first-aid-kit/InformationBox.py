@@ -88,8 +88,8 @@ class InformationBox(Gtk.VBox):
 		self.separator_information2=builder.get_object("separator_information2")
 
 		self.info_box=builder.get_object("info_information")
-		self.spinner_apt=builder.get_object("spinner_information")
-		self.txt_check_apt=builder.get_object("txt_check_information")
+		self.spinner_information=builder.get_object("spinner_information")
+		self.txt_check_information=builder.get_object("txt_check_information")
 		self.info_box_into=builder.get_object("box6")
 
 
@@ -210,8 +210,10 @@ class InformationBox(Gtk.VBox):
 
 			self.information_label_ram_function()
 
-			self.information_label_flavour_function()	
+			server_test=self.information_label_flavour_function()	
 			self.information_label_meta_function()
+			if server_test:
+				self.information_info_model_server()
 
 			self.cpu=self.cpu_info_function()
 
@@ -299,6 +301,57 @@ class InformationBox(Gtk.VBox):
 	#def information_label_cpu_cores_function
 
 
+	def information_info_model_server(self):
+		# If is a Server show model, Master/Slave Aula Model or Centre Model
+		try:
+			server_master=_("Master")
+			center_model=_("Classroom")
+			net_export=_('Local')
+
+			#check if /net is local, exported or imported
+			list_exportfs = os.popen("exportfs").readlines()
+			if os.path.isfile('/etc/auto.lliurex'):
+				list_importfs = os.popen("cat /etc/auto.lliurex").readlines()
+				for lineimport in list_importfs:
+					if '/net/server-sync' in lineimport:
+						lineimport= list(lineimport.split())
+						ip_import=lineimport[2].rsplit('-', 1)[0]
+						net_export=_('Imported from ')
+						net_export=net_export+ip_import
+						break
+			else:
+				for linefs in list_exportfs:
+					if '/net/server-sync' in linefs:
+						net_export=_('Exported')
+						break
+			#Check if Server is Master/slave and Clashroom Model/ Center Model
+			list_ldap = os.popen("ldapsearch -Y EXTERNAL -H ldapi:// -b cn=config").readlines()
+			for line in list_ldap:
+				if 'rid=' in line:
+					server_master=_("Slave")
+					center_model=_("Center")
+					break
+				else:
+					server_master=_("Master")
+					if 'syncprov' in line:
+						center_model=_("Center")
+						break
+				
+			self.txt_check_information.set_text('Server: '+server_master+' - Center model: '+center_model+' - /net: '+net_export)
+			self.info_box_stack.set_visible_child_name("infobox")
+
+		except Exception as e:
+			server_master=_("Unknow")
+			center_model=_("Unknow")
+			net_export=_('Unknow')
+			self.core.dprint("(information_info_model_server)Error: %s"%e,"[InformationBox]")
+			self.txt_check_information.set_text(_("Detection server has errors."))
+			self.info_box_stack.set_visible_child_name("infobox")
+
+	#def information_info_model_server
+
+
+
 	def information_label_kernel_function(self):
 		
 		try:
@@ -370,6 +423,10 @@ class InformationBox(Gtk.VBox):
 		try:
 			flavour_solved=subprocess.check_output(['lliurex-version','-f']).decode('utf-8').split()[0]
 			self.information_label_flavour_solved.set_text(flavour_solved)
+			if [ 'Server' in flavour_solved ] or [ 'server' in flavour_solved ]:
+				return True
+			else:
+				return False
 
 		except Exception as e:
 			self.information_label_flavour_solved.set_text('Unknow')
