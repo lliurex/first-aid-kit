@@ -335,7 +335,10 @@ class InformationBox(Gtk.VBox):
 					server_master=_("Master")
 					if 'syncprov' in line:
 						center_model=_("Center")
-						break
+					else:
+						server_master=_("Independent")
+						center_model=_("Classroom")
+
 				
 			self.txt_check_information.set_text('Server: '+server_master+'    ---    Model: '+center_model+'    ---    /net: '+net_export)
 			self.info_box_stack.set_visible_child_name("infobox")
