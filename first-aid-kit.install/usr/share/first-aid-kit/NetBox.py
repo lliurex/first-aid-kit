@@ -95,13 +95,15 @@ class NetBox(Gtk.VBox):
 
 		self.speed_net.set_text(_("Unknow"))
 		self.ip_address.set_text(_("Unknow"))
-
+		
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		
 		self.load_eth_cards()
 		self.pack_start(self.net_box,True,True,5)
 		self.connect_signals()
 		self.set_css_info()
 
-		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		
 		#self.info_box_stack.set_visible_child_name("infobox")
 		#self.txt_check_nettest.set_text(_("Your internet server is down, please review the proxy or the router."))
 		
@@ -243,32 +245,43 @@ class NetBox(Gtk.VBox):
 		'''	
 		try:
 			ret=[]
+			error_cards=[]
 			for item in netifaces.interfaces():
 				if item!="lo":
 					NET=netifaces.AF_INET
-					num_ifaces=len(netifaces.ifaddresses(item)[NET])
+					try:
+						num_ifaces=len(netifaces.ifaddresses(item)[NET])
+						test_num_ifaces=True
+					except Exception as e:
+						#self.core.dprint("(get_devices_info)This network card has not been conected well: %s"%item,"[NetBox]")
+						test_num_ifaces=False
+						error_cards.append(item)
 					#self.core.dprint("(get_devices_info)num_ifaces detected: %s"%num_ifaces,"[NetBox]")
 					count=0
-					if num_ifaces > 1:
-						stop=count+1
-						while stop <= num_ifaces:
+					if test_num_ifaces:
+						if num_ifaces > 1:
+							stop=count+1
+							while stop <= num_ifaces:
+								#self.core.dprint("(get_devices_info)get_device_info run for: (%s,%s)"%(item,count),"[NetBox]")
+								device_info=(self.get_device_info(item,count))
+								device_info['name'] = device_info['name']+"_%s"%count
+
+								ret.append(device_info)
+								count=count+1
+								stop=stop+1
+						else:
 							#self.core.dprint("(get_devices_info)get_device_info run for: (%s,%s)"%(item,count),"[NetBox]")
 							device_info=(self.get_device_info(item,count))
-							device_info['name'] = device_info['name']+"_%s"%count
-
 							ret.append(device_info)
-							count=count+1
-							stop=stop+1
-					else:
-						#self.core.dprint("(get_devices_info)get_device_info run for: (%s,%s)"%(item,count),"[NetBox]")
-						device_info=(self.get_device_info(item,count))
-						ret.append(device_info)
-
+			if len(error_cards) > 0:
+				self.info_box_stack.set_visible_child_name("infobox")
+				self.txt_check_nettest.set_name("INFO_LABEL")
+				self.txt_check_nettest.set_text(_("Some network card has problems to be detected: %s")%error_cards)
 			#self.core.dprint("(get_devices_info)Netcards detected: %s"%ret,"[NetBox]")		
-			return ret
+			return [True,ret]
 		except Exception as e:
 			self.core.dprint("(get_devices_info)Error: %s"%e,"[NetBox]")
-			return False
+			return [False,ret]
 		
 	#def get_device_info
 
@@ -279,7 +292,12 @@ class NetBox(Gtk.VBox):
 			self.eth_store=Gtk.ListStore(str)
 			
 			#self.devices=lliurex.net.get_devices_info()
-			self.devices=self.get_devices_info()
+			self.devices_list=self.get_devices_info()
+			if not self.devices_list[0]:
+				self.info_box_stack.set_visible_child_name("infobox")
+				self.txt_check_nettest.set_name("INFO_LABEL")
+				self.txt_check_nettest.set_text(_("Some network card has problems to be detected."))
+			self.devices=self.devices_list[1]
 			self.num_devices=len(self.devices)
 			self.core.dprint("Netcards detected NUMBER: %s"%self.num_devices,"[NetBox]")
 			self.eth_wharehouse={}
@@ -664,4 +682,3 @@ class NetBox(Gtk.VBox):
 			return False
 
 	#def info_user_test
-	
