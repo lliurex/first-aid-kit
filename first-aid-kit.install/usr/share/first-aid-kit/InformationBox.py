@@ -167,6 +167,8 @@ class InformationBox(Gtk.VBox):
 		self.information_hdd_avail.set_name("OPTION_LABEL")
 		self.information_hdd_use.set_name("OPTION_LABEL")
 
+		self.txt_check_information.set_name("INFO_LABEL")
+
 		#self.txt_check_pmb.set_name("INFO_LABEL")
 			
 	#def set-css_info
