@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-29 13:04+0100\n"
+"POT-Creation-Date: 2020-11-24 12:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,247 +17,571 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:40
-msgid "Net Access"
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:19
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:226
+msgid "APT"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:53
-msgid "Hard Disk"
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:58
+msgid "Modify your repositories"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:66
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:167
-msgid "Epoptes"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:80
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1835
-msgid "Startup Bar"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:94
-msgid "Kernel"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:108
-msgid "/NET"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:206
-msgid "Renew certificate"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:233
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:354
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:384
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1576
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1613
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1862
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:85
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:393
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:514
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:544
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2437
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2474
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2710
 msgid "Execute"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:288
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:159
+msgid "System Info"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:172
+msgid "Net Access"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:185
+msgid "Hard Disk"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:198
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:327
+msgid "Epoptes"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:212
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2683
+msgid "Startup Bar"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:240
+msgid "Kernel"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:254
+msgid "/NET"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:267
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2525
+msgid "PMB"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:366
+msgid "Renew certificate"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:448
 msgid "Hard Disk  Operations"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:330
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:490
 msgid "Managing disk partitions."
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:343
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:503
 msgid "Test hard disk on reboot"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:688
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:972
+msgid "System Information"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1038
+msgid "Lliurex Release:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1064
+msgid "LliureX Flavour:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1103
+msgid "LliureX Timestamp:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1142
+msgid "LliureX Meta:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1197
+msgid "CPU Core / Speed:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1236
+msgid "CPU Model:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1286
+msgid "Ram size:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1312
+msgid "Kernel Installed:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1366
+msgid "Disks Information"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1404
+msgid "File System"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1420
+msgid "Type"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1436
+msgid "Size"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1451
+msgid "Used"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1466
+msgid "Avail"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1481
+msgid "Use%"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1544
 msgid "Kernels Avaiables"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:729
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1586
 msgid "Apply Filter"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:790
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1649
 msgid "Show installed kernels only"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:871
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1727
 msgid "Kernel selected on boot:"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:948
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1804
 msgid "Username"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:967
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1823
 msgid "Password"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:984
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1840
 msgid "Server IP    (Default value : server)"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:993
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1849
 msgid "Login"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1104
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1921
+msgid "First Aid kit"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1965
 msgid "Access to the Network"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1144
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2005
 msgid "Server connection"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1156
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2017
 msgid "Internet access"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1195
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2056
 msgid "Speed"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1245
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2106
 msgid "Test Network"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1268
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2129
 msgid "Link"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1293
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2154
 msgid "Ip address:"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1349
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2210
 msgid "Restart Networking Services"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1375
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2236
 msgid "Restart"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1416
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2277
 msgid "Configure Network"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1442
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2303
 msgid "Configure"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1497
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2358
 msgid "/NET Files"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1537
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2398
 msgid "ACLs Repair"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1549
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2410
 msgid "Regenerate local folders"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1796
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2564
+msgid "Reset your PMB admin passwd"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2591
+msgid "Reset"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2644
 msgid "Startup Bar Operations"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1943
-msgid "Current sheduled update:"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1998
-msgid "Schedule new update on boot:"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2011
-msgid "Each sheduled update will only be executed once per client."
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2030
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2046
-msgid "radiobutton"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2063
-#: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2074
-msgid "label"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:311
-#, python-format
-msgid "You have a new kernel boot by defect: %s"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:351
-msgid "Applying filter to show only installed kernels...please wait"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:380
-msgid "Applying filter to kernels...please wait"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:424
-msgid "Updating Kernel Cache...please wait"
-msgstr ""
-
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:673
-#, python-format
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:133
 msgid ""
-"INSTALLED!! Your new kernel list:\n"
-"%s"
+"You are modifying the repositories, close the external app when you finished "
+"with it."
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:704
-msgid "Uninstall"
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:154
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:161
+msgid "Sorry but the app to modify the repositories can't be opened"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:708
-msgid "Install"
+#: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:182
+msgid "You have mofified the repositories."
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:784
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:813
-#, python-format
-msgid "You cancel to uninstall kernel: %s"
+#: ../first-aid-kit.install/usr/share/first-aid-kit/Dialog.py:72
+msgid "Applying changes..."
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:868
-#, python-format
-msgid "%s: %s  Please wait....."
+#: ../first-aid-kit.install/usr/share/first-aid-kit/Dialog.py:101
+msgid "Please choose a file"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/EpoptesBox.py:161
+#: ../first-aid-kit.install/usr/share/first-aid-kit/EpoptesBox.py:163
 msgid "The Epoptes certificate has been renewed"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:81
-#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:203
+#: ../first-aid-kit.install/usr/share/first-aid-kit/FirstAidKit.py:119
+msgid "Sorry you are not a server. You can't access to /net files."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:82
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:206
 msgid "Enable"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:85
-#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:196
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:86
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:199
 msgid "Disable"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:87
-#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:199
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:88
+#: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:202
 msgid "Programmed a fscky in principal HD on the reboot"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:80
-#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:184
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:78
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:79
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:80
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:81
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:82
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:83
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:84
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:85
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:347
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:348
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:349
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:96
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:97
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:342
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:343
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:462
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:468
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:487
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:488
+msgid "Unknow"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:307
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:335
+msgid "Master"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:308
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:340
+msgid "Classroom"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:309
+msgid "Local"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:319
+msgid "Imported from "
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:325
+msgid "Exported"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:331
+msgid "Slave"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:332
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:337
+msgid "Center"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:339
+msgid "Independent"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:351
+msgid "Detection server has errors."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:388
+msgid "You have a new kernel boot by defect:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:431
+msgid "Applying filter to show only installed kernels...please wait"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:461
+msgid "Applying filter to kernels...please wait"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:505
+msgid "Updating Kernel Cache...please wait"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:756
+msgid "Your new kernel list:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:790
+msgid "Uninstall"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:794
+msgid "Install"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:841
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:865
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:882
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:922
+msgid "First Aid Kit"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:841
+msgid "You can't delete this kernel because you are using now."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:866
+msgid "You can't delete this kernel because is essential for LliureX."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:883
+msgid "Do you want to DELETE this kernel?"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:895
+msgid "You cancel to uninstall kernel:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:897
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:933
+#, python-format
+msgid "%s %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:908
+msgid "(uninstall_clicked) Error:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:921
+msgid "Do you want to INSTALL this kernel?"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:922
+#, python-format
+msgid ""
+"%s\n"
+"%s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:931
+msgid "You cancel to install kernel:"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:945
+#, python-format
+msgid "(install_clicked) Error: %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:982
+msgid "Installing"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:989
+msgid "Deleting"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:992
+msgid "Please wait....."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:994
+#, python-format
+msgid "%s: %s  %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:279
+#, python-format
+msgid "Some network card has problems to be detected: %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:299
+msgid "Some network card has problems to be detected."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:591
+msgid "The network card has been reset"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:659
+msgid ""
+"You have hardware problems, please review your data\n"
+" cable and your connections, because your netcard doesn't have link."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:667
+msgid ""
+"You can't connect with server, are you sure that\n"
+" the server is started? Please review it and reboot your sistem."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:675
+msgid ""
+"Your internet server is down,\n"
+" please review the internet server connection, the proxy or the router."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:130
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:242
+#, python-format
+msgid "ACLs are still regenerating, time elapsed: %s "
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:202
+msgid "ACLs are still regenerating...... please, wait."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:298
+msgid "User folders are still regenerating...... please, wait."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:351
+#, python-format
+msgid "User folders are still regenerating, time elapsed: %s "
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:389
+#, python-format
+msgid "ACLs error: %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:393
+#, python-format
+msgid ""
+"ACLs error: %s\n"
+"Regenerate error:%s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:398
+#, python-format
+msgid "Regenerate error:%s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:405
+#, python-format
+msgid ""
+"Finished!!!\n"
+"ACLs of the files have been reviewed. Time elapsed to do %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:409
+#, python-format
+msgid ""
+"Finished!!!\n"
+"ACLs of the files have been reviewed, in %s.\n"
+"All user folders have been regenerated if it's necessary in %s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:414
+#, python-format
+msgid ""
+"Finished!!!\n"
+"All user folders have been regenerated if it's necessary. Time elapsed to do "
+"%s"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py:88
+msgid "PMB it's NOT installed"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py:95
+msgid "PMB it's NOT installed or not detected"
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py:155
+msgid "You're resetting admin passwd to PMB, please wait...."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/PmbBox.py:196
+msgid ""
+"New PMB admin passwd is admin.\n"
+"Please logged in your application and change it."
+msgstr ""
+
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:81
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:186
 msgid "Delete Startup Bar"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:84
-#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:165
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:85
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:167
 msgid "Add Startup Bar"
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:167
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:169
 msgid "The startup bar is removing from your system, applying changes....."
 msgstr ""
 
-#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:186
+#: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:188
 msgid "The startup bar is adding at your system, applying changes....."
 msgstr ""
