@@ -340,15 +340,20 @@ class InformationBox(Gtk.VBox):
 					else:
 						server_master=_("Independent")
 						center_model=_("Classroom")
+			
+			if os.path.isfile('/etc/apt/preferences.d/lliurex-pinning'):
+				pinning=_('Active')
+			else:
+				pinning=_('Removed')
 
-				
-			self.txt_check_information.set_text('Server: '+server_master+'    ---    Model: '+center_model+'    ---    /net: '+net_export)
+			self.txt_check_information.set_text('Server: '+server_master+'    ---    Model: '+center_model+'    ---    /net: '+net_export+'    ---    LlX-pinning: '+pinning)
 			self.info_box_stack.set_visible_child_name("infobox")
 
 		except Exception as e:
 			server_master=_("Unknow")
 			center_model=_("Unknow")
 			net_export=_('Unknow')
+			pinning=_('Unknow')
 			self.core.dprint("(information_info_model_server)Error: %s"%e,"[InformationBox]")
 			self.txt_check_information.set_text(_("Detection server has errors."))
 			self.info_box_stack.set_visible_child_name("infobox")
