@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-17 15:34+0100\n"
-"PO-Revision-Date: 2020-12-17 13:35+0100\n"
+"POT-Creation-Date: 2020-12-17 21:46+0100\n"
+"PO-Revision-Date: 2020-12-17 21:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca_ES\n"
@@ -47,7 +47,7 @@ msgstr "Detectat/Eliminat"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:217
 msgid "First Aid kit Warning"
-msgstr ""
+msgstr "First Aid kit Warning"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:331
 msgid "System Info"
@@ -143,9 +143,8 @@ msgid "Kernel Installed:"
 msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1554
-#, fuzzy
 msgid "CPU Speed:"
-msgstr "Velocitat "
+msgstr "CPU Velocitat:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1607
 msgid "Disks Information"
@@ -283,13 +282,13 @@ msgstr "Operacions de la animació d'arrancada"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:220
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:382
 msgid "Active"
-msgstr ""
+msgstr "Activat"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:98
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:231
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:385
-msgid "Removed"
-msgstr ""
+msgid "Disabled"
+msgstr "Desactivat"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:101
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:240
@@ -320,7 +319,7 @@ msgstr ""
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:487
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:488
 msgid "Unknow"
-msgstr ""
+msgstr "desconegut"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:204
 msgid ""
@@ -338,7 +337,6 @@ msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:345
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:352
-#, fuzzy
 msgid "Sorry but the app to modify the repositories can't be opened"
 msgstr "L'aplicació per a modificar els repositoris no es pot obrir."
 
@@ -348,7 +346,7 @@ msgstr "Heu modificat els repositoris."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/Dialog.py:72
 msgid "Applying changes..."
-msgstr ""
+msgstr "Aplicant canvis..."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/Dialog.py:101
 msgid "Please choose a file"
@@ -380,7 +378,7 @@ msgstr "S'ha programat un test d'integritat per al disc dur quan es reinicie"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:321
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:349
 msgid "Master"
-msgstr ""
+msgstr "mestre"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:322
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:354
@@ -451,15 +449,15 @@ msgstr "Instal·la "
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:882
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:922
 msgid "First Aid Kit"
-msgstr ""
+msgstr "First Aid Kit"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:841
 msgid "You can't delete this kernel because you are using now."
-msgstr ""
+msgstr "No es pot esborrar aquest kernel perquè aquestes usant-ho actualment."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:866
 msgid "You can't delete this kernel because is essential for LliureX."
-msgstr ""
+msgstr "No es pot esborrar aquest kernel, és essencial per a LliureX"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:883
 msgid "Do you want to DELETE this kernel?"
@@ -517,14 +515,13 @@ msgid "%s: %s  %s"
 msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:279
-#, fuzzy, python-format
+#, python-format
 msgid "Some network card has problems to be detected: %s"
-msgstr "S'ha reinicialitzat la targeta de xarxa."
+msgstr "Alguna targeta de xarxa té problemes per a ser detectada: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:299
-#, fuzzy
 msgid "Some network card has problems to be detected."
-msgstr "S'ha reinicialitzat la targeta de xarxa."
+msgstr "Alguna targeta de xarxa té problemes per a ser detectada."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:591
 msgid "The network card has been reset"
