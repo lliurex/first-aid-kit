@@ -52,6 +52,11 @@ class AptBox(Gtk.VBox):
 		
 		self.apt_label=builder.get_object("apt_label")
 		self.separator4=builder.get_object("separator4")
+
+		self.apt_warning_pinning_window=builder.get_object("apt_warning_pinning_window")
+		self.accept_pinning_button=builder.get_object("accept_pinning_button")
+		self.cancel_pinning_button=builder.get_object("cancel_pinning_button")
+		self.apt_warning_pinning_txt=builder.get_object("apt_warning_pinning_txt")
 		
 		self.info_box=builder.get_object("info_apt")
 		self.spinner_apt=builder.get_object("spinner_apt")
@@ -93,6 +98,10 @@ class AptBox(Gtk.VBox):
 				self.apt_pinning_detected.set_text(_('Removed'))
 				self.apt_pinning_switch.set_active(False)
 				self.apt_pinning_detected.set_name("INFO_LABEL_ERROR")
+				warning_pinning=_('Warning your system is unprotected')
+				self.txt_check_apt.set_text(warning_pinning)
+				self.txt_check_apt.set_name("INFO_LABEL_ERROR")
+				self.info_box_stack.set_visible_child_name("infobox")
 
 		except Exception as e:
 			self.core.dprint("(INIT)Error pinning detection: %s"%e,"[AptBox]")
@@ -114,6 +123,8 @@ class AptBox(Gtk.VBox):
 		self.separator4.set_name("SEPARATOR_MAIN")
 		self.info_box.set_name("PKG_BOX")
 		self.apt_execute_button.set_name("EXECUTE_BUTTON")
+		self.accept_pinning_button.set_name("EXECUTE_BUTTON")
+		self.cancel_pinning_button.set_name("EXECUTE_BUTTON")
 		self.apt_box7.set_name("PKG_BOX")
 		self.apt_txt.set_name("OPTION_LABEL")
 		self.apt_box26.set_name("PKG_BOX")
@@ -132,8 +143,50 @@ class AptBox(Gtk.VBox):
 		
 		self.apt_execute_button.connect("clicked",self.apt_execute_button_clicked)
 		self.apt_pinning_switch.connect("notify::active",self.apt_pinning_switched)
+
+		self.accept_pinning_button.connect("clicked",self.accept_pinning_button_clicked)
+		self.cancel_pinning_button.connect("clicked",self.cancel_pinning_button_clicked)
+
+		self.apt_warning_pinning_window.connect("delete_event",self.hide_window)
 		
 	#def connect_signals
+
+
+
+	def hide_window(self,widget,event):
+		
+		widget.hide()
+		self.apt_pinning_switch.set_sensitive(True)
+		self.apt_pinning_switch.set_state(True)
+		return True
+		
+	#def hide_window
+
+
+
+
+	def cancel_pinning_button_clicked(self,widget):
+		
+		self.apt_warning_pinning_window.hide()
+		self.apt_pinning_switch.set_sensitive(True)
+		self.apt_pinning_switch.set_state(True)
+		
+	#def cancel_apt_button_clicked
+
+
+
+
+
+	def accept_pinning_button_clicked(self,widget):
+		
+		self.apt_warning_pinning_window.hide()
+		self.apt_pinning_switched_execute()
+		
+	#def accept_apt_button_clicked
+
+
+
+
 
 	def apt_pinning_switched(self,widget,params):
 
@@ -146,6 +199,23 @@ class AptBox(Gtk.VBox):
 			self.cronfile="/etc/crontab"
 
 			if self.apt_pinning_switch.get_state():
+				self.apt_pinning_switched_execute()
+			else:
+				warning_info_txt=_('If you remove the pinning, your system can get corrupted\nand lose stability with non-LliureX packages.\nMake sure you want to do it under your responsibility')
+				self.apt_warning_pinning_txt.set_text(warning_info_txt)
+				self.apt_warning_pinning_txt.set_name("INFO_LABEL_ERROR")
+				self.apt_warning_pinning_window.show()
+				self.apt_pinning_switch.set_sensitive(False)
+
+		except Exception as e:
+			self.core.dprint("(apt_pinning_switched)Error pinning switching: %s"%e,"[AptBox]")
+
+	#def apt_pinning_switched
+
+
+	def apt_pinning_switched_execute(self):
+		try:
+			if self.apt_pinning_switch.get_state():
 				# Pinning is actived, update information in GUI and deleting a task to restart the pinning file.
 				pinning=_('Active')
 				self.apt_pinning_detected.set_text(pinning)
@@ -154,6 +224,7 @@ class AptBox(Gtk.VBox):
 				if os.path.isfile(self.file_pinning_restore_n4d):
 					os.system('rm %s'%self.file_pinning_restore_n4d)
 				self.pinning_cron_deleting()
+				self.info_box_stack.set_visible_child_name("empty_box")
 
 			else:
 				# Pinning is removed, update information in GUI and programing a task to restart the pinning file
@@ -166,6 +237,11 @@ class AptBox(Gtk.VBox):
 				os.system('chmod +x %s'%self.file_pinning_restore_n4d)
 				self.pinning_cron_restoring()
 
+				warning_pinning=_('Warning your system is unprotected')
+				self.txt_check_apt.set_text(warning_pinning)
+				self.txt_check_apt.set_name("INFO_LABEL_ERROR")
+				self.info_box_stack.set_visible_child_name("infobox")
+
 			#object in Information GUI view.
 			pinning_tex_information=self.core.information_box.information_box.get_children()[2].get_children()[0].get_children()[1].get_children()[0].get_children()[0]
 			#print (pinning_tex_information)
@@ -174,11 +250,12 @@ class AptBox(Gtk.VBox):
 			self.apt_pinning_detected.set_name(label_pinning)
 			pinning_tex_information.set_text(pinning)
 			pinning_tex_information.set_name(label_pinning)
+			self.apt_pinning_switch.set_sensitive(True)
 
 		except Exception as e:
-			self.core.dprint("(apt_pinning_switched)Error pinning switching: %s"%e,"[AptBox]")
+			self.core.dprint("(apt_pinning_switched_thread)Error pinning switching: %s"%e,"[AptBox]")
 
-	#def apt_pinning_switched
+	#def self.apt_pinning_switched_execute()
 
 
 
