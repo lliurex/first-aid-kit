@@ -95,7 +95,7 @@ class AptBox(Gtk.VBox):
 				self.apt_pinning_switch.set_active(True)
 				
 			else:
-				self.apt_pinning_detected.set_text(_('Removed'))
+				self.apt_pinning_detected.set_text(_('Disabled'))
 				self.apt_pinning_switch.set_active(False)
 				self.apt_pinning_detected.set_name("INFO_LABEL_ERROR")
 				warning_pinning=_('Warning your system is unprotected')
@@ -228,9 +228,9 @@ class AptBox(Gtk.VBox):
 
 			else:
 				# Pinning is removed, update information in GUI and programing a task to restart the pinning file
-				pinning=_('Removed')
+				pinning=_('Disabled')
 				self.apt_pinning_detected.set_text(pinning)
-				self.core.dprint("(apt_pinning_switched) Pinning removed, be careful","[AptBox]")
+				self.core.dprint("(apt_pinning_switched) Pinning disabled, be careful","[AptBox]")
 				os.remove(self.file_pinning_apt)
 				label_pinning="INFO_LABEL_ERROR"
 				os.system('cp %s %s'%(self.file_pinning_restore_rsrc,self.file_pinning_restore_n4d))

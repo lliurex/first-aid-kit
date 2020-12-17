@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-17 15:34+0100\n"
-"PO-Revision-Date: 2020-12-17 15:36+0100\n"
+"POT-Creation-Date: 2020-12-17 21:46+0100\n"
+"PO-Revision-Date: 2020-12-17 21:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -288,8 +288,8 @@ msgstr "Activo"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:98
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:231
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:385
-msgid "Removed"
-msgstr "Eliminado"
+msgid "Disabled"
+msgstr "Desactivado"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:101
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:240
@@ -676,6 +676,9 @@ msgid "The startup bar is adding at your system, applying changes....."
 msgstr ""
 "La animación de arranque se esta añadiendo a tu sistema, aplicando "
 "cambios...."
+
+#~ msgid "Removed"
+#~ msgstr "Eliminado"
 
 #~ msgid "label"
 #~ msgstr "Etiqueta"

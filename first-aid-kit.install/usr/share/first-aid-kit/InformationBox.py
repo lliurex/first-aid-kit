@@ -382,7 +382,7 @@ class InformationBox(Gtk.VBox):
 				pinning=_('Active')
 				self.information_pinning_title_solved.set_name("")
 			else:
-				pinning=_('Removed')
+				pinning=_('Disabled')
 				self.information_pinning_title_solved.set_name("INFO_LABEL_ERROR")
 			self.information_pinning_title_solved.set_text(pinning)
 		except Exception as e:
