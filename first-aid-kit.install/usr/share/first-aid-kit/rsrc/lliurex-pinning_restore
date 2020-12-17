@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+import os
+
+pinning_apt="/etc/apt/preferences.d/lliurex-pinning"
+pinning_rsrc="/usr/share/first-aid-kit/rsrc/lliurex-pinning"
+cronfile="/etc/crontab"
+
+def lliurex_pinning_restore(pinning_rsrc,pinning_apt):
+
+	try:
+		os.system('cp %s %s'%(pinning_rsrc,pinning_apt))
+		
+	except Exception as e:
+		print("[LliureXPinningRestore](lliurex_pinning_restore)Error pinning switching: %s"%e)
+#def lliurex_pinning_restore
+
+
+
+
+def cron_delete(cronfile):
+	try:
+		f = open(cronfile)
+		output = []
+		for line in f:
+			if not "lliurex-pinning" in line:
+				output.append(line)
+		f.close()
+		f = open(cronfile, 'w')
+		f.writelines(output)
+		f.close()
+
+	except Exception as e:
+		print("[LliureXPinningRestore](cron_delete)Error pinning deleting: %s"%e)
+
+#def cron_delete
+
+
+
+
+
+try:
+	lliurex_pinning_restore(pinning_rsrc,pinning_apt)
+	#Test if cron is active, and delete it when pinning is restored
+	if os.path.isfile(pinning_apt):
+		cron_delete(cronfile)
+	else:
+		print("[LliureXPinningRestore](INIT)Can't unable cron scheduler because pinning file is removed")
+except Exception as e:
+	print("[LliureXPinningRestore](INIT)Error pinning switching: %s"%e)

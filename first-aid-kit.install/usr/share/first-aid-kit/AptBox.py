@@ -5,6 +5,7 @@ from gi.repository import Gtk, Pango, GdkPixbuf, Gdk, Gio, GObject,GLib
 import copy
 import gettext
 import Core
+#import InformationBox
 
 #import Dialog
 import time
@@ -13,6 +14,7 @@ import sys
 import os
 import subprocess
 import time
+import datetime
 
 gettext.textdomain('first-aid-kit')
 _=gettext.gettext
@@ -41,6 +43,13 @@ class AptBox(Gtk.VBox):
 		self.apt_execute_button=builder.get_object("apt_execute_button")
 		self.apt_spinner=builder.get_object("apt_spinner")
 		self.apt_txt=builder.get_object("apt_txt")
+
+		self.apt_box26=builder.get_object("box26")
+		self.apt_pinning_switch=builder.get_object("pinning_switch")
+		self.apt_pinning_spinner=builder.get_object("pinning_spinner")
+		self.apt_pinning_txt=builder.get_object("pinning_txt")
+		self.apt_pinning_detected=builder.get_object("pinning_detected")
+		
 		self.apt_label=builder.get_object("apt_label")
 		self.separator4=builder.get_object("separator4")
 		
@@ -74,6 +83,20 @@ class AptBox(Gtk.VBox):
 		self.info_box.set_margin_right(5)
 
 		self.info_box_stack.set_visible_child_name("empty_box")
+
+		try:
+			if self.core.pinning():
+				self.apt_pinning_detected.set_text(_('Active'))
+				self.apt_pinning_switch.set_active(True)
+				
+			else:
+				self.apt_pinning_detected.set_text(_('Removed'))
+				self.apt_pinning_switch.set_active(False)
+				self.apt_pinning_detected.set_name("INFO_LABEL_ERROR")
+
+		except Exception as e:
+			self.core.dprint("(INIT)Error pinning detection: %s"%e,"[AptBox]")
+			self.apt_pinning_detected.set_text(_('Unknow'))	
 				
 		
 	#def __init__
@@ -93,6 +116,9 @@ class AptBox(Gtk.VBox):
 		self.apt_execute_button.set_name("EXECUTE_BUTTON")
 		self.apt_box7.set_name("PKG_BOX")
 		self.apt_txt.set_name("OPTION_LABEL")
+		self.apt_box26.set_name("PKG_BOX")
+		self.apt_pinning_txt.set_name("OPTION_LABEL")
+		self.apt_pinning_detected.set_name("OPTION_LABEL")
 		self.apt_label.set_name("SECTION_LABEL")
 		self.txt_check_apt.set_name("INFO_LABEL")
 			
@@ -105,8 +131,96 @@ class AptBox(Gtk.VBox):
 	def connect_signals(self):
 		
 		self.apt_execute_button.connect("clicked",self.apt_execute_button_clicked)
+		self.apt_pinning_switch.connect("notify::active",self.apt_pinning_switched)
 		
 	#def connect_signals
+
+	def apt_pinning_switched(self,widget,params):
+
+		try:
+
+			self.file_pinning_rsrc="/usr/share/first-aid-kit/rsrc/lliurex-pinning"
+			self.file_pinning_apt="/etc/apt/preferences.d/lliurex-pinning"
+			self.file_pinning_restore_rsrc="/usr/share/first-aid-kit/rsrc/lliurex-pinning_restore"
+			self.file_pinning_restore_n4d="/etc/n4d/one-shot/lliurex-pinning_restore"
+			self.cronfile="/etc/crontab"
+
+			if self.apt_pinning_switch.get_state():
+				# Pinning is actived, update information in GUI and deleting a task to restart the pinning file.
+				pinning=_('Active')
+				self.apt_pinning_detected.set_text(pinning)
+				label_pinning=""
+				os.system('cp %s %s'%(self.file_pinning_rsrc,self.file_pinning_apt))
+				if os.path.isfile(self.file_pinning_restore_n4d):
+					os.system('rm %s'%self.file_pinning_restore_n4d)
+				self.pinning_cron_deleting()
+
+			else:
+				# Pinning is removed, update information in GUI and programing a task to restart the pinning file
+				pinning=_('Removed')
+				self.apt_pinning_detected.set_text(pinning)
+				self.core.dprint("(apt_pinning_switched) Pinning removed, be careful","[AptBox]")
+				os.remove(self.file_pinning_apt)
+				label_pinning="INFO_LABEL_ERROR"
+				os.system('cp %s %s'%(self.file_pinning_restore_rsrc,self.file_pinning_restore_n4d))
+				os.system('chmod +x %s'%self.file_pinning_restore_n4d)
+				self.pinning_cron_restoring()
+
+			#object in Information GUI view.
+			pinning_tex_information=self.core.information_box.information_box.get_children()[2].get_children()[0].get_children()[1].get_children()[0].get_children()[0]
+			#print (pinning_tex_information)
+
+			self.apt_pinning_detected.set_text(pinning)
+			self.apt_pinning_detected.set_name(label_pinning)
+			pinning_tex_information.set_text(pinning)
+			pinning_tex_information.set_name(label_pinning)
+
+		except Exception as e:
+			self.core.dprint("(apt_pinning_switched)Error pinning switching: %s"%e,"[AptBox]")
+
+	#def apt_pinning_switched
+
+
+
+	def pinning_cron_restoring(self):
+
+		try:
+
+			#Set one hour later
+			time_now = datetime.datetime.now()
+			hour_later=datetime.timedelta(hours=1)
+			#hour_later=datetime.timedelta(minutes=2)
+			time_later=time_now+hour_later
+			hour_cron=str(time_later.hour)
+			minute_cron=str(time_later.minute)
+
+			newcron_string = minute_cron+" "+hour_cron+" "+"* * *	root	%s"%self.file_pinning_restore_n4d
+			opened_file = open(self.cronfile, 'a')
+			opened_file.write("%s\n"%newcron_string)
+			opened_file.close()
+
+		except Exception as e:
+			self.core.dprint("(pinning_restoring)Error pinning switching: %s"%e,"[AptBox]")
+
+	#def pinning_restoring
+
+
+	def pinning_cron_deleting(self):
+		try:
+			f = open(self.cronfile)
+			output = []
+			for line in f:
+				if not "lliurex-pinning" in line:
+					output.append(line)
+			f.close()
+			f = open(self.cronfile, 'w')
+			f.writelines(output)
+			f.close()
+
+		except Exception as e:
+			print("[AptBox](pinning_cron_deleting)Error pinning deleting: %s"%e)
+
+	#def pinning_cron_deleting
 
 
 

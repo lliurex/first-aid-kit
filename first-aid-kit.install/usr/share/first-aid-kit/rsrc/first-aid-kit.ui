@@ -15,7 +15,6 @@
         <property name="halign">start</property>
         <property name="valign">center</property>
         <property name="margin_top">2</property>
-        <property name="ypad">8</property>
         <property name="label" translatable="yes">APT</property>
         <property name="xalign">0</property>
       </object>
@@ -101,6 +100,98 @@
                 <property name="fill">True</property>
                 <property name="pack_type">end</property>
                 <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="box26">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox" id="box27">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">20</property>
+            <property name="margin_right">20</property>
+            <property name="margin_top">20</property>
+            <property name="margin_bottom">20</property>
+            <child>
+              <object class="GtkLabel" id="pinning_txt">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xpad">10</property>
+                <property name="label" translatable="yes">Lliurex Pinning</property>
+                <property name="xalign">0</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="renew_button_box2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="spacing">5</property>
+                <child>
+                  <object class="GtkSpinner" id="apt_spinner1">
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSwitch" id="pinning_switch">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="pinning_detected">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xpad">10</property>
+                <property name="label" translatable="yes">Detected/Removed</property>
+                <property name="justify">right</property>
+                <property name="xalign">0</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack_type">end</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -293,8 +384,6 @@
         <property name="can_focus">False</property>
         <property name="margin_left">10</property>
         <property name="margin_right">10</property>
-        <property name="margin_top">10</property>
-        <property name="margin_bottom">10</property>
         <property name="border_width">10</property>
         <property name="orientation">vertical</property>
         <child>
@@ -323,7 +412,6 @@
         <property name="halign">start</property>
         <property name="valign">center</property>
         <property name="margin_top">2</property>
-        <property name="ypad">8</property>
         <property name="label" translatable="yes">Epoptes</property>
         <property name="xalign">0</property>
       </object>
@@ -444,7 +532,6 @@
         <property name="halign">start</property>
         <property name="valign">center</property>
         <property name="margin_top">2</property>
-        <property name="ypad">8</property>
         <property name="label" translatable="yes">Hard Disk  Operations</property>
         <property name="xalign">0</property>
       </object>
@@ -961,14 +1048,12 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
-    <property name="spacing">5</property>
     <child>
       <object class="GtkLabel" id="information_title">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">start</property>
         <property name="valign">center</property>
-        <property name="margin_top">2</property>
         <property name="label" translatable="yes">System Information</property>
         <property name="xalign">0</property>
       </object>
@@ -997,7 +1082,7 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkGrid">
+          <object class="GtkGrid" id="information_box_container_grid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="column_spacing">10</property>
@@ -1166,6 +1251,44 @@
                     <property name="top_attach">3</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkGrid">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="column_spacing">2</property>
+                    <child>
+                      <object class="GtkLabel" id="information_pinning_title">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="margin_left">5</property>
+                        <property name="label" translatable="yes">LlX Pinning:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="information_pinning_title_solved">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="valign">center</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">4</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -1188,13 +1311,13 @@
                     <property name="can_focus">False</property>
                     <property name="column_spacing">2</property>
                     <child>
-                      <object class="GtkLabel" id="information_label_cpu_speed">
+                      <object class="GtkLabel" id="information_label_cpu_core">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">center</property>
                         <property name="margin_left">5</property>
-                        <property name="label" translatable="yes">CPU Core / Speed:</property>
+                        <property name="label" translatable="yes">CPU Core:</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -1203,11 +1326,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="information_label_cpu_speed_solved">
+                      <object class="GtkLabel" id="information_label_cpu_core_solved">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="valign">center</property>
-                        <property name="margin_right">5</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -1334,6 +1456,44 @@
                   <packing>
                     <property name="left_attach">0</property>
                     <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkGrid">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="column_spacing">2</property>
+                    <child>
+                      <object class="GtkLabel" id="information_label_cpu_speed">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="margin_left">5</property>
+                        <property name="label" translatable="yes">CPU Speed:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="information_label_cpu_speed_solved">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="valign">center</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">4</property>
                   </packing>
                 </child>
               </object>
@@ -1540,7 +1700,6 @@
         <property name="halign">start</property>
         <property name="valign">center</property>
         <property name="margin_top">2</property>
-        <property name="ypad">8</property>
         <property name="label" translatable="yes">Kernels Avaiables</property>
         <property name="xalign">0</property>
       </object>
@@ -2354,7 +2513,6 @@
         <property name="halign">start</property>
         <property name="valign">center</property>
         <property name="margin_top">2</property>
-        <property name="ypad">8</property>
         <property name="label" translatable="yes">/NET Files</property>
         <property name="xalign">0</property>
       </object>
@@ -2521,7 +2679,6 @@
         <property name="halign">start</property>
         <property name="valign">center</property>
         <property name="margin_top">2</property>
-        <property name="ypad">8</property>
         <property name="label" translatable="yes">PMB</property>
         <property name="xalign">0</property>
       </object>
@@ -2640,7 +2797,6 @@
         <property name="halign">start</property>
         <property name="valign">center</property>
         <property name="margin_top">2</property>
-        <property name="ypad">8</property>
         <property name="label" translatable="yes">Startup Bar Operations</property>
         <property name="xalign">0</property>
       </object>

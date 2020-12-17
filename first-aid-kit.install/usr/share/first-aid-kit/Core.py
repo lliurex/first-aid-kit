@@ -214,3 +214,18 @@ class Core:
 			print("([CORE] lprint) Error: %e")
 		
 	#def lprint
+
+
+	def pinning(self):
+		try:
+
+			if os.path.isfile('/etc/apt/preferences.d/lliurex-pinning'):
+				return True
+			else:
+				return False
+
+		except Exception as e:
+			print("([CORE] pinning) Error: %e")
+			return ('Unknow')
+		
+	#def pinning
