@@ -43,6 +43,7 @@ class InformationBox(Gtk.VBox):
 		
 		self.information_box=builder.get_object("information_box")
 		self.information_box_container=builder.get_object("information_box_container")
+		self.information_box_container_grid=builder.get_object("information_box_container_grid")
 		self.information_box_grid=builder.get_object("information_box_grid")
 		self.information_vp=builder.get_object("information_viewport")
 		self.information_sw=builder.get_object("information_scrolled")
@@ -58,6 +59,8 @@ class InformationBox(Gtk.VBox):
 		self.information_label_meta=builder.get_object("information_label_meta")
 		self.information_label_flavour=builder.get_object("information_label_flavour")
 		self.information_label_cpu_speed=builder.get_object("information_label_cpu_speed")
+		self.information_label_cpu_core=builder.get_object("information_label_cpu_core")
+		self.information_pinning_title=builder.get_object("information_pinning_title")
 		
 		self.information_hdd_filesystem=builder.get_object("information_hdd_filesystem")
 		self.information_hdd_type=builder.get_object("information_hdd_type")
@@ -74,6 +77,9 @@ class InformationBox(Gtk.VBox):
 		self.information_label_meta_solved=builder.get_object("information_label_meta_solved")
 		self.information_label_flavour_solved=builder.get_object("information_label_flavour_solved")
 		self.information_label_cpu_speed_solved=builder.get_object("information_label_cpu_speed_solved")
+		self.information_label_cpu_core_solved=builder.get_object("information_label_cpu_core_solved")
+		self.information_pinning_title_solved=builder.get_object("information_pinning_title_solved")
+
 
 		self.information_label_release_solved.set_text(_("Unknow"))
 		self.information_label_timestamp_solved.set_text(_("Unknow"))
@@ -83,6 +89,7 @@ class InformationBox(Gtk.VBox):
 		self.information_label_meta_solved.set_text(_("Unknow"))
 		self.information_label_flavour_solved.set_text(_("Unknow"))
 		self.information_label_cpu_speed_solved.set_text(_("Unknow"))
+		self.information_pinning_title_solved.set_text(_("Unknow"))
 
 		self.separator_information=builder.get_object("separator_information")
 		self.separator_information2=builder.get_object("separator_information2")
@@ -159,6 +166,9 @@ class InformationBox(Gtk.VBox):
 		self.information_label_meta.set_name("OPTION_LABEL")
 		self.information_label_flavour.set_name("OPTION_LABEL")
 		self.information_label_cpu_speed.set_name("OPTION_LABEL")
+		self.information_label_cpu_core.set_name("OPTION_LABEL")
+		self.information_pinning_title.set_name("OPTION_LABEL")
+		#self.information_pinning_title_solved.set_name("INFO_LABEL")
 
 		self.information_hdd_filesystem.set_name("OPTION_LABEL")
 		self.information_hdd_type.set_name("OPTION_LABEL")
@@ -206,6 +216,8 @@ class InformationBox(Gtk.VBox):
 			self.information_label_release_function()
 
 			self.information_label_timestamp_function()
+
+			self.information_pinning_title_function()
 
 			#kernel version in use
 			self.information_label_kernel_function()
@@ -340,13 +352,15 @@ class InformationBox(Gtk.VBox):
 					else:
 						server_master=_("Independent")
 						center_model=_("Classroom")
+
 			
-			if os.path.isfile('/etc/apt/preferences.d/lliurex-pinning'):
+			'''if os.path.isfile('/etc/apt/preferences.d/lliurex-pinning'):
 				pinning=_('Active')
 			else:
-				pinning=_('Removed')
+				pinning=_('Removed')'''
 
-			self.txt_check_information.set_text('Server: '+server_master+'    ---    Model: '+center_model+'    ---    /net: '+net_export+'    ---    LlX-pinning: '+pinning)
+					
+			self.txt_check_information.set_text('Server: '+server_master+'    ---    Model: '+center_model+'    ---    /net: '+net_export)
 			self.info_box_stack.set_visible_child_name("infobox")
 
 		except Exception as e:
@@ -359,6 +373,30 @@ class InformationBox(Gtk.VBox):
 			self.info_box_stack.set_visible_child_name("infobox")
 
 	#def information_info_model_server
+
+
+	def information_pinning_title_function(self):
+		
+		try:
+			if self.core.pinning():
+				pinning=_('Active')
+				self.information_pinning_title_solved.set_name("")
+			else:
+				pinning=_('Removed')
+				self.information_pinning_title_solved.set_name("INFO_LABEL_ERROR")
+			self.information_pinning_title_solved.set_text(pinning)
+		except Exception as e:
+			self.core.dprint("(information_info_model_server)Error pinning detection: %s"%e,"[InformationBox]")
+			self.information_pinning_title_solved.set_text(_("Unknow"))
+		
+	#def information_pinning_title_function
+
+	def information_pinning_title_function_change(self,pinning,csstype):
+		
+		self.information_pinning_title_solved.set_name(csstype)
+		self.information_pinning_title_solved.set_text(pinning)
+
+	#def information_pinning_title_function_change
 
 
 
@@ -419,7 +457,8 @@ class InformationBox(Gtk.VBox):
 			cpu_model=cpu['brand']
 			cpu_speed_solved=cpu_model.rsplit('@', 1)[1]
 			cpu_cores_solved=str(cpu['count'])
-			self.information_label_cpu_speed_solved.set_text(cpu_cores_solved+' / '+cpu_speed_solved)
+			self.information_label_cpu_speed_solved.set_text(cpu_speed_solved)
+			self.information_label_cpu_core_solved.set_text(cpu_cores_solved)
 
 		except Exception as e:
 			self.core.dprint("[InformationBox](information_label_cpu_speed_function)Error: %s"%e)
