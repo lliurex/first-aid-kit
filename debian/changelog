@@ -1,3 +1,9 @@
+first-aid-kit (1.2.1) bionic; urgency=medium
+
+  * Adding Spanish translations 
+
+ -- Daniel Duran <daduve@gmail.com>  Fri, 18 Dec 2020 09:31:13 +0100
+
 first-aid-kit (1.2.0) bionic; urgency=medium
 
   * Adding Pinning function to Information panel and Apt panel
