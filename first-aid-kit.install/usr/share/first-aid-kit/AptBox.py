@@ -201,7 +201,7 @@ class AptBox(Gtk.VBox):
 			if self.apt_pinning_switch.get_state():
 				self.apt_pinning_switched_execute()
 			else:
-				warning_info_txt=_('If you remove the pinning, your system can get corrupted\nand lose stability with non-LliureX packages.\nMake sure you want to do it under your responsibility')
+				warning_info_txt=_('Without the pinning, non LliureX packages may corrupt the system.\nDo it on at your own risk')
 				self.apt_warning_pinning_txt.set_text(warning_info_txt)
 				self.apt_warning_pinning_txt.set_name("INFO_LABEL_ERROR")
 				self.apt_warning_pinning_window.show()
