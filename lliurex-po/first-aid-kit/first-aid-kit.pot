@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-17 21:46+0100\n"
+"POT-Creation-Date: 2020-12-18 09:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -320,9 +320,8 @@ msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:204
 msgid ""
-"If you remove the pinning, your system can get corrupted\n"
-"and lose stability with non-LliureX packages.\n"
-"Make sure you want to do it under your responsibility"
+"Without the pinning, non LliureX packages may corrupt the system.\n"
+"Do it on at your own risk"
 msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:324
