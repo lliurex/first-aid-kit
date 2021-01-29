@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 09:27+0100\n"
-"PO-Revision-Date: 2020-12-18 09:30+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: ca_ES\n"
+"PO-Revision-Date: 2021-01-30 15:40+0000\n"
+"Last-Translator: Angels <gimenez_angcam@gva.es>\n"
+"Language-Team: Valencian <http://weblate.lliurex.net/projects/first-aid-kit/"
+"first-aid-kit/ca@valencia/>\n"
+"Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.1\n"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:18
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:398
@@ -47,7 +48,7 @@ msgstr "Detectat/Eliminat"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:217
 msgid "First Aid kit Warning"
-msgstr "First Aid kit Warning"
+msgstr "Avís de First Aid Kit"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:331
 msgid "System Info"
@@ -69,9 +70,7 @@ msgstr "Epoptes"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:384
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2920
 msgid "Startup Bar"
-msgstr ""
-"Animació\n"
-"d'arrancada"
+msgstr "Animació d'arrancada"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:412
 msgid "Kernel"
@@ -79,7 +78,7 @@ msgstr "Nucli"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:426
 msgid "/NET"
-msgstr "/NET "
+msgstr "/NET"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:439
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2763
@@ -108,19 +107,19 @@ msgstr "Informació del Sistema"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1204
 msgid "Lliurex Release:"
-msgstr ""
+msgstr "Versió de LliureX:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1230
 msgid "LliureX Flavour:"
-msgstr ""
+msgstr "Sabor LliureX:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1269
 msgid "LliureX Timestamp:"
-msgstr ""
+msgstr "Compilació de LliureX:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1308
 msgid "LliureX Meta:"
-msgstr ""
+msgstr "LliureX Meta:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1347
 msgid "LlX Pinning:"
@@ -132,15 +131,15 @@ msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1439
 msgid "CPU Model:"
-msgstr ""
+msgstr "Model de CPU:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1489
 msgid "Ram size:"
-msgstr ""
+msgstr "Mida de RAM:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1515
 msgid "Kernel Installed:"
-msgstr ""
+msgstr "Kernel instal·lat:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1554
 msgid "CPU Speed:"
@@ -148,31 +147,31 @@ msgstr "CPU Velocitat:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1607
 msgid "Disks Information"
-msgstr ""
+msgstr "Informació dels discos:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1645
 msgid "File System"
-msgstr ""
+msgstr "Sistema de fitxers"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1661
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1677
 msgid "Size"
-msgstr ""
+msgstr "Mida"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1692
 msgid "Used"
-msgstr ""
+msgstr "Utilitzats"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1707
 msgid "Avail"
-msgstr ""
+msgstr "Disponibles"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1722
 msgid "Use%"
-msgstr ""
+msgstr "Ús%"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1784
 msgid "Kernels Avaiables"
@@ -200,15 +199,15 @@ msgstr "Contrasenya "
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2080
 msgid "Server IP    (Default value : server)"
-msgstr " IP del servidor  (valor per defecte : servidor)"
+msgstr "IP del servidor  (valor per defecte : servidor)"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2089
 msgid "Login"
-msgstr "Inicia la sessió "
+msgstr "Inicia la sessió"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2161
 msgid "First Aid kit"
-msgstr ""
+msgstr "First Aid Kit"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2205
 msgid "Access to the Network"
@@ -224,7 +223,7 @@ msgstr "Accés a Internet"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2296
 msgid "Speed"
-msgstr "Velocitat "
+msgstr "Velocitat"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2346
 msgid "Test Network"
@@ -244,7 +243,7 @@ msgstr "Reinicia els serveis de xarxa"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2476
 msgid "Restart"
-msgstr "Reinicia "
+msgstr "Reinicia"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2517
 msgid "Configure Network"
@@ -268,11 +267,11 @@ msgstr "Regenera les carpetes locals"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2802
 msgid "Reset your PMB admin passwd"
-msgstr "Resetear la contrasenya d'admin en el PMB "
+msgstr "Resetear la contrasenya d'admin en el PMB"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2829
 msgid "Reset"
-msgstr ""
+msgstr "Reinicia"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2881
 msgid "Startup Bar Operations"
@@ -293,7 +292,7 @@ msgstr "Desactivat"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:101
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:240
 msgid "Warning your system is unprotected"
-msgstr ""
+msgstr "Perill! El teu sistema està desprotegit i podria corrompre's."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:108
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:84
@@ -351,7 +350,7 @@ msgstr "Aplicant canvis..."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/Dialog.py:101
 msgid "Please choose a file"
-msgstr ""
+msgstr "Trieu un fitxer"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/EpoptesBox.py:163
 msgid "The Epoptes certificate has been renewed"
@@ -384,36 +383,36 @@ msgstr "mestre"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:322
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:354
 msgid "Classroom"
-msgstr ""
+msgstr "Aula"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:323
 msgid "Local"
-msgstr ""
+msgstr "Local"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:333
 msgid "Imported from "
-msgstr ""
+msgstr "Importat des de "
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:339
 msgid "Exported"
-msgstr ""
+msgstr "Exportat"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:345
 msgid "Slave"
-msgstr ""
+msgstr "Esclau"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:346
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:351
 msgid "Center"
-msgstr ""
+msgstr "Centre"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:353
 msgid "Independent"
-msgstr ""
+msgstr "Independent"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:372
 msgid "Detection server has errors."
-msgstr ""
+msgstr "La detecció del servidor ha generat errors"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:388
 msgid "You have a new kernel boot by defect:"
@@ -472,11 +471,11 @@ msgstr "Heu cancel·lat la desinstal·lació del nucli:"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:933
 #, python-format
 msgid "%s %s"
-msgstr ""
+msgstr "%s %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:908
 msgid "(uninstall_clicked) Error:"
-msgstr ""
+msgstr "(uninstall_clicked) Error:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:921
 msgid "Do you want to INSTALL this kernel?"
@@ -488,6 +487,8 @@ msgid ""
 "%s\n"
 "%s"
 msgstr ""
+"%s\n"
+"%s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:931
 msgid "You cancel to install kernel:"
@@ -496,7 +497,7 @@ msgstr "Heu cancel·lat la instal·lació del nucli:"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:945
 #, python-format
 msgid "(install_clicked) Error: %s"
-msgstr ""
+msgstr "(install_clicked) Error: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:982
 msgid "Installing"
@@ -513,7 +514,7 @@ msgstr "Espereu....."
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:994
 #, python-format
 msgid "%s: %s  %s"
-msgstr ""
+msgstr "%s: %s  %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetBox.py:279
 #, python-format
