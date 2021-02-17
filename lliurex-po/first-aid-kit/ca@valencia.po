@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 09:27+0100\n"
-"PO-Revision-Date: 2021-02-17 10:33+0000\n"
+"PO-Revision-Date: 2021-02-18 11:41+0000\n"
 "Last-Translator: Angels <gimenez_angcam@gva.es>\n"
 "Language-Team: Valencian <http://weblate.lliurex.net/projects/first-aid-kit/"
 "first-aid-kit/ca@valencia/>\n"
@@ -40,7 +40,7 @@ msgstr "Executa"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:137
 msgid "Lliurex Pinning"
-msgstr "Ancoratge Lliurex"
+msgstr "Ancoratge LliureX"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:186
 msgid "Detected/Removed"
@@ -69,6 +69,7 @@ msgstr "Epoptes"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:384
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2920
+#, fuzzy
 msgid "Startup Bar"
 msgstr "Animació d'arrancada"
 
@@ -95,7 +96,7 @@ msgstr "Operacions del disc dur"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:658
 msgid "Managing disk partitions."
-msgstr "Gestió de las particions de disc"
+msgstr "Gestió de les particions de disc"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:671
 msgid "Test hard disk on reboot"
@@ -183,7 +184,7 @@ msgstr "Aplica un filtre"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1889
 msgid "Show installed kernels only"
-msgstr "Mostra sols els nuclis instal·lats"
+msgstr "Mostra només els nuclis instal·lats"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:1967
 msgid "Kernel selected on boot:"
@@ -231,7 +232,7 @@ msgstr "Prova la xarxa"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2369
 msgid "Link"
-msgstr "Cable conectat"
+msgstr "Cable connectat"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2394
 msgid "Ip address:"
@@ -334,7 +335,7 @@ msgid ""
 "You are modifying the repositories, close the external app when you finished "
 "with it."
 msgstr ""
-"Esteu modificant els repositoris, tanqueu l'aplicació externa quan acabeu."
+"Esteu modificant els repositoris. Ttanqueu l'aplicació externa quan acabeu."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:345
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:352
@@ -359,7 +360,7 @@ msgstr "El certificat de l'Epoptes s'ha renovat."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/FirstAidKit.py:119
 msgid "Sorry you are not a server. You can't access to /net files."
-msgstr "No sou un servidor. No podeu accedir als fitxer /net."
+msgstr "No sou un servidor. No podeu accedir als fitxers /net."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:82
 #: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:206
@@ -439,7 +440,7 @@ msgstr "El vostre nou llistat de nuclis és:"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:790
 msgid "Uninstall"
-msgstr "Desinstaŀla"
+msgstr "Desinstal·la"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py:794
 msgid "Install"
@@ -586,13 +587,13 @@ msgid ""
 "ACLs error: %s\n"
 "Regenerate error:%s"
 msgstr ""
-"Error d'ACL: %s\n"
-"Error de regeneració: %s"
+"S'ha produït un error d'ACL: %s\n"
+"S'ha produït un error de regeneració: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:398
 #, python-format
 msgid "Regenerate error:%s"
-msgstr "Error de regeneració: %s"
+msgstr "S'ha produït un error de regeneració: %s"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/NetfilesBox.py:405
 #, python-format
