@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 09:27+0100\n"
-"PO-Revision-Date: 2021-02-18 11:41+0000\n"
+"PO-Revision-Date: 2021-02-20 11:40+0000\n"
 "Last-Translator: Angels <gimenez_angcam@gva.es>\n"
 "Language-Team: Valencian <http://weblate.lliurex.net/projects/first-aid-kit/"
 "first-aid-kit/ca@valencia/>\n"
@@ -69,7 +69,6 @@ msgstr "Epoptes"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:384
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2920
-#, fuzzy
 msgid "Startup Bar"
 msgstr "Animació d'arrancada"
 
@@ -275,7 +274,6 @@ msgid "Reset"
 msgstr "Reinicia"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/rsrc/first-aid-kit.ui:2881
-#, fuzzy
 msgid "Startup Bar Operations"
 msgstr "Operacions de l'animació d'arrancada"
 
@@ -647,25 +645,21 @@ msgstr ""
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:81
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:186
-#, fuzzy
 msgid "Delete Startup Bar"
 msgstr "Suprimeix l'animació d'arrancada"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:85
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:167
-#, fuzzy
 msgid "Add Startup Bar"
 msgstr "Afig l'animació d'arrancada"
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:169
-#, fuzzy
 msgid "The startup bar is removing from your system, applying changes....."
 msgstr ""
 "S'està suprimint l'animació d'arrancada del vostre sistema. S'estan aplicant "
 "els canvis..."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/StartBarBox.py:188
-#, fuzzy
 msgid "The startup bar is adding at your system, applying changes....."
 msgstr ""
 "S'està afegint l'animació d'arrancada al vostre sistema. S'estan aplicant "
