@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 09:27+0100\n"
-"PO-Revision-Date: 2021-02-20 11:40+0000\n"
+"PO-Revision-Date: 2021-02-23 08:40+0000\n"
 "Last-Translator: Angels <gimenez_angcam@gva.es>\n"
 "Language-Team: Valencian <http://weblate.lliurex.net/projects/first-aid-kit/"
 "first-aid-kit/ca@valencia/>\n"
@@ -326,14 +326,14 @@ msgid ""
 "Do it on at your own risk"
 msgstr ""
 "Sense l'ancoratge, paquets aliens a LliureX poden corrompre el sistema.\n"
-"Acteu sota la vostra responsabilitat."
+"Actueu sota la vostra responsabilitat."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:324
 msgid ""
 "You are modifying the repositories, close the external app when you finished "
 "with it."
 msgstr ""
-"Esteu modificant els repositoris. Ttanqueu l'aplicació externa quan acabeu."
+"Esteu modificant els repositoris. Tanqueu l'aplicació externa quan acabeu."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:345
 #: ../first-aid-kit.install/usr/share/first-aid-kit/AptBox.py:352
@@ -350,7 +350,7 @@ msgstr "S'estan aplicant els canvis..."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/Dialog.py:101
 msgid "Please choose a file"
-msgstr "Trieu un fitxer"
+msgstr "Trieu un fitxer."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/EpoptesBox.py:163
 msgid "The Epoptes certificate has been renewed"
@@ -373,7 +373,7 @@ msgstr "Desactiva"
 #: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:88
 #: ../first-aid-kit.install/usr/share/first-aid-kit/HdBox.py:202
 msgid "Programmed a fscky in principal HD on the reboot"
-msgstr "S'ha programat un test d'integritat per al disc dur quan es reinicie"
+msgstr "S'ha programat un test d'integritat per al disc dur quan es reinicie."
 
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:321
 #: ../first-aid-kit.install/usr/share/first-aid-kit/InformationBox.py:349
