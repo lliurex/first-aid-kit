@@ -16,6 +16,7 @@ import datetime
 #from dateutil import parser
 import dateutil.parser
 import ssl
+import n4d.client
 
 gettext.textdomain('first-aid-kit')
 _=gettext.gettext
@@ -85,8 +86,10 @@ class NetfilesBox(Gtk.VBox):
 		self.regenerate_executed=False
 
 		proxy="https://localhost:9779"
-		context=ssl._create_unverified_context()
-		self.client=xmlrpc.client.ServerProxy(proxy,allow_none=True,context=context)
+		#context=ssl._create_unverified_context()
+		#self.client=xmlrpc.client.ServerProxy(proxy,allow_none=True,context=context)
+		self.client=n4d.client.Client("https://localhost:9779",key=self.core.n4d_key)
+
 
 		self.acl_error=[False,"True"]
 		self.regenerate_error=[False,"True"]
@@ -101,8 +104,11 @@ class NetfilesBox(Gtk.VBox):
 	def check_thread_on_startup(self):
 
 		try:
+			self.core.dprint("[FirstAidKit](NetfilesBox)(check_thread_on_startup) Checking if is alive....")
 			#thread is alive, because was started before.....
-			if self.client.is_acl_thread_alive(self.core.n4d_key,"NetFoldersManager"):
+			#if self.client.is_acl_thread_alive(self.core.n4d_key,"NetFoldersManager"):
+			if self.client.NetFoldersManager.is_acl_thread_alive():
+				self.core.dprint("[FirstAidKit](NetfilesBox)(check_thread_on_startup) ACLs regenerating or True in response to N4D, wait....")
 				self.regenerate_button.set_sensitive(False)
 				self.acl_button.set_sensitive(False)
 				
@@ -216,7 +222,8 @@ class NetfilesBox(Gtk.VBox):
 			self.core.working=True
 			self.core.dprint("ACL regenerating in /net....","[NetfilesBox]")
 
-			self.client.restore_acls_via_thread(self.core.n4d_key,"NetFoldersManager")
+			#self.client.restore_acls_via_thread(self.core.n4d_key,"NetFoldersManager")
+			self.client.NetFoldersManager.restore_acls_via_thread()
 
 			self.thread_ret={"status":True,"msg":"BROKEN"}
 			
@@ -235,7 +242,8 @@ class NetfilesBox(Gtk.VBox):
 		
 		try:
 			
-			if self.client.is_acl_thread_alive(self.core.n4d_key,"NetFoldersManager"):
+			#if self.client.is_acl_thread_alive(self.core.n4d_key,"NetFoldersManager"):
+			if self.client.NetFoldersManager.is_acl_thread_alive():
 				self.acl_elapsed=datetime.datetime.now() - self.acl_time_start
 				self.acl_elapsed=self.time_formated(self.acl_elapsed)
 				self.info_netfiles_txt.set_name("INFO_LABEL")
@@ -312,7 +320,8 @@ class NetfilesBox(Gtk.VBox):
 			self.core.dprint("Regenerating folders /net....","[NetfilesBox]")
 			self.core.working=True
 
-			users=self.client.light_get_user_list(self.core.n4d_key,"Golem")
+			#users=self.client.light_get_user_list(self.core.n4d_key,"Golem")
+			users=self.client.Golem.light_get_user_list()
 			for user in users:
 				user_properties={}
 				user_properties["profile"]=user[5]
@@ -321,10 +330,13 @@ class NetfilesBox(Gtk.VBox):
 				self.core.dprint("User: %s"%user,"[NetfilesBox]")
 				self.core.dprint("user_properties: %s"%user_properties,"[NetfilesBox]")
 				self.core.dprint("Testing folders in /net, N4D service.....","[NetfilesBox]")
-				self.client.exist_home_or_create(self.core.n4d_key,"Golem",user_properties)
+				#self.client.exist_home_or_create(self.core.n4d_key,"Golem",user_properties)
+				self.client.Golem.exist_home_or_create(user_properties)
 
 			self.core.dprint("Restore GROUP folders /net, N4D service.....","[NetfilesBox]")
-			self.client.restore_groups_folders(self.core.n4d_key,"Golem")
+			#self.client.restore_groups_folders(self.core.n4d_key,"Golem")
+			self.client.Golem.restore_groups_folders()
+
 			self.core.dprint("End of all process","[NetfilesBox]")
 
 			self.thread_ret={"status":True,"msg":"BROKEN"}
