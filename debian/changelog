@@ -1,3 +1,9 @@
+first-aid-kit (1.2.4) focal; urgency=medium
+
+  * Delete /n from lliurex-version info 
+
+ -- Daniel Duran <daduve@gmail.com>  Tue, 06 Jul 2021 13:53:03 +0200
+
 first-aid-kit (1.2.2) focal; urgency=medium
 
   * First version to Focal
