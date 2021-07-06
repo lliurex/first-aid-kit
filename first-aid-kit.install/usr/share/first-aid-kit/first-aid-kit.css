@@ -18,19 +18,19 @@
 	}
 	
 	#OPTION_LABEL {
-		font: 9pt Roboto Light;
+		font: 9pt Roboto;
 		font-weight: bold;
 
 	}
 
 	#INFO_LABEL {
-		font: 9pt Roboto Light;
+		font: 9pt Roboto;
 		color: #00008B;
 
 	}
 
 	#INFO_LABEL_ERROR {
-                font: 9pt Roboto Light;
+                font: 9pt Roboto;
                 color: #ff0000;
 
         }
