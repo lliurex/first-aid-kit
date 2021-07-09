@@ -260,7 +260,7 @@ class InformationBox(Gtk.VBox):
 		
 		try:
 			release_solved=subprocess.check_output(['lliurex-version','-n']).decode('utf-8').split('.')[0]
-			release=release.replace('\n',"")
+			release_solved=release_solved.replace('\n',"")
 			self.information_label_release_solved.set_text('LlX'+release_solved)
 
 		except Exception as e:
