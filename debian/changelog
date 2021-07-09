@@ -1,3 +1,9 @@
+first-aid-kit (1.2.5) focal; urgency=medium
+
+  * Fix typo
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 09 Jul 2021 09:56:26 +0200
+
 first-aid-kit (1.2.4) focal; urgency=medium
 
   * Delete /n from lliurex-version info 
