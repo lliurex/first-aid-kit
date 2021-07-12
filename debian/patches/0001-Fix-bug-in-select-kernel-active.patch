@@ -1,0 +1,23 @@
+From: daduve <daduve@gmail.com>
+Date: Mon, 12 Jul 2021 11:33:51 +0200
+Subject: Fix bug in select kernel active
+
+---
+ first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py b/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
+index 7da635b..ae928ad 100644
+--- a/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
++++ b/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
+@@ -236,8 +236,8 @@ class KernelBox(Gtk.VBox):
+ 					line=line.replace(kernel_default_pos,'')
+ 					if "-generic" in line:
+ 						line=line.replace('-generic','')
+-					if "LliureX 19" in line:
+-						line=line.replace('LliureX 19','')
++					if "LliureX 21" in line:
++						line=line.replace('LliureX 21','')
+ 					newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in line)
+ 					kernel_active = [str(i) for i in newstr.split()]
+ 					finded=True
