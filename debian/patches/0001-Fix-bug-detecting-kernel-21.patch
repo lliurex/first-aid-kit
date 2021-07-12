@@ -1,0 +1,63 @@
+From: daduve <daduve@gmail.com>
+Date: Mon, 12 Jul 2021 10:32:30 +0200
+Subject: Fix bug detecting kernel 21
+
+---
+ ...iureX-16-instaead-of-LliureX-19-in-kernel.patch | 23 ----------------------
+ debian/patches/series                              |  1 -
+ .../usr/share/first-aid-kit/KernelBox.py           |  4 ++--
+ 3 files changed, 2 insertions(+), 26 deletions(-)
+ delete mode 100644 debian/patches/0001-Changing-LliureX-16-instaead-of-LliureX-19-in-kernel.patch
+ delete mode 100644 debian/patches/series
+
+diff --git a/debian/patches/0001-Changing-LliureX-16-instaead-of-LliureX-19-in-kernel.patch b/debian/patches/0001-Changing-LliureX-16-instaead-of-LliureX-19-in-kernel.patch
+deleted file mode 100644
+index 1ae2be8..0000000
+--- a/debian/patches/0001-Changing-LliureX-16-instaead-of-LliureX-19-in-kernel.patch
++++ /dev/null
+@@ -1,23 +0,0 @@
+-From: Daniel Duran <daduve@gmail.com>
+-Date: Fri, 5 Jul 2019 10:40:30 +0200
+-Subject: Changing LliureX 16 instaead of LliureX 19 in kernel.py
+-
+----
+- first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py | 4 ++--
+- 1 file changed, 2 insertions(+), 2 deletions(-)
+-
+-diff --git a/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py b/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
+-index f65def9..2b0e6bc 100644
+---- a/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
+-+++ b/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
+-@@ -232,8 +232,8 @@ class KernelBox(Gtk.VBox):
+- 					line=line.replace(kernel_default_pos,'')
+- 					if "-generic" in line:
+- 						line=line.replace('-generic','')
+--					if "LliureX 16" in line:
+--						line=line.replace('LliureX 16','')
+-+					if "LliureX 19" in line:
+-+						line=line.replace('LliureX 19','')
+- 					newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in line)
+- 					kernel_active = [str(i) for i in newstr.split()]
+- 					finded=True
+diff --git a/debian/patches/series b/debian/patches/series
+deleted file mode 100644
+index d6ac071..0000000
+--- a/debian/patches/series
++++ /dev/null
+@@ -1 +0,0 @@
+-0001-Changing-LliureX-16-instaead-of-LliureX-19-in-kernel.patch
+diff --git a/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py b/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
+index 7da635b..ae928ad 100644
+--- a/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
++++ b/first-aid-kit.install/usr/share/first-aid-kit/KernelBox.py
+@@ -236,8 +236,8 @@ class KernelBox(Gtk.VBox):
+ 					line=line.replace(kernel_default_pos,'')
+ 					if "-generic" in line:
+ 						line=line.replace('-generic','')
+-					if "LliureX 19" in line:
+-						line=line.replace('LliureX 19','')
++					if "LliureX 21" in line:
++						line=line.replace('LliureX 21','')
+ 					newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in line)
+ 					kernel_active = [str(i) for i in newstr.split()]
+ 					finded=True
