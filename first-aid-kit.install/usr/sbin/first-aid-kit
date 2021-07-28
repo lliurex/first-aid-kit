@@ -1,3 +1,4 @@
 #!/bin/bash
+# dduran@alfatecsistemas.es
 env > /tmp/.first-aid-kit.$USER
 pkexec /usr/share/first-aid-kit/first-aid-kit.py
