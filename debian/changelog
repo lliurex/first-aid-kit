@@ -1,3 +1,9 @@
+first-aid-kit (1.2.8) focal; urgency=medium
+
+  *  Adding extra kernel modules in Kernel_box
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 28 Oct 2021 19:23:11 +0200
+
 first-aid-kit (1.2.7-patch1) focal; urgency=medium
 
   * Adding Patch 
