@@ -924,8 +924,9 @@ class KernelBox(Gtk.VBox):
 			d.destroy()
 			if response== Gtk.ResponseType.OK:
 				self.info_box_stack.set_visible_child_name("info_kernel")
-				self.core.dprint('install    %s      %s'%(widget.label,[widget.data[1],widget.data[3]]),"[KernelBox]")
-				self.kernel_install('install',widget.label,[widget.data[1],widget.data[3]])			
+				module_extra_pkg='linux-modules-extra-'+widget.data[0]+'-generic'
+				self.core.dprint('install    %s      %s'%(widget.label,[widget.data[1],widget.data[3],module_extra_pkg]),"[KernelBox]")
+				self.kernel_install('install',widget.label,[widget.data[1],widget.data[3],module_extra_pkg])		
 			else:
 				self.info_box_stack.set_visible_child_name("info_kernel")
 				a=_("You cancel to install kernel:")
@@ -977,9 +978,12 @@ class KernelBox(Gtk.VBox):
 			if action == 'install':
 				for app in packages:
 					#Install linux-headers and linux-generic packages
-					pkg=self.cache[app]
-					pkg.mark_install()
 					label_action=_('Installing')
+					try:
+						pkg=self.cache[app]
+						pkg.mark_install()
+					except Exception as e:
+						self.core.dprint("(kernel_install) Error: %s"%e,"[KernelBox]")
 
 			if action == 'delete':
 				for app in packages:
