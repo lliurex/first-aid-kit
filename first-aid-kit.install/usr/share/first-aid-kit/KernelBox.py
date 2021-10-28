@@ -236,8 +236,8 @@ class KernelBox(Gtk.VBox):
 					line=line.replace(kernel_default_pos,'')
 					if "-generic" in line:
 						line=line.replace('-generic','')
-					if "LliureX 19" in line:
-						line=line.replace('LliureX 19','')
+					if "LliureX 21" in line:
+						line=line.replace('LliureX 21','')
 					newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in line)
 					kernel_active = [str(i) for i in newstr.split()]
 					finded=True
