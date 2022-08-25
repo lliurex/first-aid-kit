@@ -223,17 +223,17 @@ class EpoptesBox(Gtk.VBox):
 				if self.list[1]:
 					#self.core.dprint("La lista no es vacia","[EpoptesBox]")
 					for element in self.my_interfaces:
-						self.core.dprint("Comprobando la IP: %s."%element,"[EpoptesBox]")
+						self.core.dprint("Testing IP: %s."%element,"[EpoptesBox]")
 						if self.check_availability(element,self.list[1]):
 							self.finded=True
-							self.txt_check_epoptes.set_text("My Ip %s address is blocked by Epoptes in iptables list %s"%(element,self.list[1]))
+							self.txt_check_epoptes.set_text(_("My Ip %s address is blocked by Epoptes in iptables list %s"%(element,self.list[1])))
 							break
 						else:
-							self.txt_check_epoptes.set_text("My internet access is not blocked by Epoptes.")
+							self.txt_check_epoptes.set_text(_("My internet access is not blocked by Epoptes."))
 				else:
-					self.txt_check_epoptes.set_text('No IP is blocked at the server.')
+					self.txt_check_epoptes.set_text(_('No IP is blocked at the server.'))
 			else:
-				self.txt_check_epoptes.set_text('Any problem to read blocked IP list.')
+				self.txt_check_epoptes.set_text(_('Any problem to read blocked IP list.'))
 
 			time.sleep(1)
 			self.thread_ret={"status":True,"msg":"BROKEN"}
