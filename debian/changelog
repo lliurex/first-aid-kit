@@ -1,3 +1,9 @@
+first-aid-kit (1.2.10) focal; urgency=medium
+
+  * Adding translations to EpoptesBox 
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 25 Aug 2022 12:21:54 +0200
+
 first-aid-kit (1.2.9) focal; urgency=medium
 
   * Adding test to internet blocked by epoptes 
