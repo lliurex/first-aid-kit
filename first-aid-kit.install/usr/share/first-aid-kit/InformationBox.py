@@ -341,18 +341,17 @@ class InformationBox(Gtk.VBox):
 						break
 			#Check if Server is Master/slave and Clashroom Model/ Center Model
 			list_ldap = os.popen("ldapsearch -Y EXTERNAL -H ldapi:// -b cn=config").readlines()
+			server_master=_("Independent")
+			center_model=_("Classroom")
 			for line in list_ldap:
 				if 'rid=' in line:
 					server_master=_("Slave")
 					center_model=_("Center")
 					break
 				else:
-					server_master=_("Master")
 					if 'syncprov' in line:
+						server_master=_("Master")
 						center_model=_("Center")
-					else:
-						server_master=_("Independent")
-						center_model=_("Classroom")
 
 			
 			'''if os.path.isfile('/etc/apt/preferences.d/lliurex-pinning'):
