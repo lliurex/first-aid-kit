@@ -18,6 +18,9 @@ import time
 import apt
 import cpuinfo
 import textwrap
+import socket
+import pwd
+import grp
 
 gettext.textdomain('first-aid-kit')
 _=gettext.gettext
@@ -226,8 +229,11 @@ class InformationBox(Gtk.VBox):
 
 			server_test=self.information_label_flavour_function()	
 			self.information_label_meta_function()
-			if server_test:
-				self.information_info_model_server()
+			if server_test[0]:
+				if ( 'server' in server_test[1] ):
+					self.information_info_model_server()
+				if ( 'client' in server_test[1] ):
+					self.information_info_mount_client()
 
 			self.cpu=self.cpu_info_function()
 
@@ -376,6 +382,128 @@ class InformationBox(Gtk.VBox):
 	#def information_info_model_server
 
 
+	def information_info_mount_client(self):
+		# If is a client show mount information
+		try:
+			client=_("Client")
+			bind_net=_("Mounted")
+			documents=_('Mounted')
+			server_ip=socket.gethostbyname('server')
+			user_run_list=[]
+			tested_list=[]
+
+			#List users mounted in /run
+			list_mount = os.popen("mount").readlines()
+			for lineimport in list_mount:
+				if server_ip in lineimport:
+					if 'run' in lineimport:
+						linewords=lineimport.split()
+						for phrase in linewords:
+							if 'run' in phrase:
+								words=phrase.split('/')
+								user=words[2]
+								if user not in user_run_list:
+									user_run_list.append(user)
+								
+
+			#print('Users mounted: %s'%user_run_list)
+
+			for user in user_run_list:
+				path_run=''
+				user_groups=self.getgroups(user)
+				#print(user)
+				#print(type(user))
+				#print(user_groups)
+				if user_groups[0]:
+					if 'students' in user_groups[1]:
+						#/run/alu02/home/students/alu02/Documents/
+						path_run='/run/'+user+'/home/students/'+user+'/Documents/'
+					elif 'teachers' in user_groups[1]:
+						#/run/alu02/home/students/alu02/Documents/
+						path_run='/run/'+user+'/home/teachers/'+user+'/Documents/'
+					elif 'admins' in user_groups[1]:
+						#/run/alu02/home/students/alu02/Documents/
+						path_run='/run/'+user+'/home/admins/'+user+'/Documents/'
+				else:
+					print('(information_info_mount_client)Error: No group detected')
+					self.txt_check_information.set_text(_("No group detected."))
+					self.info_box_stack.set_visible_child_name("infobox")
+					return True
+				
+				#print(path_run)
+				tested=self.test_mount(user,path_run)
+				if tested:
+					self.core.dprint('%s: All mounted OK'%user,"[InformationBox]")
+					tested_list.append(user)
+				else:
+					self.core.dprint('%s: Fail, not mounted'%user,"[InformationBox]")
+
+			#print(tested_list)
+			if not tested_list:
+				self.txt_check_information.set_text('No directory mounted')
+			else:
+				self.txt_check_information.set_text('Mounted ok to: %s'%tested_list)
+			
+			self.info_box_stack.set_visible_child_name("infobox")
+
+		except Exception as e:
+			server_master=_("Unknow")
+			center_model=_("Unknow")
+			net_export=_('Unknow')
+			pinning=_('Unknow')
+			self.core.dprint("(information_info_mount_client)Error: %s"%e,"[InformationBox]")
+			self.txt_check_information.set_text(_("Information mount client error."))
+			self.info_box_stack.set_visible_child_name("infobox")
+
+	#def information_info_mount_client
+
+
+
+
+	def getgroups(self,user):
+		try:
+			gids = [g.gr_gid for g in grp.getgrall() if user in g.gr_mem]
+			gid = pwd.getpwnam(user).pw_gid
+			gids.append(grp.getgrgid(gid).gr_gid)
+			user_groups=[grp.getgrgid(gid).gr_name for gid in gids]
+			return [True, user_groups]
+
+		except Exception as e:
+			self.core.dprint("(getgroups)Error: %s"%e,"[InformationBox]")
+			user_groups=[]
+			return [False, user_groups]
+	#def getgroups
+
+
+	def test_mount(self,user,path_run):
+		try:
+			test_file='test_FAK.txt'
+			path_test=path_run+test_file
+			tested=False
+
+			if os.path.isdir(path_run):
+				open(path_test, 'x')
+			else:
+				print('Path RUN not exists')
+				return False 
+
+			for document in ['Documents','Documentos','Document']:
+				path_home='/home/'+user+'/'+document
+				if os.path.isdir(path_home):
+					if os.path.isfile(path_home+'/'+test_file):
+						tested=True
+			os.remove(path_test)
+
+			return tested
+
+		except Exception as e:
+			self.core.dprint("(test_mount)Error: %s"%e,"[InformationBox]")
+			return False
+	#def test_mount
+
+
+
+
 	def information_pinning_title_function(self):
 		
 		try:
@@ -474,7 +602,9 @@ class InformationBox(Gtk.VBox):
 			flavour_solved=subprocess.check_output(['lliurex-version','-f']).decode('utf-8').split()[0]
 			self.information_label_flavour_solved.set_text(flavour_solved)
 			if ( 'Server' in flavour_solved ) or ( 'server' in flavour_solved ):
-				return True
+				return [True, "server"]
+			elif ( 'Client' in flavour_solved ) or ( 'client' in flavour_solved ):
+				return [True, "client"]
 			else:
 				return False
 
