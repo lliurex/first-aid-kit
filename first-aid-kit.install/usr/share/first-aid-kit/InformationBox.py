@@ -371,10 +371,6 @@ class InformationBox(Gtk.VBox):
 			self.info_box_stack.set_visible_child_name("infobox")
 
 		except Exception as e:
-			server_master=_("Unknow")
-			center_model=_("Unknow")
-			net_export=_('Unknow')
-			pinning=_('Unknow')
 			self.core.dprint("(information_info_model_server)Error: %s"%e,"[InformationBox]")
 			self.txt_check_information.set_text(_("Detection server has errors."))
 			self.info_box_stack.set_visible_child_name("infobox")
@@ -497,6 +493,8 @@ class InformationBox(Gtk.VBox):
 			return tested
 
 		except Exception as e:
+			if os.path.isfile(path_test):
+				os.remove(path_test)
 			self.core.dprint("(test_mount)Error: %s"%e,"[InformationBox]")
 			return False
 	#def test_mount
