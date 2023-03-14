@@ -83,6 +83,11 @@ class InformationBox(Gtk.VBox):
 		self.information_label_cpu_core_solved=builder.get_object("information_label_cpu_core_solved")
 		self.information_pinning_title_solved=builder.get_object("information_pinning_title_solved")
 
+		self.information_center_code_solved_2=builder.get_object("center_code_solved")
+		self.information_center_code_title=builder.get_object("center_code_solved_title")
+		self.information_classroom_code_solved=builder.get_object("information_clasroom_code_solved")
+		self.information_classroom_code_title=builder.get_object("information_classroom_code_title")
+
 
 		self.information_label_release_solved.set_text(_("Unknow"))
 		self.information_label_timestamp_solved.set_text(_("Unknow"))
@@ -93,6 +98,8 @@ class InformationBox(Gtk.VBox):
 		self.information_label_flavour_solved.set_text(_("Unknow"))
 		self.information_label_cpu_speed_solved.set_text(_("Unknow"))
 		self.information_pinning_title_solved.set_text(_("Unknow"))
+		self.information_center_code_solved_2.set_text(_("Unknow"))
+		self.information_classroom_code_solved.set_text(_("Unknow"))
 
 		self.separator_information=builder.get_object("separator_information")
 		self.separator_information2=builder.get_object("separator_information2")
@@ -171,6 +178,8 @@ class InformationBox(Gtk.VBox):
 		self.information_label_cpu_speed.set_name("OPTION_LABEL")
 		self.information_label_cpu_core.set_name("OPTION_LABEL")
 		self.information_pinning_title.set_name("OPTION_LABEL")
+		self.information_center_code_title.set_name("OPTION_LABEL")
+		self.information_classroom_code_title.set_name("OPTION_LABEL")
 		#self.information_pinning_title_solved.set_name("INFO_LABEL")
 
 		self.information_hdd_filesystem.set_name("OPTION_LABEL")
@@ -217,6 +226,8 @@ class InformationBox(Gtk.VBox):
 		try:
 			
 			self.information_label_release_function()
+
+			self.information_center_code_function()
 
 			self.information_label_timestamp_function()
 
@@ -371,6 +382,10 @@ class InformationBox(Gtk.VBox):
 			self.info_box_stack.set_visible_child_name("infobox")
 
 		except Exception as e:
+			server_master=_("Unknow")
+			center_model=_("Unknow")
+			net_export=_('Unknow')
+			pinning=_('Unknow')
 			self.core.dprint("(information_info_model_server)Error: %s"%e,"[InformationBox]")
 			self.txt_check_information.set_text(_("Detection server has errors."))
 			self.info_box_stack.set_visible_child_name("infobox")
@@ -493,8 +508,6 @@ class InformationBox(Gtk.VBox):
 			return tested
 
 		except Exception as e:
-			if os.path.isfile(path_test):
-				os.remove(path_test)
 			self.core.dprint("(test_mount)Error: %s"%e,"[InformationBox]")
 			return False
 	#def test_mount
@@ -687,3 +700,25 @@ class InformationBox(Gtk.VBox):
 		eb.set_name("KERNEL_REGULAR")
 
 	#def mouse_over_kernel
+
+
+	def information_center_code_function(self):
+		
+		try:
+			code_solved=subprocess.check_output(['client-register','-s']).decode('utf-8').split('.')[0]
+			for line in code_solved.splitlines():
+				if "Center" in line:
+					#print(line.rsplit(':', 1)[1])
+					center_code_solved_bash=line.rsplit(':', 1)[1].strip()
+					self.information_center_code_solved_2.set_text(center_code_solved_bash)
+				if "Aula" in line:
+					#print(line.rsplit(':', 1)[1])
+					classroom_code_solved=line.rsplit(':', 1)[1].strip()
+					self.information_classroom_code_solved.set_text(classroom_code_solved)
+
+		except Exception as e:
+			self.information_center_code_solved_2.set_text(_("Unknow"))
+			self.information_classroom_code_solved.set_text(_("Unknow"))
+			self.core.dprint("[InformationBox](information_center_code_function)Error: %s"%e)
+		
+	#def information_center_code_function
