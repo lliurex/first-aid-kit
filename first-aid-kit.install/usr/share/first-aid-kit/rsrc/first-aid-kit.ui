@@ -381,7 +381,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="start_bar_button1">
-                    <property name="label" translatable="yes">Startup Bar</property>
+                    <property name="label" translatable="yes">Startup System</property>
                     <property name="use_action_appearance">True</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
