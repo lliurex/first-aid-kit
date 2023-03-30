@@ -338,7 +338,8 @@ class StartBarBox(Gtk.VBox):
 				self.grub_passwd_button.set_label(_("Activate"))
 				self.info_box_stack.set_visible_child_name("info_start_bar")
 				self.txt_check_start_bar.set_text(_("The GRUB passwd is removing from your system, applying changes....."))
-				self.core.dprint("GRUB passwd is deactivated.","[StarBarBox]")
+				os_message="GRUB passwd is deactivated."
+				
 				
 			else:
 				#Operations in /etc/default/grub
@@ -370,9 +371,10 @@ class StartBarBox(Gtk.VBox):
 				self.grub_passwd_button.set_label(_("Deactivate"))
 				self.info_box_stack.set_visible_child_name("info_start_bar")
 				self.txt_check_start_bar.set_text(_("The GRUB passwd is adding in your system, applying changes....."))
-				self.core.dprint("GRUB passwd is activated.","[StarBarBox]")
+				os_message="GRUB passwd is activated."
 
 			os.system('update-grub')
+			self.core.dprint(os_message,"[StarBarBox]")
 			time.sleep(1)
 			self.thread_ret={"status":True,"msg":"BROKEN"}
 			
