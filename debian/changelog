@@ -1,3 +1,9 @@
+first-aid-kit (1.2.14) focal; urgency=medium
+
+  * Adding grub passwd support 
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 30 Mar 2023 14:36:58 +0200
+
 first-aid-kit (1.2.13) focal; urgency=medium
 
   * Adding register information to InformationBox 
