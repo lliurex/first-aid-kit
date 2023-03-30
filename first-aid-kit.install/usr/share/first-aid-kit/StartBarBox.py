@@ -517,7 +517,7 @@ class StartBarBox(Gtk.VBox):
 		self.grub_passwd_button.set_sensitive(True)
 		self.start_bar_button.set_sensitive(True)
 		if self.grub_passwd_active:
-			self.txt_check_start_bar.set_text(_("GRUB has activated passwd to netadmin user."))
+			self.txt_check_start_bar.set_text(_("GRUB has activated passwd to %s user, the passwd is lliurexnet.")%self.user_grub)
 		else:
 			self.txt_check_start_bar.set_text(_("GRUB has not passwd, anyone can edit it."))
 		self.info_box_stack.set_visible_child_name("info_start_bar")
