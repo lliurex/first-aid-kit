@@ -47,6 +47,21 @@ class StartBarBox(Gtk.VBox):
 		self.info_box_into=builder.get_object("box15")
 		self.separator1=builder.get_object("separator1")
 
+		self.start_bar_box32=builder.get_object("box32")
+		self.grub_passwd_button=builder.get_object("grub_passwd_button")
+		self.grub_passwd_button_box=builder.get_object("grub_passwd_button_box")
+		self.grub_passwd_spinner=builder.get_object("grub_passwd_spinner")
+		self.grub_passwd_label=builder.get_object("grub_passwd_label")
+
+		self.grub_passwd_window=builder.get_object("grub_passwd_window")
+		self.user_grub_label=builder.get_object("user_grub_label")
+		self.accept_grub_button=builder.get_object("accept_grub_button")
+		self.cancel_grub_button=builder.get_object("cancel_grub_button")
+		self.grub_user_title=builder.get_object("grub_user_title")
+
+		self.grub_user_title.set_text(_("Insert user for GRUB:"))
+		
+
 		self.add(self.start_bar_box)
 		
 		self.connect_signals()
@@ -72,6 +87,27 @@ class StartBarBox(Gtk.VBox):
 
 		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
 
+		#test if passwd is configured in GRUB
+		self.grub_default_file='/etc/default/grub'
+		self.grub_custom_file="/etc/grub.d/40_custom"
+		self.grub_linux_file="/etc/grub.d/10_linux"
+		self.grub_default_word = 'GRUB_DISABLE_SUBMENU=y'
+		self.grub_custom_word='set superusers='
+		self.grub_custom_word2='password_pbkdf2 '
+		self.grub_passwd=' grub.pbkdf2.sha512.10000.1B5DE39EC649A0372C6D27A7C60B54199CD094BBA2CB53DB0AFCC64AE699F7C2EDF6304B43D4919F846209E808C600C381C34A40F65F636FD196AB55C54D6DC2.65A2E205C9F4E1A1FAE1040E5655C2CD94B3ED5CC8010D5DE80DD70F747D14A98CE5F4554D88A299A26E173F79594B41206055B69F9E1E66602DE94F84E60CB2'
+		f = open(self.grub_default_file,'r')
+		for line in f:
+			if self.grub_default_word in line:
+				self.grub_passwd_active=True
+				self.grub_passwd_button.set_label(_("Deactivate"))
+				break
+			else:
+				self.grub_passwd_active=False
+				self.grub_passwd_button.set_label(_("Activate"))
+		f.close()
+
+
+
 		self.grub_file='/etc/default/grub.d/06-lliurex-cmdline.cfg'
 		self.word = 'splash '
 		f = open(self.grub_file,'r')
@@ -83,8 +119,12 @@ class StartBarBox(Gtk.VBox):
 			else:
 				self.splash_delete=True
 				self.start_bar_button.set_label(_("Add Startup Bar"))
-				self.info_box_stack.set_visible_child_name("empty_box_start_bar")
-		f.close()	
+				self.info_box_stack.set_visible_child_name("empty_box_start_bar")		
+		f.close()
+
+		
+
+		
 		
 	#def __init__
 	
@@ -100,13 +140,17 @@ class StartBarBox(Gtk.VBox):
 		Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),self.style_provider,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 		
 		self.start_bar_button.set_name("EXECUTE_BUTTON")
+		self.grub_passwd_button.set_name("EXECUTE_BUTTON")
 		self.start_bar_box2.set_name("PKG_BOX")
+		self.start_bar_box32.set_name("PKG_BOX")
 		self.info_box.set_name("PKG_BOX")
 		self.separator1.set_name("SEPARATOR_MAIN")
 
 		self.section_label_4.set_name("SECTION_LABEL")
 		self.label1.set_name("OPTION_LABEL")
+		self.grub_passwd_label.set_name("OPTION_LABEL")
 		self.txt_check_start_bar.set_name("INFO_LABEL")
+		self.grub_user_title.set_name("OPTION_LABEL")
 			
 	#def set-css_info
 
@@ -115,17 +159,44 @@ class StartBarBox(Gtk.VBox):
 	def connect_signals(self):
 		
 		self.start_bar_button.connect("clicked",self.start_bar_button_clicked)
+		self.grub_passwd_button.connect("clicked",self.grub_passwd_button_clicked)
+
+		self.accept_grub_button.connect("clicked",self.accept_grub_button_clicked)
+		self.cancel_grub_button.connect("clicked",self.cancel_grub_button_clicked)
+		self.user_grub_label.connect("activate",self.entries_press_event)
+
+		self.grub_passwd_window.connect("delete_event",self.hide_window)
 		
 	#def connect_signals
 
+
+	def entries_press_event(self,widget):
+		
+		self.accept_grub_button_clicked(None)
+		
+	#def entries_press_event
+
+
+	def hide_window(self,widget,event):
+		
+		widget.hide()
+		self.grub_passwd_spinner.hide()
+		self.grub_passwd_button.show()
+		self.grub_passwd_button.set_sensitive(True)
+		self.start_bar_button.set_sensitive(True)
+		self.username_empty=True
+		return True
+		
+	#def hide_window
 
 
 
 
 	def start_bar_button_clicked(self,widget):
-		
-		self.thread=threading.Thread(target=self.start_bar_button_thread)
+
 		self.start_bar_button.set_sensitive(False)
+		self.grub_passwd_button.set_sensitive(False)		
+		self.thread=threading.Thread(target=self.start_bar_button_thread)
 		self.thread.daemon=True
 		self.thread.start()
 		
@@ -137,10 +208,11 @@ class StartBarBox(Gtk.VBox):
 		self.start_bar_spinner.start()
 		self.start_bar_spinner.set_size_request(w,h)
 		self.start_bar_spinner.show()
+		self.txt_check_start_bar.set_name("INFO_LABEL")
 
 		GLib.timeout_add(500,self.check_start_bar_thread)
 	
-	#def_gparted_button_clicked
+	#start_bar_button_clicked
 
 
 
@@ -206,7 +278,249 @@ class StartBarBox(Gtk.VBox):
 		self.core.working=False
 		self.start_bar_spinner.hide()
 		self.start_bar_button.show()
+		self.grub_passwd_button.set_sensitive(True)
 		self.start_bar_button.set_sensitive(True)
 		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
 		
 	#check_gparted_thread
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	def cancel_grub_button_clicked(self,widget):
+		
+		self.grub_passwd_window.hide()
+		self.grub_passwd_spinner.hide()
+		self.grub_passwd_button.show()
+		self.grub_passwd_button.set_sensitive(True)
+		self.start_bar_button.set_sensitive(True)
+		self.username_empty=True
+		
+	#def cancel_grub_button
+
+
+
+	def accept_grub_button_clicked(self,widget):
+		
+		self.grub_passwd_window.hide()
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		self.user_grub_label.set_can_focus(False)
+		self.user_grub=self.user_grub_label.get_text().split()
+		self.core.dprint(self.user_grub,"[StarBarBox] user:")
+
+		if len(self.user_grub)==1:
+
+			self.user_grub=self.user_grub[0]
+
+			if self.user_grub=='':
+				self.grub_passwd_spinner.hide()
+				self.grub_passwd_button.show()
+				self.grub_passwd_button.set_sensitive(True)
+				self.start_bar_button.set_sensitive(True)
+				self.txt_check_start_bar.set_name("INFO_LABEL_ERROR")
+				self.txt_check_start_bar.set_text(_("Username is empty, the process is canceled."))
+				self.info_box_stack.set_visible_child_name("info_start_bar")
+			else:
+				self.grub_passwd_button_launched(widget)
+			
+
+		else:
+
+			self.grub_passwd_spinner.hide()
+			self.grub_passwd_button.show()
+			self.grub_passwd_button.set_sensitive(True)
+			self.start_bar_button.set_sensitive(True)
+			self.txt_check_start_bar.set_name("INFO_LABEL_ERROR")
+			self.txt_check_start_bar.set_text(_("Username can't contain blank spaces."))
+			self.info_box_stack.set_visible_child_name("info_start_bar")
+
+		
+	#def accept_grub_button
+
+
+
+	def grub_passwd_button_clicked(self,widget):
+
+		self.start_bar_button.set_sensitive(False)
+		self.grub_passwd_button.set_sensitive(False)
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		self.txt_check_start_bar.set_name("INFO_LABEL")
+		self.txt_check_start_bar.set_text("")
+		self.user_grub_label.set_text("")
+		if self.grub_passwd_active == False:
+			self.user_grub_label.set_can_focus(True)
+			self.grub_passwd_window.show()
+		else:
+			self.grub_passwd_button_launched(widget)
+
+	#grub_passwd_button_clicked
+
+
+
+
+	def grub_passwd_button_launched(self,widget):
+		
+		self.thread=threading.Thread(target=self.grub_passwd_button_thread)
+		self.thread.daemon=True
+		self.thread.start()
+		
+		allocation=self.grub_passwd_button.get_allocation()
+		w=allocation.width
+		h=allocation.height
+
+		self.grub_passwd_button.hide()
+		self.grub_passwd_spinner.start()
+		self.grub_passwd_spinner.set_size_request(w,h)
+		self.grub_passwd_spinner.show()
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+
+		GLib.timeout_add(500,self.check_grub_passwd_thread)
+	
+	#grub_passwd_button_clicked
+
+
+	def grub_passwd_button_thread(self):
+	
+		try:
+			
+			self.core.working=True
+			
+			if self.grub_passwd_active == True:
+				#Operations in /etc/default/grub
+				self.core.dprint("Passwd is activate in GRUB, now you're deactivating it....... please wait.","[StarBarBox]")
+				f = open(self.grub_default_file,'r')
+				lst = []
+				for line in f:
+					if self.grub_default_word in line:
+						pass
+					else:
+						lst.append(line)
+				f.close()
+				f = open(self.grub_default_file,'w')
+				for line in lst:
+					f.write(line)
+				f.close()
+
+				#Operations in /etc/grub.d/40_custom
+				d = open(self.grub_custom_file,'r')
+				lstd = []
+				for line in d:
+					lstd.append(line)
+				d.close()
+				d = open(self.grub_custom_file,'w')
+				for line in lstd:
+					if self.grub_custom_word in line:
+						pass
+					else:
+						if self.grub_custom_word2 in line:
+							pass 
+						else:
+							d.write(line)
+				d.close()
+
+
+
+				#Operations in /etc/grub.d/10_linux
+				fd = open(self.grub_linux_file,'r')
+				lst = []
+				match="grub_quote)' ${CLASS} --unrestricted"
+				replace="grub_quote)' ${CLASS}"
+				for line in fd:
+					if match in line:
+						line = line.replace(match,replace)
+					lst.append(line)
+				fd.close()
+				fd = open(self.grub_linux_file,'w')
+				for line in lst:
+					fd.write(line)
+				fd.close()
+
+
+				self.grub_passwd_active = False
+				self.grub_passwd_button.set_label(_("Activate"))
+				self.info_box_stack.set_visible_child_name("info_start_bar")
+				self.txt_check_start_bar.set_text(_("The GRUB passwd is removing from your system, applying changes....."))
+				os_message="GRUB passwd is deactivated."
+				
+				
+			else:
+				#Operations in /etc/default/grub
+				self.core.dprint("Passwd is deactivate in GRUB, now you're activating it....... please wait.","[StarBarBox]")
+				with open(self.grub_default_file, 'a') as file:
+					file.write(self.grub_default_word+'\n')
+
+				#Operations in /etc/grub.d/40_custom
+				with open(self.grub_custom_file, 'a') as file:
+					file.write(self.grub_custom_word+'"'+self.user_grub+'"'+'\n')
+					file.write(self.grub_custom_word2+self.user_grub+self.grub_passwd+'\n')
+
+				#Operations in /etc/grub.d/10_linux
+				fd = open(self.grub_linux_file,'r')
+				lst = []
+				match="grub_quote)' ${CLASS}"
+				replace="grub_quote)' ${CLASS} --unrestricted"
+				for line in fd:
+					if match in line:
+						line = line.replace(match,replace)
+					lst.append(line)
+				fd.close()
+				fd = open(self.grub_linux_file,'w')
+				for line in lst:
+					fd.write(line)
+				fd.close()
+
+				self.grub_passwd_active = True
+				self.grub_passwd_button.set_label(_("Deactivate"))
+				self.info_box_stack.set_visible_child_name("info_start_bar")
+				self.txt_check_start_bar.set_text(_("The GRUB passwd is adding in your system, applying changes....."))
+				os_message="GRUB passwd is activated."
+
+			#os.system('update-grub')
+			self.core.dprint(os_message,"[StarBarBox]")
+			time.sleep(1)
+			self.thread_ret={"status":True,"msg":"BROKEN"}
+			
+		except Exception as e:
+			self.core.dprint("(start_bar_button_thread)Error: %s"%e,"[StarBarBox]")
+			return False
+
+	#grub_passwd_button_thread
+			
+
+
+
+
+
+	def check_grub_passwd_thread(self):
+		
+		if self.thread.is_alive():
+			return True
+		
+		self.core.working=False
+		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+		self.grub_passwd_spinner.hide()
+		self.grub_passwd_button.show()
+		self.grub_passwd_button.set_sensitive(True)
+		self.start_bar_button.set_sensitive(True)
+		if self.grub_passwd_active:
+			self.txt_check_start_bar.set_text(_("GRUB has activated passwd to %s user, the passwd is lliurexnet.")%self.user_grub)
+		else:
+			self.txt_check_start_bar.set_text(_("GRUB has not passwd, anyone can edit it."))
+		self.info_box_stack.set_visible_child_name("info_start_bar")
+
+		
+	#check_grub_passwd_thread
