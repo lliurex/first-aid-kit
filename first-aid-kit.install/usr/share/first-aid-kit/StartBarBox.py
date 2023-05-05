@@ -489,7 +489,7 @@ class StartBarBox(Gtk.VBox):
 				self.txt_check_start_bar.set_text(_("The GRUB passwd is adding in your system, applying changes....."))
 				os_message="GRUB passwd is activated."
 
-			#os.system('update-grub')
+			os.system('update-grub')
 			self.core.dprint(os_message,"[StarBarBox]")
 			time.sleep(1)
 			self.thread_ret={"status":True,"msg":"BROKEN"}
