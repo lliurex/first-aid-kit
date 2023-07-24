@@ -483,6 +483,7 @@ class StartBarBox(Gtk.VBox):
 					fd.write(line)
 				fd.close()
 
+				os.chmod(self.grub_custom_file, 0o700)
 				self.grub_passwd_active = True
 				self.grub_passwd_button.set_label(_("Deactivate"))
 				self.info_box_stack.set_visible_child_name("info_start_bar")
