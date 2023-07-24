@@ -1,3 +1,9 @@
+first-aid-kit (1.2.16) focal; urgency=medium
+
+  * Changing permission to passwd grub mode 
+
+ -- Daniel Duran <daduve@gmail.com>  Mon, 24 Jul 2023 16:18:40 +0200
+
 first-aid-kit (1.2.15) focal; urgency=medium
 
   * Activate update-grub 
