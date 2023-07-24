@@ -483,13 +483,14 @@ class StartBarBox(Gtk.VBox):
 					fd.write(line)
 				fd.close()
 
-				os.chmod(self.grub_custom_file, 0o700)
 				self.grub_passwd_active = True
 				self.grub_passwd_button.set_label(_("Deactivate"))
 				self.info_box_stack.set_visible_child_name("info_start_bar")
 				self.txt_check_start_bar.set_text(_("The GRUB passwd is adding in your system, applying changes....."))
 				os_message="GRUB passwd is activated."
 
+
+			os.chmod(self.grub_custom_file, 0o700)
 			os.system('update-grub')
 			self.core.dprint(os_message,"[StarBarBox]")
 			time.sleep(1)
