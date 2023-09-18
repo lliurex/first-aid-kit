@@ -110,22 +110,23 @@ class StartBarBox(Gtk.VBox):
 
 		self.grub_file='/etc/default/grub.d/06-lliurex-cmdline.cfg'
 		self.word = 'splash '
-		f = open(self.grub_file,'r')
-		for line in f:
-			if self.word in line:
-				self.splash_delete=False
-				self.start_bar_button.set_label(_("Delete Startup Bar"))
-				self.info_box_stack.set_visible_child_name("empty_box_start_bar")
-			else:
-				self.splash_delete=True
-				self.start_bar_button.set_label(_("Add Startup Bar"))
-				self.info_box_stack.set_visible_child_name("empty_box_start_bar")		
-		f.close()
-
-		
-
-		
-		
+		try:
+			f = open(self.grub_file,'r')
+			for line in f:
+				if self.word in line:
+					self.splash_delete=False
+					self.start_bar_button.set_label(_("Delete Startup Bar"))
+					self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+				else:
+					self.splash_delete=True
+					self.start_bar_button.set_label(_("Add Startup Bar"))
+					self.info_box_stack.set_visible_child_name("empty_box_start_bar")		
+			f.close()
+		except Exception as e:
+			self.splash_delete=False
+			self.start_bar_button.set_label(_("Delete Startup Bar"))
+			self.info_box_stack.set_visible_child_name("empty_box_start_bar")
+	
 	#def __init__
 	
 
