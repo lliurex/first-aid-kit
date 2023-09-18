@@ -211,7 +211,7 @@ class InformationBox(Gtk.VBox):
 			self.thread.start()
 
 			self.core.dprint("Reading system information..........","[InformationBox]")
-			GLib.timeout_add(500,self.check_information_system_thread)
+			GLib.timeout_add(1000,self.check_information_system_thread)
 
 								
 
@@ -225,6 +225,14 @@ class InformationBox(Gtk.VBox):
 	def information_system_thread(self):
 		try:
 			
+			self.cpu=self.cpu_info_function()
+
+			self.read_hdd()
+			#kernel version in use
+			self.information_label_kernel_function()
+
+			self.information_label_ram_function()
+
 			self.information_label_release_function()
 
 			self.information_center_code_function()
@@ -233,11 +241,6 @@ class InformationBox(Gtk.VBox):
 
 			self.information_pinning_title_function()
 
-			#kernel version in use
-			self.information_label_kernel_function()
-
-			self.information_label_ram_function()
-
 			server_test=self.information_label_flavour_function()	
 			self.information_label_meta_function()
 			if server_test[0]:
@@ -245,10 +248,6 @@ class InformationBox(Gtk.VBox):
 					self.information_info_model_server()
 				if ( 'client' in server_test[1] ):
 					self.information_info_mount_client()
-
-			self.cpu=self.cpu_info_function()
-
-			self.read_hdd()
 
 		except Exception as e:
 			self.core.dprint("[InformationBox](information_system_thread)Error: %s"%e)
