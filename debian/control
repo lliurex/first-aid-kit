@@ -8,6 +8,6 @@ Standards-Version: 3.9.5
 
 Package: first-aid-kit
 Architecture: all
-Depends: ${misc:Depends},python3,python3-dateutil,python3-cpuinfo,fonts-roboto
+Depends: ${misc:Depends},python3,python3-dateutil,python3-cpuinfo,fonts-roboto,gparted
 Description: First Aid Kit
  Solve your regular problems in LliureX
