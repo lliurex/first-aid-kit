@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkBox" id="apt_box">
@@ -304,13 +304,15 @@
     <property name="spacing">5</property>
     <child>
       <object class="GtkScrolledWindow" id="scrolledwindow3">
-        <property name="width-request">150</property>
+        <property name="width-request">170</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <child>
           <object class="GtkViewport" id="viewport2">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="margin-left">2</property>
+            <property name="margin-right">2</property>
             <property name="shadow-type">none</property>
             <child>
               <object class="GtkBox" id="box20">
@@ -416,33 +418,6 @@
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">6</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="netfiles_button">
-                    <property name="label" translatable="yes">/NET</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">7</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkButton" id="pmb_button">
-                    <property name="label" translatable="yes">PMB</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
-                    <property name="xalign">0.47999998927116394</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">8</property>
                   </packing>
                 </child>
               </object>

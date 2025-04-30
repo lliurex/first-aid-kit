@@ -2,9 +2,7 @@ import FirstAidKit
 import logging
 import InformationBox
 import NetBox
-import PmbBox
 import HdBox
-import NetfilesBox
 import EpoptesBox
 import StartBarBox
 import KernelBox
@@ -163,13 +161,8 @@ class Core:
 		self.dprint("Creating AptBox...")
 		self.apt_box=AptBox.AptBox()
 
-		self.dprint("Creating PmbBox...")
-		self.pmb_box=PmbBox.PmbBox()
 		
 		os.system('lliurex-version -f > /tmp/.FK')
-		if self.server:
-			self.dprint("Creating NetfilesBox...")
-			self.netfiles_box=NetfilesBox.NetfilesBox()
 		
 		# ####
 		
@@ -180,8 +173,6 @@ class Core:
 		self.lri=FirstAidKit.FirstAidKit()
 		
 		self.lri.load_gui()
-		if self.server:
-			self.netfiles_box.check_thread_on_startup()
 
 		self.lri.start_gui()
 
