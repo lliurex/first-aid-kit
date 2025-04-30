@@ -52,8 +52,6 @@ class FirstAidKit:
 		self.bar_button=builder.get_object("start_bar_button1")
 		self.apt_button=builder.get_object("apt_button")
 		self.kernel_button=builder.get_object("kernel_button")
-		self.netfiles_button=builder.get_object("netfiles_button")
-		self.pmb_button=builder.get_object("pmb_button")
 		
 		#PANTALLA LOGIN
 		self.login_da_box=builder.get_object("login_da_box")
@@ -104,28 +102,9 @@ class FirstAidKit:
 		
 		#b=Gtk.Button("HOLA")
 		#self.main_stack.add_titled(b,"hola","hola")
-		try:
-
-			#os.system('lliurex-version -f > /tmp/.FK')
-			#time.sleep(0.5)
-			if 'server' in open('/tmp/.FK').read():
-				self.netfiles_box=self.core.netfiles_box
-				self.main_stack.add_titled(self.netfiles_box,"netfilesbox","NetfilesBox")
-				os.remove('/tmp/.FK')
-			else:
-				self.info_netfiles=builder.get_object("info_netfiles")
-				self.info_netfiles_txt=builder.get_object("info_netfiles_txt")
-				self.info_netfiles_txt.set_name("INFO_LABEL")
-				self.info_netfiles_txt.set_text(_("Sorry you are not a server. You can't access to /net files."))
-				self.main_stack.add_titled(self.info_netfiles,"netfilesbox","netfilesbox")
-
-		except Exception as e:
-			self.core.dprint("(load_gui)Error: %s"%e,"[FirstAidKit]")
 			
 		self.information_box=self.core.information_box
-		self.main_stack.add_titled(self.information_box,"informationbox","InformationBox")	
-		self.net_box=self.core.net_box
-		self.main_stack.add_titled(self.net_box,"netbox","NetBox")
+		self.main_stack.add_titled(self.information_box,"informationbox","InformationBox")
 		self.hd_box=self.core.hd_box
 		self.main_stack.add_titled(self.hd_box,"hdbox","HdBox")
 		self.epoptes_box=self.core.epoptes_box
@@ -136,9 +115,9 @@ class FirstAidKit:
 		self.main_stack.add_titled(self.apt_box,"aptbox","AptBox")
 		self.kernel_box=self.core.kernel_box
 		self.main_stack.add_titled(self.kernel_box,"kernelbox","KernelBox")
+		self.net_box=self.core.net_box
+		self.main_stack.add_titled(self.net_box,"netbox","NetBox")
 
-		self.pmb_box=self.core.pmb_box
-		self.main_stack.add_titled(self.pmb_box,"pmbbox","PmbBox")
 
 		
 		self.set_css_info()
@@ -207,12 +186,10 @@ class FirstAidKit:
 		self.information_button.connect("clicked",self.information_button_clicked)
 		self.net_button.connect("clicked",self.net_button_clicked)
 		self.hd_button.connect("clicked",self.hd_button_clicked)
-		self.netfiles_button.connect("clicked",self.netfiles_button_clicked)
 		self.epoptes_button.connect("clicked",self.epoptes_button_clicked)
 		self.bar_button.connect("clicked",self.bar_button_clicked)
 		self.apt_button.connect("clicked",self.apt_button_clicked)
 		self.kernel_button.connect("clicked",self.kernel_button_clicked)
-		self.pmb_button.connect("clicked",self.pmb_button_clicked)
 		
 	# def connect_signals
 	
@@ -228,13 +205,11 @@ class FirstAidKit:
 		self.login_button.set_name("OPTION_BUTTON")
 		self.information_button.set_name("SELECTED_OPTION_BUTTON")
 		self.net_button.set_name("OPTION_BUTTON")
-		self.netfiles_button.set_name("OPTION_BUTTON")
 		self.hd_button.set_name("OPTION_BUTTON")
 		self.epoptes_button.set_name("OPTION_BUTTON")
 		self.bar_button.set_name("OPTION_BUTTON")
 		self.apt_button.set_name("OPTION_BUTTON")
 		self.kernel_button.set_name("OPTION_BUTTON")
-		self.pmb_button.set_name("OPTION_BUTTON")
 		self.login_msg_label.set_name("ERROR_LABEL")
 
 		self.main_button_box.set_name("GREY")
@@ -337,8 +312,6 @@ class FirstAidKit:
 			selected="netbox"
 		if self.main_stack.get_visible_child_name()=="hdbox":
 			selected="hd"
-		if self.main_stack.get_visible_child_name()=="netfilesbox":
-			selected="netfilesbox"
 		if self.main_stack.get_visible_child_name()=="epoptesbox":
 			selected="epoptesbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
@@ -347,8 +320,6 @@ class FirstAidKit:
 			selected="kernelbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="aptbox"
-		if self.main_stack.get_visible_child_name()=="pmbbox":
-			selected="pmbbox"
 					
 		if change_child:
 
@@ -356,12 +327,11 @@ class FirstAidKit:
 			self.information_button.set_name("SELECTED_OPTION_BUTTON")
 			self.net_button.set_name("OPTION_BUTTON")
 			self.hd_button.set_name("OPTION_BUTTON")
-			self.netfiles_button.set_name("OPTION_BUTTON")
 			self.epoptes_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
-			self.pmb_button.set_name("OPTION_BUTTON")
+
 		
 	#def information_button_clicked
 
@@ -376,8 +346,6 @@ class FirstAidKit:
 			selected="informationbox"
 		if self.main_stack.get_visible_child_name()=="hdbox":
 			selected="hd"
-		if self.main_stack.get_visible_child_name()=="netfilesbox":
-			selected="netfilesbox"
 		if self.main_stack.get_visible_child_name()=="epoptesbox":
 			selected="epoptesbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
@@ -386,8 +354,6 @@ class FirstAidKit:
 			selected="kernelbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="aptbox"
-		if self.main_stack.get_visible_child_name()=="pmbbox":
-			selected="pmbbox"
 					
 		if change_child:
 
@@ -395,12 +361,10 @@ class FirstAidKit:
 			self.information_button.set_name("OPTION_BUTTON")
 			self.net_button.set_name("SELECTED_OPTION_BUTTON")
 			self.hd_button.set_name("OPTION_BUTTON")
-			self.netfiles_button.set_name("OPTION_BUTTON")
 			self.epoptes_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
-			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def net_button_clicked
 	
@@ -412,8 +376,6 @@ class FirstAidKit:
 			selected="informationbox"
 		if self.main_stack.get_visible_child_name()=="netbox":
 			selected="netbox"
-		if self.main_stack.get_visible_child_name()=="netfilesbox":
-			selected="netfilesbox"
 		if self.main_stack.get_visible_child_name()=="epoptesbox":
 			selected="epoptesbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
@@ -427,49 +389,14 @@ class FirstAidKit:
 			self.main_stack.set_visible_child_name("hdbox")
 			self.net_button.set_name("OPTION_BUTTON")
 			self.hd_button.set_name("SELECTED_OPTION_BUTTON")
-			self.netfiles_button.set_name("OPTION_BUTTON")
 			self.epoptes_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
-			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def hd_button_clicked
 	
 	
-	def netfiles_button_clicked(self,widget):
-		
-		change_child=True
-		if self.main_stack.get_visible_child_name()=="informationbox":
-			selected="informationbox"
-		if self.main_stack.get_visible_child_name()=="netbox":
-			selected="netbox"
-		if self.main_stack.get_visible_child_name()=="hdbox":
-			selected="hdbox"
-		if self.main_stack.get_visible_child_name()=="epoptesbox":
-			selected="epoptesbox"
-		if self.main_stack.get_visible_child_name()=="startbarbox":
-			selected="startbarbox"
-		if self.main_stack.get_visible_child_name()=="kernelbox":
-			selected="kernelbox"
-		if self.main_stack.get_visible_child_name()=="startbarbox":
-			selected="aptbox"
-		if self.main_stack.get_visible_child_name()=="pmbbox":
-			selected="pmbbox"
-					
-		if change_child:
-			self.main_stack.set_visible_child_name("netfilesbox")
-			self.information_button.set_name("OPTION_BUTTON")
-			self.net_button.set_name("OPTION_BUTTON")
-			self.hd_button.set_name("OPTION_BUTTON")
-			self.netfiles_button.set_name("SELECTED_OPTION_BUTTON")
-			self.epoptes_button.set_name("OPTION_BUTTON")
-			self.kernel_button.set_name("OPTION_BUTTON")
-			self.apt_button.set_name("OPTION_BUTTON")
-			self.bar_button.set_name("OPTION_BUTTON")
-			self.pmb_button.set_name("OPTION_BUTTON")
-		
-	#def netfiles_button_clicked
 	
 	
 	def epoptes_button_clicked(self,widget):
@@ -479,8 +406,6 @@ class FirstAidKit:
 			selected="informationbox"
 		if self.main_stack.get_visible_child_name()=="netbox":
 			selected="netbox"
-		if self.main_stack.get_visible_child_name()=="netfilesbox":
-			selected="netfilesbox"
 		if self.main_stack.get_visible_child_name()=="hdbox":
 			selected="hdbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
@@ -489,21 +414,16 @@ class FirstAidKit:
 			selected="kernelbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="aptbox"
-		if self.main_stack.get_visible_child_name()=="pmbbox":
-			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("epoptesbox")
 			self.information_button.set_name("OPTION_BUTTON")
 			self.net_button.set_name("OPTION_BUTTON")
 			self.hd_button.set_name("OPTION_BUTTON")
-			self.netfiles_button.set_name("OPTION_BUTTON")
 			self.epoptes_button.set_name("SELECTED_OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
-			self.bar_button.set_name("OPTION_BUTTON")
-			self.pmb_button.set_name("OPTION_BUTTON")
-		
+			self.bar_button.set_name("OPTION_BUTTON")	
 	#def epoptes_button_clicked
 	
 	
@@ -514,8 +434,6 @@ class FirstAidKit:
 			selected="informationbox"
 		if self.main_stack.get_visible_child_name()=="netbox":
 			selected="netbox"
-		if self.main_stack.get_visible_child_name()=="netfilesbox":
-			selected="netfilesbox"
 		if self.main_stack.get_visible_child_name()=="hdbox":
 			selected="hdbox"
 		if self.main_stack.get_visible_child_name()=="epoptesbox":
@@ -524,20 +442,16 @@ class FirstAidKit:
 			selected="kernelbox"
 		if self.main_stack.get_visible_child_name()=="startbarbox":
 			selected="aptbox"
-		if self.main_stack.get_visible_child_name()=="pmbbox":
-			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("startbarbox")
 			self.information_button.set_name("OPTION_BUTTON")
 			self.net_button.set_name("OPTION_BUTTON")
 			self.hd_button.set_name("OPTION_BUTTON")
-			self.netfiles_button.set_name("OPTION_BUTTON")
 			self.epoptes_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("SELECTED_OPTION_BUTTON")
-			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def bar_button_clicked
 
@@ -549,8 +463,6 @@ class FirstAidKit:
 			selected="informationbox"
 		if self.main_stack.get_visible_child_name()=="netbox":
 			selected="netbox"
-		if self.main_stack.get_visible_child_name()=="netfilesbox":
-			selected="netfilesbox"
 		if self.main_stack.get_visible_child_name()=="hdbox":
 			selected="hdbox"
 		if self.main_stack.get_visible_child_name()=="epoptesbox":
@@ -559,20 +471,16 @@ class FirstAidKit:
 			selected="startbarbox"
 		if self.main_stack.get_visible_child_name()=="aptbox":
 			selected="aptbox"
-		if self.main_stack.get_visible_child_name()=="pmbbox":
-			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("kernelbox")
 			self.information_button.set_name("OPTION_BUTTON")
 			self.net_button.set_name("OPTION_BUTTON")
 			self.hd_button.set_name("OPTION_BUTTON")
-			self.netfiles_button.set_name("OPTION_BUTTON")
 			self.epoptes_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("SELECTED_OPTION_BUTTON")
-			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def kernel_button_clicked
 
@@ -585,8 +493,6 @@ class FirstAidKit:
 			selected="informationbox"
 		if self.main_stack.get_visible_child_name()=="netbox":
 			selected="netbox"
-		if self.main_stack.get_visible_child_name()=="netfilesbox":
-			selected="netfilesbox"
 		if self.main_stack.get_visible_child_name()=="hdbox":
 			selected="hdbox"
 		if self.main_stack.get_visible_child_name()=="epoptesbox":
@@ -595,58 +501,20 @@ class FirstAidKit:
 			selected="startbarbox"
 		if self.main_stack.get_visible_child_name()=="kernelbox":
 			selected="kernelbox"
-		if self.main_stack.get_visible_child_name()=="pmbbox":
-			selected="pmbbox"
 					
 		if change_child:
 			self.main_stack.set_visible_child_name("aptbox")
 			self.information_button.set_name("OPTION_BUTTON")
 			self.net_button.set_name("OPTION_BUTTON")
 			self.hd_button.set_name("OPTION_BUTTON")
-			self.netfiles_button.set_name("OPTION_BUTTON")
 			self.epoptes_button.set_name("OPTION_BUTTON")
 			self.bar_button.set_name("OPTION_BUTTON")
 			self.kernel_button.set_name("OPTION_BUTTON")
 			self.apt_button.set_name("SELECTED_OPTION_BUTTON")
-			self.pmb_button.set_name("OPTION_BUTTON")
 		
 	#def apt_button_clicked
 
 
-	def pmb_button_clicked(self,widget):
-		
-		change_child=True
-		if self.main_stack.get_visible_child_name()=="informationbox":
-			selected="informationbox"
-		if self.main_stack.get_visible_child_name()=="netbox":
-			selected="netbox"
-		if self.main_stack.get_visible_child_name()=="netfilesbox":
-			selected="netfilesbox"
-		if self.main_stack.get_visible_child_name()=="hdbox":
-			selected="hdbox"
-		if self.main_stack.get_visible_child_name()=="epoptesbox":
-			selected="epoptesbox"
-		if self.main_stack.get_visible_child_name()=="startbarbox":
-			selected="startbarbox"
-		if self.main_stack.get_visible_child_name()=="kernelbox":
-			selected="kernelbox"
-		if self.main_stack.get_visible_child_name()=="aptbox":
-			selected="aptbox"
-					
-		if change_child:
-			self.main_stack.set_visible_child_name("pmbbox")
-			self.information_button.set_name("OPTION_BUTTON")
-			self.net_button.set_name("OPTION_BUTTON")
-			self.hd_button.set_name("OPTION_BUTTON")
-			self.netfiles_button.set_name("OPTION_BUTTON")
-			self.epoptes_button.set_name("OPTION_BUTTON")
-			self.bar_button.set_name("OPTION_BUTTON")
-			self.kernel_button.set_name("OPTION_BUTTON")
-			self.apt_button.set_name("OPTION_BUTTON")
-			self.pmb_button.set_name("SELECTED_OPTION_BUTTON")
-		
-	#def pmb_button_clicked
-	
 	
 	
 	

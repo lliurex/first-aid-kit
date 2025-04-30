@@ -241,7 +241,8 @@ class InformationBox(Gtk.VBox):
 
 			self.information_pinning_title_function()
 
-			server_test=self.information_label_flavour_function()	
+			server_test=self.information_label_flavour_function()
+			
 			self.information_label_meta_function()
 			if server_test[0]:
 				if ( 'server' in server_test[1] ):
@@ -579,7 +580,7 @@ class InformationBox(Gtk.VBox):
 	def informationv_label_cpu_model_function(self,cpu):
 		
 		try:
-			cpu_model=cpu['brand']
+			cpu_model=cpu['brand_raw']
 			cpu_model_solved=cpu_model.rsplit('@', 1)[0]
 			self.informationv_label_cpu_model_solved.set_text(cpu_model_solved)
 
@@ -593,7 +594,7 @@ class InformationBox(Gtk.VBox):
 	def information_label_cpu_speed_function(self,cpu):
 		
 		try:
-			cpu_model=cpu['brand']
+			cpu_model=cpu['brand_raw']
 			cpu_speed_solved=cpu_model.rsplit('@', 1)[1]
 			cpu_cores_solved=str(cpu['count'])
 			self.information_label_cpu_speed_solved.set_text(cpu_speed_solved)
@@ -616,7 +617,7 @@ class InformationBox(Gtk.VBox):
 			elif ( 'Client' in flavour_solved ) or ( 'client' in flavour_solved ):
 				return [True, "client"]
 			else:
-				return False
+				return [False]
 
 		except Exception as e:
 			self.information_label_flavour_solved.set_text('Unknow')
