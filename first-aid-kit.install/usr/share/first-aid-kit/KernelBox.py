@@ -180,47 +180,80 @@ class KernelBox(Gtk.VBox):
 
 
 	def init_kernel_boot_store(self):
+		try:
 
-		#PRINT KERNEL COMBOBOX
+			#PRINT KERNEL COMBOBOX
+			renderer=Gtk.CellRendererText()
+			self.kernel_combobox.pack_start(renderer,True)
+			self.kernel_combobox.add_attribute(renderer,"text",0)
+			self.kernel_installed_boot=Gtk.ListStore(str)
+			self.kernel_combobox.set_model(self.kernel_installed_boot)
+			self.kernel_combobox.set_active(0)
+			
+			self.thread_read=threading.Thread(target=self.read_kernel_default_thread)
+			self.thread_read.daemon=True
+			self.thread_read.start()
+			
+			GLib.timeout_add(500,self.check_read_kernel_default_thread)
+			
+		except Exception as e:
+			return 0
+			self.core.dprint("(init_kernel_boot_store) Error: %s"%e,"[KernelBox]")
 
-		#self.core.dprint("Combobox Kernel: %s"%self.kernel_installed_boot)
-		renderer=Gtk.CellRendererText()
-		self.kernel_combobox.pack_start(renderer,True)
-		self.kernel_combobox.add_attribute(renderer,"text",0)
-		self.kernel_installed_boot=Gtk.ListStore(str)
-		self.kernel_combobox.set_model(self.kernel_installed_boot)
-		self.kernel_combobox.set_active(0)
-
-	#def kernel_boot
+	#def init_kernel_boot_store
 
 
+
+	def read_kernel_default_thread(self):
+
+		try:
+			self.kernel_default=self.read_kernel_default()
+			#self.core.dprint("(DANI)Read Kernel Default: %s"%self.kernel_default)
+		except Exception as e:
+			self.core.dprint("(kernel_install_thread) Error: %s"%e,"[KernelBox]")	
+
+	#def read_kernel_default_thread
+
+
+
+	def check_read_kernel_default_thread(self):
+		
+		try:
+			if self.thread_read.is_alive():
+				return True
+
+			self.kernel_combobox.set_active(self.kernel_default)
+			
+		except Exception as e:
+			self.core.dprint("(check_read_kernel_default_thread) Error: %s"%e,"[KernelBox]")
+	#def check_read_kernel_default_thread
+	
 
 	def read_kernel_default(self):
 		# SET IN COMBOBOX WICH KERNEL IS ACTIVE AT THE MOMENT.
 		try:
 			#print("######################READ KERNEL DEFAULT")
 			#GRUB DEFAULT EXISTS? DEFINE POSITION, BUT NOT WICH KERNEL NUMBER
+			#self.core.dprint("(read_kernel_default) Arranca la funcion...","[DANI]")
 			grub_file='/etc/default/grub'
-			f_orig=open(grub_file)
-			lines=f_orig.readlines()
-			f_orig.close()
 			line_writed=False
-
-			for line in lines:
-				if "GRUB_DEFAULT=" in line:
-					kernel_default_pos=line.replace('GRUB_DEFAULT=','')
-					kernel_default_pos=kernel_default_pos.split()[0]
-					#WE NEED DELETE ""
-					kernel_default_pos=kernel_default_pos.replace('"','')
-					token=">"
-					if token in kernel_default_pos:
-						break
+			with open("/etc/default/grub", "r") as fichero:
+				for linea in fichero:
+					if "GRUB_DEFAULT=" in linea.upper():
+						#self.core.dprint("ENCONTRADA: %s"%linea,"[DANI]")
+						kernel_default_pos=linea.strip().split("=")[1]
+						#WE NEED DELETE ""
+						kernel_default_pos=kernel_default_pos.replace('"','')
+						#self.core.dprint("kernel_default_pos: %s"%kernel_default_pos,"[DANI]")
+						token=">"
+						if token in kernel_default_pos:
+							break
+						else:
+							kernel_default_pos="1>0"
 					else:
 						kernel_default_pos="1>0"
-				else:
-					kernel_default_pos="1>0"
 
-
+			#self.core.dprint("kernel_default_pos: %s"%kernel_default_pos,"[DANI]")
 			######### ESTO FUNCIONA DE LUJO NO TOCAR ACUERDATE QUE POSEES COSAS ANULADAS ABAJO Y QUE LA GUI DE GLADE NO ESTA ORGANIZANDOME EL BOX COMO QUIERO
 			#CHECK WICH KERNEL NUMBER IS ACTIVE, IF POSITION IS DEFINED IN GRUB DEFAUTL OR 0>0 BY DEFAULT.
 			kernel_file="/tmp/.first-aid-kit_set-kernel.%s"%self.core.current_user
@@ -236,8 +269,8 @@ class KernelBox(Gtk.VBox):
 					line=line.replace(kernel_default_pos,'')
 					if "-generic" in line:
 						line=line.replace('-generic','')
-					if "LliureX 21" in line:
-						line=line.replace('LliureX 21','')
+					if "LliureX 23" in line:
+						line=line.replace('LliureX 23','')
 					newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in line)
 					kernel_active = [str(i) for i in newstr.split()]
 					finded=True
@@ -250,13 +283,14 @@ class KernelBox(Gtk.VBox):
 				for k in kernel_active:
 					for i in self.kernel_installed_boot:
 						element=(i[:])[0]
-						#print ('%s element: %s'%(pos,element))
+						#print ('(DANI)%s element: %s'%(pos,element))
 						if str(k)==str(element):
 							#print 'eureka'
 							#print pos
+							#self.core.dprint("(read_kernel_default) POS: %s"%pos,"[DANI]")
 							return pos
 						pos+=1
-
+			#self.core.dprint("(read_kernel_default) POS: %s"%pos,"[DANI]")
 			return pos
 
 
@@ -285,8 +319,9 @@ class KernelBox(Gtk.VBox):
 
 			
 			for line in lines:
+				#self.core.dprint("(set_kernel_default)Line: %s  "%(line),"[DANI]")
 				if self.kernel_selected in line:
-					if not "recovery" in line:
+					if not "Safe" in line:
 						default_grub_option=line.split()[0]
 
 			self.core.dprint("(set_kernel_default)Kernel default position in Grub: %s"%(default_grub_option),"[KernelBox]")
@@ -378,7 +413,8 @@ class KernelBox(Gtk.VBox):
 
 			self.switch_kernel_installed.show()
 			self.switch_kernel_installed.set_sensitive(True)
-			
+			kk=self.read_kernel_default()
+			#self.core.dprint("(check_set_kernel_default_thread) self.read_kernel_default: %s"%kk,"[DANI]")
 			self.kernel_combobox.set_active(self.read_kernel_default())
 			self.kernel_combobox.show()
 			self.kernel_combobox_spinner.hide()
@@ -1020,7 +1056,7 @@ class KernelBox(Gtk.VBox):
 			self.core.dprint("Commit result is: %s"%commit,"[KernelBox]")
 			self.core.dprint("(kernel_install_thread) (cache.commit) Finished........","[KernelBox]")
 
-			proc=subprocess.Popen('update-grub2',shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable="/bin/bash")
+			proc=subprocess.Popen('update-grub2',shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable="/bin/bash",text=True)
 
 			for line in iter(proc.stderr.readline,""):
 				line=line.strip("\n")

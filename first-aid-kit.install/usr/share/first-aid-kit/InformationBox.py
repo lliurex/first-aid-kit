@@ -224,25 +224,27 @@ class InformationBox(Gtk.VBox):
 
 	def information_system_thread(self):
 		try:
-			
+			#self.core.dprint("Reading CPU information..........","[DANI]")
 			self.cpu=self.cpu_info_function()
-
+			#self.core.dprint("Reading HDD information..........","[DANI]")
 			self.read_hdd()
 			#kernel version in use
+			#self.core.dprint("Reading KERNEL information..........","[DANI]")
 			self.information_label_kernel_function()
-
+			#self.core.dprint("Reading RAM information..........","[DANI]")
 			self.information_label_ram_function()
-
+			#self.core.dprint("Reading RELEASE information..........","[DANI]")
 			self.information_label_release_function()
-
+			#self.core.dprint("Reading CENTER CODE information..........","[DANI]")
 			self.information_center_code_function()
-
+			#self.core.dprint("Reading TIMESTAMP information..........","[DANI]")
 			self.information_label_timestamp_function()
-
+			#self.core.dprint("Reading LLX_PINING information..........","[DANI]")
 			self.information_pinning_title_function()
-
+			#self.core.dprint("Reading FLAVOUR information..........","[DANI]")
 			server_test=self.information_label_flavour_function()
-			
+			#self.core.dprint("server_test: %s"%server_test,"[DANI]")			
+			#self.core.dprint("Reading META information..........","[DANI]")
 			self.information_label_meta_function()
 			if server_test[0]:
 				if ( 'server' in server_test[1] ):
@@ -580,7 +582,7 @@ class InformationBox(Gtk.VBox):
 	def informationv_label_cpu_model_function(self,cpu):
 		
 		try:
-			cpu_model=cpu['brand_raw']
+			cpu_model=cpu['brand']
 			cpu_model_solved=cpu_model.rsplit('@', 1)[0]
 			self.informationv_label_cpu_model_solved.set_text(cpu_model_solved)
 
@@ -594,7 +596,7 @@ class InformationBox(Gtk.VBox):
 	def information_label_cpu_speed_function(self,cpu):
 		
 		try:
-			cpu_model=cpu['brand_raw']
+			cpu_model=cpu['brand']
 			cpu_speed_solved=cpu_model.rsplit('@', 1)[1]
 			cpu_cores_solved=str(cpu['count'])
 			self.information_label_cpu_speed_solved.set_text(cpu_speed_solved)
@@ -617,7 +619,7 @@ class InformationBox(Gtk.VBox):
 			elif ( 'Client' in flavour_solved ) or ( 'client' in flavour_solved ):
 				return [True, "client"]
 			else:
-				return [False]
+				return [False,""]
 
 		except Exception as e:
 			self.information_label_flavour_solved.set_text('Unknow')
