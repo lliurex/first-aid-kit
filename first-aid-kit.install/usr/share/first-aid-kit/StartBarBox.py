@@ -12,6 +12,14 @@ import threading
 import sys
 import os
 
+import pexpect
+import re
+import hashlib
+import binascii
+import getpass
+import sys
+import secrets
+
 gettext.textdomain('first-aid-kit')
 _=gettext.gettext
 
@@ -58,8 +66,11 @@ class StartBarBox(Gtk.VBox):
 		self.accept_grub_button=builder.get_object("accept_grub_button")
 		self.cancel_grub_button=builder.get_object("cancel_grub_button")
 		self.grub_user_title=builder.get_object("grub_user_title")
+		self.passwd_grub_label=builder.get_object("passwd_grub_label")
+		self.grub_passwd_title=builder.get_object("grub_passwd_title")
 
 		self.grub_user_title.set_text(_("Insert user for GRUB:"))
+		self.grub_passwd_title.set_text(_("Insert password for GRUB:"))
 		
 
 		self.add(self.start_bar_box)
@@ -95,6 +106,7 @@ class StartBarBox(Gtk.VBox):
 		self.grub_custom_word='set superusers='
 		self.grub_custom_word2='password_pbkdf2 '
 		self.grub_passwd=' grub.pbkdf2.sha512.10000.1B5DE39EC649A0372C6D27A7C60B54199CD094BBA2CB53DB0AFCC64AE699F7C2EDF6304B43D4919F846209E808C600C381C34A40F65F636FD196AB55C54D6DC2.65A2E205C9F4E1A1FAE1040E5655C2CD94B3ED5CC8010D5DE80DD70F747D14A98CE5F4554D88A299A26E173F79594B41206055B69F9E1E66602DE94F84E60CB2'
+		self.grub_passwd2=self.grub_passwd
 		f = open(self.grub_default_file,'r')
 		for line in f:
 			if self.grub_default_word in line:
@@ -152,6 +164,7 @@ class StartBarBox(Gtk.VBox):
 		self.grub_passwd_label.set_name("OPTION_LABEL")
 		self.txt_check_start_bar.set_name("INFO_LABEL")
 		self.grub_user_title.set_name("OPTION_LABEL")
+		self.grub_passwd_title.set_name("OPTION_LABEL")
 			
 	#def set-css_info
 
@@ -321,19 +334,22 @@ class StartBarBox(Gtk.VBox):
 		self.info_box_stack.set_visible_child_name("empty_box_start_bar")
 		self.user_grub_label.set_can_focus(False)
 		self.user_grub=self.user_grub_label.get_text().split()
+		self.passwd_grub=self.passwd_grub_label.get_text().split()
 		self.core.dprint(self.user_grub,"[StarBarBox] user:")
+		self.core.dprint(self.passwd_grub,"[StarBarBox] passwd:")
 
-		if len(self.user_grub)==1:
+		if len(self.user_grub)==1 and len(self.passwd_grub)==1:
 
 			self.user_grub=self.user_grub[0]
+			self.passwd_grub=self.passwd_grub[0]
 
-			if self.user_grub=='':
+			if self.user_grub=='' or self.passwd_grub=='':
 				self.grub_passwd_spinner.hide()
 				self.grub_passwd_button.show()
 				self.grub_passwd_button.set_sensitive(True)
 				self.start_bar_button.set_sensitive(True)
 				self.txt_check_start_bar.set_name("INFO_LABEL_ERROR")
-				self.txt_check_start_bar.set_text(_("Username is empty, the process is canceled."))
+				self.txt_check_start_bar.set_text(_("Username or Password is empty, the process is canceled."))
 				self.info_box_stack.set_visible_child_name("info_start_bar")
 			else:
 				self.grub_passwd_button_launched(widget)
@@ -461,13 +477,39 @@ class StartBarBox(Gtk.VBox):
 			else:
 				#Operations in /etc/default/grub
 				self.core.dprint("Passwd is deactivate in GRUB, now you're activating it....... please wait.","[StarBarBox]")
+				'''proc = pexpect.spawn("grub-mkpasswd-pbkdf2", encoding="utf-8", timeout=15, env={**os.environ, "LC_ALL": "C"})
+				
+				#self.core.dprint("2.1 Proceso iniciado", "[StarBarBox]")
+				proc.expect("Enter password:")
+				#self.core.dprint("2.2 Solicitud de contraseña detectada", "[StarBarBox]")
+
+				proc.sendline(str(self.passwd_grub))
+				#self.core.dprint("2.3 Primera contraseña enviada", "[StarBarBox]")
+
+				proc.expect("Reenter password:")
+				#self.core.dprint("2.4 Solicitud de confirmación detectada", "[StarBarBox]")
+
+				proc.sendline(str(self.passwd_grub))
+				#self.core.dprint("2.5 Segunda contraseña enviada", "[StarBarBox]")
+
+				proc.expect(pexpect.EOF)
+				#self.core.dprint("3. Proceso finalizado", "[StarBarBox]")
+
+				match = re.search(r"grub\.pbkdf2\.sha512\.[^\s]+", proc.before)
+				self.grub_passwd = match.group(0) if match else None
+				self.grub_passwd =self.grub_passwd.strip()'''
+				
+				self.grub_passwd=self.generar_hash_grub(self.passwd_grub)
+				self.core.dprint(self.grub_passwd,"[StarBarBox] Passwd Hash:")
+				self.validar_hash_grub(self.grub_passwd, self.passwd_grub)
+				#self.grub_passwd=self.grub_passwd2
 				with open(self.grub_default_file, 'a') as file:
 					file.write(self.grub_default_word+'\n')
 
 				#Operations in /etc/grub.d/40_custom
 				with open(self.grub_custom_file, 'a') as file:
 					file.write(self.grub_custom_word+'"'+self.user_grub+'"'+'\n')
-					file.write(self.grub_custom_word2+self.user_grub+self.grub_passwd+'\n')
+					file.write(self.grub_custom_word2+self.user_grub+' '+self.grub_passwd+'\n')
 
 				#Operations in /etc/grub.d/10_linux
 				fd = open(self.grub_linux_file,'r')
@@ -520,10 +562,77 @@ class StartBarBox(Gtk.VBox):
 		self.grub_passwd_button.set_sensitive(True)
 		self.start_bar_button.set_sensitive(True)
 		if self.grub_passwd_active:
-			self.txt_check_start_bar.set_text(_("GRUB has activated passwd to %s user, the passwd is lliurexnet.")%self.user_grub)
+			self.txt_check_start_bar.set_text(_("GRUB has activated passwd to %s user, the passwd is %s.")%(self.user_grub, self.passwd_grub))
 		else:
 			self.txt_check_start_bar.set_text(_("GRUB has not passwd, anyone can edit it."))
 		self.info_box_stack.set_visible_child_name("info_start_bar")
 
 		
 	#check_grub_passwd_thread
+	
+	
+	
+	
+	
+	def validar_hash_grub(self, grub_hash,password):
+		print("--- Verificador de contraseña para GRUB (PBKDF2) ---")
+
+		# El hash generado por grub-mkpasswd-pbkdf2
+		self.core.dprint(grub_hash,"[StarBarBox] Comprobando el Hash:")
+
+		#La contraseña a validar
+		self.core.dprint(password,"[StarBarBox] Contraseña a validar:")
+
+		try:
+			# El hash de GRUB tiene el formato: grub.pbkdf2.sha512.iteraciones.salt.hash
+			parts = grub_hash.split(".")
+
+			if len(parts) != 6 or parts[0] != "grub" or parts[1] != "pbkdf2" or parts[2] != "sha512":
+				self.core.dprint("❌ Error: El formato del hash no parece un hash válido de GRUB (grub.pbkdf2.sha512...)","[StarBarBox]")
+				return
+
+			iterations = int(parts[3])
+			salt = binascii.unhexlify(parts[4])
+			original_key = binascii.unhexlify(parts[5])
+
+			# Calcular el hash con la contraseña introducida para comparar
+			calculated_key = hashlib.pbkdf2_hmac("sha512", password.encode("utf-8"), salt, iterations)
+
+			if calculated_key == original_key:
+				self.core.dprint("✅ ¡Validación correcta! La contraseña coincide perfectamente con el hash.","[StarBarBox]")
+			else:
+				self.core.dprint("❌ Error: La contraseña NO corresponde a ese hash.","[StarBarBox]")
+
+		except Exception as e:
+			self.core.dprint("(start_bar_button_thread)Error: %s"%e,"[StarBarBox]")
+			
+	#validar_hash_grub
+	
+	
+	
+	def generar_hash_grub(self,password):
+		try:
+			self.core.dprint("--- Generador de Hash para GRUB (PBKDF2) ---","[StarBarBox]")
+
+			# Parámetros estándar que usa GRUB de forma nativa
+			iteraciones = 10000
+			longitud_salt = 64  # 64 bytes de sal aleatoria
+
+			# Generar una sal aleatoria segura y convertirla a hexadecimal
+			salt_bytes = secrets.token_bytes(longitud_salt)
+			salt_hex = salt_bytes.hex().lower()
+
+			# Calcular el hash PBKDF2 con SHA-512
+			hash_bytes = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'), salt_bytes, iteraciones)
+			hash_hex = hash_bytes.hex().lower()
+
+			# Construir la estructura final idéntica a grub-mkpasswd-pbkdf2
+			grub_formatted_hash = f"grub.pbkdf2.sha512.{iteraciones}.{salt_hex}.{hash_hex}"
+			
+			self.core.dprint("✅ Hash generado con éxito:","[StarBarBox]")
+			return grub_formatted_hash
+		
+		except Exception as e:
+			self.core.dprint("(start_bar_button_thread)Error: %s"%e,"[StarBarBox]")
+			
+	#generar_hash_grub
