@@ -1,3 +1,9 @@
+first-aid-kit (1.2.20) jammy; urgency=medium
+
+  * Fix comments 
+
+ -- Daniel Duran <daduve@gmail.com>  Wed, 04 Nov 2026 15:34:07 +0100
+
 first-aid-kit (1.2.19) jammy; urgency=medium
 
   * Adding submenus in passwd GRUB 
