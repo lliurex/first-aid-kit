@@ -100,9 +100,10 @@ class StartBarBox(Gtk.VBox):
 
 		#test if passwd is configured in GRUB
 		self.grub_default_file='/etc/default/grub'
-		self.grub_custom_file="/etc/grub.d/40_custom"
+		self.grub_custom_file="/etc/grub.d/01_users"
 		self.grub_linux_file="/etc/grub.d/10_linux"
-		self.grub_default_word = 'GRUB_DISABLE_SUBMENU=y'
+		#self.grub_default_word = 'GRUB_DISABLE_SUBMENU=y'
+		self.grub_default_word = 'GRUB_SAVEDDEFAULT="false"'
 		self.grub_custom_word='set superusers='
 		self.grub_custom_word2='password_pbkdf2 '
 		self.grub_passwd=' grub.pbkdf2.sha512.10000.1B5DE39EC649A0372C6D27A7C60B54199CD094BBA2CB53DB0AFCC64AE699F7C2EDF6304B43D4919F846209E808C600C381C34A40F65F636FD196AB55C54D6DC2.65A2E205C9F4E1A1FAE1040E5655C2CD94B3ED5CC8010D5DE80DD70F747D14A98CE5F4554D88A299A26E173F79594B41206055B69F9E1E66602DE94F84E60CB2'
@@ -378,6 +379,7 @@ class StartBarBox(Gtk.VBox):
 		self.txt_check_start_bar.set_name("INFO_LABEL")
 		self.txt_check_start_bar.set_text("")
 		self.user_grub_label.set_text("")
+		self.passwd_grub_label.set_text("")
 		if self.grub_passwd_active == False:
 			self.user_grub_label.set_can_focus(True)
 			self.grub_passwd_window.show()
@@ -432,22 +434,9 @@ class StartBarBox(Gtk.VBox):
 					f.write(line)
 				f.close()
 
-				#Operations in /etc/grub.d/40_custom
-				d = open(self.grub_custom_file,'r')
-				lstd = []
-				for line in d:
-					lstd.append(line)
-				d.close()
-				d = open(self.grub_custom_file,'w')
-				for line in lstd:
-					if self.grub_custom_word in line:
-						pass
-					else:
-						if self.grub_custom_word2 in line:
-							pass 
-						else:
-							d.write(line)
-				d.close()
+				#Operations in /etc/grub.d/01_users
+				if os.path.exists(self.grub_custom_file):
+					os.remove(self.grub_custom_file)
 
 
 
@@ -456,9 +445,13 @@ class StartBarBox(Gtk.VBox):
 				lst = []
 				match="grub_quote)' ${CLASS} --unrestricted"
 				replace="grub_quote)' ${CLASS}"
+				match2="""echo "submenu '$(gettext_printf "Advanced options for %s" "${OS}" | grub_quote)' --unrestricted"""
+				replace2="""echo "submenu '$(gettext_printf "Advanced options for %s" "${OS}" | grub_quote)'"""
 				for line in fd:
 					if match in line:
 						line = line.replace(match,replace)
+					elif match2 in line:
+						line = line.replace(match2,replace2)
 					lst.append(line)
 				fd.close()
 				fd = open(self.grub_linux_file,'w')
@@ -466,8 +459,11 @@ class StartBarBox(Gtk.VBox):
 					fd.write(line)
 				fd.close()
 
-
-				self.grub_passwd_active = False
+				self.core.dprint("(DANI) Reseteo passwd_grub ", "[StarBarBox]")
+				self.passwd_grub=""
+				self.core.dprint("(DANI) Reseteo grub_passwd_active a FALSE ", "[StarBarBox]")
+				self.grub_passwd_active=False
+				self.core.dprint("(DANI) CAMBIO BOTONES ", "[StarBarBox]")
 				self.grub_passwd_button.set_label(_("Activate"))
 				self.info_box_stack.set_visible_child_name("info_start_bar")
 				self.txt_check_start_bar.set_text(_("The GRUB passwd is removing from your system, applying changes....."))
@@ -506,19 +502,30 @@ class StartBarBox(Gtk.VBox):
 				with open(self.grub_default_file, 'a') as file:
 					file.write(self.grub_default_word+'\n')
 
-				#Operations in /etc/grub.d/40_custom
+				#Operations in /etc/grub.d/01_users
+				#First delete the file if exists, then create file and generate the code
+				if os.path.exists(self.grub_custom_file):
+					os.remove(self.grub_custom_file)
 				with open(self.grub_custom_file, 'a') as file:
+					file.write('#!/bin/sh\n')
+					file.write("cat << 'EOF'\n")
 					file.write(self.grub_custom_word+'"'+self.user_grub+'"'+'\n')
+					file.write('export superusers\n')
 					file.write(self.grub_custom_word2+self.user_grub+' '+self.grub_passwd+'\n')
+					file.write('EOF\n')
 
 				#Operations in /etc/grub.d/10_linux
 				fd = open(self.grub_linux_file,'r')
 				lst = []
 				match="grub_quote)' ${CLASS}"
 				replace="grub_quote)' ${CLASS} --unrestricted"
+				match2="""echo "submenu '$(gettext_printf "Advanced options for %s" "${OS}" | grub_quote)'"""
+				replace2="""echo "submenu '$(gettext_printf "Advanced options for %s" "${OS}" | grub_quote)' --unrestricted"""
 				for line in fd:
 					if match in line:
 						line = line.replace(match,replace)
+					elif match2 in line:
+						line = line.replace(match2,replace2)
 					lst.append(line)
 				fd.close()
 				fd = open(self.grub_linux_file,'w')
@@ -533,14 +540,15 @@ class StartBarBox(Gtk.VBox):
 				os_message="GRUB passwd is activated."
 
 
-			os.chmod(self.grub_custom_file, 0o700)
+			if os.path.exists(self.grub_custom_file):
+				os.chmod(self.grub_custom_file, 0o700)
 			os.system('update-grub')
 			self.core.dprint(os_message,"[StarBarBox]")
 			time.sleep(1)
 			self.thread_ret={"status":True,"msg":"BROKEN"}
 			
 		except Exception as e:
-			self.core.dprint("(start_bar_button_thread)Error: %s"%e,"[StarBarBox]")
+			self.core.dprint("(grub_passwd_button_thread)Error: %s"%e,"[StarBarBox]")
 			return False
 
 	#grub_passwd_button_thread
@@ -561,10 +569,13 @@ class StartBarBox(Gtk.VBox):
 		self.grub_passwd_button.show()
 		self.grub_passwd_button.set_sensitive(True)
 		self.start_bar_button.set_sensitive(True)
+		self.core.dprint("(DANI) self.grub_passwd_active = %s"%self.grub_passwd_active, "[StarBarBox]")
 		if self.grub_passwd_active:
-			self.txt_check_start_bar.set_text(_("GRUB has activated passwd to %s user, the passwd is %s.")%(self.user_grub, self.passwd_grub))
+			self.core.dprint("(DANI) Validation Active texto TRUE", "[StarBarBox]")
+			self.txt_check_start_bar.set_text(_("GRUB validation is enabled to USER: %s, and PASSWD: %s.")%(self.user_grub, self.passwd_grub))
 		else:
-			self.txt_check_start_bar.set_text(_("GRUB has not passwd, anyone can edit it."))
+			self.core.dprint("(DANI) Validation unactive texto FALSE", "[StarBarBox]")
+			self.txt_check_start_bar.set_text("GRUB has not passwd, anyone can edit it.")
 		self.info_box_stack.set_visible_child_name("info_start_bar")
 
 		
@@ -604,7 +615,7 @@ class StartBarBox(Gtk.VBox):
 				self.core.dprint("❌ Error: La contraseña NO corresponde a ese hash.","[StarBarBox]")
 
 		except Exception as e:
-			self.core.dprint("(start_bar_button_thread)Error: %s"%e,"[StarBarBox]")
+			self.core.dprint("(validar_hash_grub)Error: %s"%e,"[StarBarBox]")
 			
 	#validar_hash_grub
 	
@@ -633,6 +644,6 @@ class StartBarBox(Gtk.VBox):
 			return grub_formatted_hash
 		
 		except Exception as e:
-			self.core.dprint("(start_bar_button_thread)Error: %s"%e,"[StarBarBox]")
+			self.core.dprint("(generar_hash_grub)Error: %s"%e,"[StarBarBox]")
 			
 	#generar_hash_grub
