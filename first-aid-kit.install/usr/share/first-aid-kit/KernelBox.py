@@ -208,7 +208,7 @@ class KernelBox(Gtk.VBox):
 
 		try:
 			self.kernel_default=self.read_kernel_default()
-			self.core.dprint("(DANI)Read Kernel Default: %s"%self.kernel_default)
+			#self.core.dprint("(read_kernel_default_thread)Read Kernel Default: %s"%self.kernel_default)
 		except Exception as e:
 			self.core.dprint("(kernel_install_thread) Error: %s"%e,"[KernelBox]")	
 
@@ -234,17 +234,17 @@ class KernelBox(Gtk.VBox):
 		try:
 			#print("######################READ KERNEL DEFAULT")
 			#GRUB DEFAULT EXISTS? DEFINE POSITION, BUT NOT WICH KERNEL NUMBER
-			self.core.dprint("(read_kernel_default) Arranca la funcion...","[DANI]")
+			self.core.dprint("(read_kernel_default) Arranca la funcion...","[KernelBox]")
 			grub_file='/etc/default/grub'
 			line_writed=False
 			with open("/etc/default/grub", "r") as fichero:
 				for linea in fichero:
 					if "GRUB_DEFAULT=" in linea.upper():
-						self.core.dprint("ENCONTRADA: %s"%linea,"[DANI]")
+						self.core.dprint("(read_kernel_default) ENCONTRADA: %s"%linea,"[KernelBox]")
 						kernel_default_pos=linea.strip().split("=")[1]
 						#WE NEED DELETE ""
 						kernel_default_pos=kernel_default_pos.replace('"','')
-						self.core.dprint("Antes del If kernel_default_pos: %s"%kernel_default_pos,"[DANI]")
+						self.core.dprint("(read_kernel_default) Antes del If kernel_default_pos: %s"%kernel_default_pos,"[KernelBox]")
 						token=">"
 						if token in kernel_default_pos:
 							break
@@ -253,7 +253,7 @@ class KernelBox(Gtk.VBox):
 					else:
 						kernel_default_pos="1>0"
 
-			self.core.dprint("kernel_default_pos: %s"%kernel_default_pos,"[DANI]")
+			self.core.dprint("(read_kernel_default) kernel_default_pos: %s"%kernel_default_pos,"[KernelBox]")
 			######### ESTO FUNCIONA DE LUJO NO TOCAR ACUERDATE QUE POSEES COSAS ANULADAS ABAJO Y QUE LA GUI DE GLADE NO ESTA ORGANIZANDOME EL BOX COMO QUIERO
 			#CHECK WICH KERNEL NUMBER IS ACTIVE, IF POSITION IS DEFINED IN GRUB DEFAUTL OR 0>0 BY DEFAULT.
 			kernel_file="/tmp/.first-aid-kit_set-kernel.%s"%self.core.current_user
@@ -264,11 +264,11 @@ class KernelBox(Gtk.VBox):
 			os.remove(kernel_file)
 
 			finded=False
-			self.core.dprint("(set_kernel_default)Busco la posicion: %s  "%(kernel_default_pos),"[DANI]")
+			self.core.dprint("(read_kernel_default) Busco la posicion: %s  "%(kernel_default_pos),"[KernelBox]")
 			for line in lines:
-				self.core.dprint("(set_kernel_default)Line: %s  "%(line),"[DANI]")
+				self.core.dprint("(read_kernel_default) Line: %s  "%(line),"[KernelBox]")
 				if kernel_default_pos in line:
-					self.core.dprint("(set_kernel_default)Encontrada............","[DANI]")
+					self.core.dprint("(read_kernel_default) Encontrada............","[KernelBox]")
 					line=line.replace(kernel_default_pos,'')
 					if "-generic" in line:
 						line=line.replace('-generic','')
@@ -277,7 +277,7 @@ class KernelBox(Gtk.VBox):
 					newstr = ''.join((ch if ch in '0123456789.-' else ' ') for ch in line)
 					kernel_active = [str(i) for i in newstr.split()]
 					finded=True
-					self.core.dprint("(set_kernel_default)kernel_active: %s  "%(kernel_active),"[DANI]")
+					self.core.dprint("(read_kernel_default) kernel_active: %s  "%(kernel_active),"[KernelBox]")
 					break
 
 
@@ -287,14 +287,14 @@ class KernelBox(Gtk.VBox):
 				for k in kernel_active:
 					for i in self.kernel_installed_boot:
 						element=(i[:])[0]
-						print ('(DANI)%s element: %s'%(pos,element))
+						#print ('(DANI)%s element: %s'%(pos,element))
 						if str(k)==str(element):
 							#print 'eureka'
 							#print pos
-							self.core.dprint("(read_kernel_default) POS: %s"%pos,"[DANI]")
+							self.core.dprint("(read_kernel_default) POS: %s"%pos,"[KernelBox]")
 							return pos
 						pos+=1
-			self.core.dprint("(read_kernel_default) POS: %s"%pos,"[DANI]")
+			self.core.dprint("(read_kernel_default) POS: %s"%pos,"[KernelBox]")
 			return pos
 
 
@@ -323,12 +323,12 @@ class KernelBox(Gtk.VBox):
 
 			
 			for line in lines:
-				#self.core.dprint("(set_kernel_default)Line: %s  "%(line),"[DANI]")
+				self.core.dprint("(set_kernel_default) Line: %s  "%(line),"[KernelBox]")
 				if self.kernel_selected in line:
 					if not "Safe" in line:
 						default_grub_option=line.split()[0]
 
-			self.core.dprint("(set_kernel_default)Kernel default position in Grub: %s"%(default_grub_option),"[KernelBox]")
+			self.core.dprint("(set_kernel_default) Kernel default position in Grub: %s"%(default_grub_option),"[KernelBox]")
 
 			grub_file='/etc/default/grub'
 			f_orig=open(grub_file)
@@ -418,7 +418,7 @@ class KernelBox(Gtk.VBox):
 			self.switch_kernel_installed.show()
 			self.switch_kernel_installed.set_sensitive(True)
 			kk=self.read_kernel_default()
-			#self.core.dprint("(check_set_kernel_default_thread) self.read_kernel_default: %s"%kk,"[DANI]")
+			self.core.dprint("(check_set_kernel_default_thread) self.read_kernel_default: %s"%kk,"[KernelBox]")
 			self.kernel_combobox.set_active(self.read_kernel_default())
 			self.kernel_combobox.show()
 			self.kernel_combobox_spinner.hide()
